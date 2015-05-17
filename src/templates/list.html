@@ -1,0 +1,28 @@
+<section class="list-container">
+  <div class="list-nav">
+    <div ui-turn-on='listDropdown' href="javascript:;" class="btn btn-navbar">
+    精品级咖啡豆<i class="fa fa-chevron-circle-down"></i>
+    <ul 
+      class="dropdown-menu"
+      ui-outer-click="Ui.turnOff('listDropdown')"
+      ui-outer-click-if="Ui.active('listDropdown')"
+      role="menu"
+      ui-show="listDropdown" 
+      ui-state="listDropdown"
+      ui-turn-off="listDropdown">
+      <li><a href="/#/list?type=0">精品级</a></li>
+      <li><a href="/#/list?type=1">商业级</a></li>
+      <li><a href="/#/list?type=2">高级商业</a></li>
+    </ul>
+    </div>
+
+    <div class="list-place"><i class="fa fa-map-marker fa-2x"></i></div>
+  </div>
+
+  <div class="list-banner"></div>
+
+  <div class="list-cont">
+    
+  </div>
+
+</section>
