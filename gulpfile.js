@@ -178,8 +178,6 @@ gulp.task('html', function() {
 ======================================================================*/
 
 gulp.task('less', function () {
-  console.log(path.resolve(__dirname, 'src/less'));
-  console.log(path.resolve(__dirname, 'bower_components'));
   gulp.src(['./src/less/app.less', './src/less/responsive.less'])
     .pipe(less({
       paths: [ path.resolve(__dirname, 'src/less'), path.resolve(__dirname, 'bower_components') ]

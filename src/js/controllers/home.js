@@ -5,8 +5,14 @@ angular.module('Coffee.controllers.Home', [])
 
   vm.carouselIndex = 0;
   vm.slides = [
-    'http://192.168.3.104:8008/images/ad1.jpg',
-    'http://192.168.3.104:8008/images/ad2.jpg',
-    'http://192.168.3.104:8008/images/ad3.jpg'
+    {
+        'img': $scope.mainHost + 'images/ad1.jpg'
+    },
+    {
+        'img': $scope.mainHost + 'images/ad1.jpg'
+    },
+    {
+        'img': $scope.mainHost + 'images/ad1.jpg'
+    }
   ];
 });

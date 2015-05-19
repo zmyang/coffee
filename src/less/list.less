@@ -1,9 +1,17 @@
 .list-container {
-    background: #fff;
+    background: #f8f8f8;
+    min-height: 100%;
     .list-nav {
         height: 45px;
         padding-top: 5px;
-        position: relative;        
+        position: absolute;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 10000;
+        border-bottom: 1px solid #cbcbcb;
         .list-place {
             position: absolute;
             right: 0;
@@ -12,6 +20,50 @@
             padding-top: 3px;
             width: auto;
             padding-right: 10px;
+        }
+    }
+
+    .list-banner {
+        padding: 60px 10px 0;
+        border-top: 1px solid #fff;
+    }
+
+    .list-cont {
+        padding: 10px;
+        overflow: hidden;
+        .list-item {
+            float: left;
+            height: 215px;
+            width: 48%;
+            margin-right: 4%;
+            margin-bottom: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            .border-radius(3px);
+            position: relative;
+            padding: 150px 8px 0;
+            height: 220px;
+            img {
+                position: absolute;
+                left: 50%;
+                top: 0;
+                height: 140px;
+                .translate3d(-50%, 0, 0);
+            }
+            h4 {
+                font-size: 12px;
+                line-height: 18px;
+                margin-bottom: 0;
+                border-bottom: 1px dashed #999;
+            }
+            p {
+                em {
+                    color: #ff5000;
+                }
+            }
+        }
+        .list-item:nth-child(even) {
+            margin-right: 0;
         }
     }
 }

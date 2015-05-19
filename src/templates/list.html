@@ -19,10 +19,20 @@
     <div class="list-place"><i class="fa fa-map-marker fa-2x"></i></div>
   </div>
 
-  <div class="list-banner"></div>
+  <div class="scrollable">
+    <div class="scrollable-content" scroll>
+      <div class="list-banner">
+        <img src="{{vm.adImage}}" alt=""/>
+      </div>
 
-  <div class="list-cont">
-    
+      <div class="list-cont">
+        <div ng-repeat="item in vm.items track by $index" class="list-item">
+          <img ng-src="{{item.img}}" alt="" />
+          <h4>{{item.desc}}</h4>
+          <p><em>{{item.price}}</em></p>
+        </div>
+      </div>
+    </div>
   </div>
 
 </section>
