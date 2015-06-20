@@ -1,7 +1,10 @@
 <div class="btn-group justified">
   <a href="#/" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i></a>
-  <div ui-turn-on='dropdown1' class="btn btn-navbar">
-    <i class="fa fa-bars"></i>
+  <div class="btn btn-navbar">
+    <span ui-turn-on='dropdown1'>
+      <i class="fa fa-bars"></i>
+      咖啡生豆
+    </span>
     <ul 
       class="dropdown-menu"
       ui-outer-click="Ui.turnOff('dropdown1')"
@@ -14,9 +17,12 @@
       <li><a href="#/list?type=1">生  豆</a></li>
       <li><a href="#/list?type=2">coffeefans</a></li>
     </ul>
-    咖啡生豆</div>
-  <div ui-turn-on='dropdown2' class="btn btn-navbar">
-    <i class="fa fa-bars"></i>
+  </div>
+  <div class="btn btn-navbar">
+    <span ui-turn-on='dropdown2'>
+      <i class="fa fa-bars"></i>
+      团购活动
+    </span>
     <ul 
       class="dropdown-menu"
       ui-outer-click="Ui.turnOff('dropdown2')"
@@ -25,12 +31,15 @@
       ui-show="dropdown2" 
       ui-state="dropdown2"
       ui-turn-off="dropdown2">
-      <li><a>限时抢购</a></li>
+      <li><a href="#/group_purchase">限时抢购</a></li>
       <li><a>活动预告</a></li>
     </ul>
-    团购活动</div>
-  <div ui-turn-on='dropdown3' class="btn btn-navbar">
-    <i class="fa fa-bars"></i>
+  </div>
+  <div class="btn btn-navbar">
+    <span ui-turn-on='dropdown3'>
+      <i class="fa fa-bars"></i>
+      会员中心
+    </span>
     <ul
       class="dropdown-menu dropdown-menu-last"
       ui-outer-click="Ui.turnOff('dropdown3')"
@@ -39,10 +48,10 @@
       ui-show="dropdown3" 
       ui-state="dropdown3"
       ui-turn-off="dropdown3">
-      <li><a>个人主页</a></li>
+      <li><a href="#/member_ship">个人主页</a></li>
       <li><a>购物指南</a></li>
       <li><a>客服电话</a></li>
       <li><a>你的咖啡</a></li>
     </ul>
-    会员中心</div>
+  </div>
 </div>

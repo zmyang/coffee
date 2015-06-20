@@ -1,0 +1,79 @@
+<ul class="group-purchase-title nav nav-tabs" ui-state='activeTab' ui-default='1'>
+  <li ng-repeat="t in vm.groupPurchaseDates" ng-class="{'active': vm.activeTab == t.index}">
+    <a ng-click="vm.activeTab = t.index" ui-set="{'activeTab': t.index}">{{t.date}}<span>{{t.desc}}</span></a>
+  </li>
+</ul>
+<div class="scrollable">
+    <div class="scrollable-content group-purchase-content" scroll>
+
+        <div class="tab-cont" ui-if="activeTab == 1">
+            <div class="group-purchase-tip">
+              限时限量 疯狂抢购
+              <span>距离本场结束 00:21:14</span>
+            </div>
+            <div class="purchase-item">
+                <img ng-src="../images/p1.jpg" alt="" />
+                <div class="item-desc">
+                    <h3>精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚</h3>
+                    <div class="item-price"><span>￥39.9</span><del>￥118</del></div>
+                    <span class="item-select">马上抡</span>
+                </div>
+                <div class="item-last">
+                    <span class="item-percent">已抢购35%</span>
+                    <span class="item-percent-tip"><em style="width:10%"></em></span>
+                    <span class="item-get">已抡4427件</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-cont" ui-if="activeTab == 2">
+            <div class="group-purchase-tip">
+              提前设置提醒不错过
+              <span>距离本场开始 00:21:14</span>
+            </div>
+            <div class="purchase-item">
+                <img ng-src="../images/p1.jpg" alt="" />
+                <div class="item-desc">
+                    <h3>精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚</h3>
+                    <div class="item-price"><span>￥39.9</span><del>￥118</del></div>
+                    <span class="item-alert">提醒我</span>
+                </div>
+                <div class="item-alert-time">
+                    <span class="item-time">15:00准时开抢</span>
+                    <span class="item-attention">1.3万人已关注</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-cont" ui-if="activeTab == 3">
+            <div class="purchase-item">
+                <img ng-src="../images/p1.jpg" alt="" />
+                <div class="item-desc">
+                    <h3>精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚</h3>
+                    <div class="item-price"><span>￥39.9</span><del>￥118</del></div>
+                    <span class="item-alert">提醒我</span>
+                </div>
+                <div class="item-alert-time">
+                    <span class="item-time">15:00准时开抢</span>
+                    <span class="item-attention">1.3万人已关注</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-cont" ui-if="activeTab == 4">
+            <div class="purchase-item">
+                <img ng-src="../images/p1.jpg" alt="" />
+                <div class="item-desc">
+                    <h3>精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚</h3>
+                    <div class="item-price"><span>￥39.9</span><del>￥118</del></div>
+                    <span class="item-alert">提醒我</span>
+                </div>
+                <div class="item-alert-time">
+                    <span class="item-time">15:00准时开抢</span>
+                    <span class="item-attention">1.3万人已关注</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

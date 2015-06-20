@@ -1,5 +1,17 @@
 angular.module('Coffee.controllers.Main', [])
 
-.controller('MainController', function($scope){
-  $scope.mainHost =  location.href.replace(location.hash, '');
+.controller('MainController', function ($scope, $location) {
+    $scope.mainHost = /^http/.test(location.href) ? location.href.replace(location.hash, '') : '';
+
+    $scope.pageBack = function () {
+        window.history.back();
+    };
+
+    $scope.go = function (path, isHash) {
+        if (isHash) {
+            $location.hash(path);
+        } else {
+            $location.path(path);
+        }
+    };
 });

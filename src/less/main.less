@@ -1,21 +1,28 @@
-.navbar-app .btn, .navbar-app .btn-navbar {
-    color: #737373;
-}
+.navbar-app {
+    .fa-home {
+        font-size: 25px;
+        position: relative;
+        top: 3px;
+    }
+    .btn-navbar {
+        color: #737373;
+    }
+    .btn {
+        span {
+            display: block;
+            height: 100%;
+        }
+        color: #737373;
+        padding: 0 8px;
+        border-right: 1px solid #b1b1b1 !important;
 
-.navbar-app .fa-home {
-    font-size: 25px;
-    position: relative;
-    top: 3px;
-}
-
-.navbar-app .btn {
-    padding: 0 8px;
-    border-right: 1px solid #b1b1b1 !important;
-
-
-    .dropdown-menu {
-        top: auto;
-        bottom: 105%;
+        .navbar-app .btn-navbar {
+            color: #737373;
+        }
+        .dropdown-menu {
+            top: auto;
+            bottom: 105%;
+        }
     }
 }
 
@@ -25,6 +32,10 @@
 
 .fa-ellipsis-v {
     padding-right: 4px;
+}
+
+.fa-angle-right {
+    font-size: 20px;
 }
 
 .dropdown-menu {
@@ -53,4 +64,43 @@
 .dropdown-menu-last {
     left: auto;
     right: 0;
+}
+.btn {
+    &.btn-danger {
+        background-color: #f15a0c;
+    }
+    &.btn-warning {
+        background-color: #f08f00;
+    }
+}
+
+.switch.active {
+    border-color: #4ddb66;
+    background-color: #4ddb66;
+    .switch-handle {
+        border-color: #4ddb66;
+    }
+}
+
+.nav-tabs {
+    .display-flex();
+    padding-bottom: 2px;
+    border-bottom: 1px solid #d1d1d1;
+    >li {
+        .flex-item();
+        border-bottom: 2px solid #fff;
+        &.active {
+            a {
+                color: #ee330a;
+                border: 0 none;
+            }
+            text-align: center;
+            border-bottom-color: #ee330a;
+        }
+        a {
+            color: #7a8074;
+            text-align: center;
+            border: 0 none;
+        }
+    }
 }

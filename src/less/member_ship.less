@@ -1,0 +1,86 @@
+.member-ship-content {
+    background: #f8f8f8;
+    .detail-title {
+        position: relative;
+        min-height: 100px;
+        .title-desc {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            background: rgba(0, 0, 0, .5);
+            z-index: 2;
+            color: #fff;
+        }
+    }
+    .detail-item-tab {
+        .display-flex();
+        padding: 10px 0;
+        background: #fff;
+        border-bottom: 1px solid #e5e5e5;
+        .detail-tab {
+            .flex-item();
+            border-right: 1px solid #e5e5e5;
+            text-align: center;
+        }
+    }
+
+    .detail-item-group {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        background: #fff;
+        margin-bottom: 12px;
+        padding-left: 10px;
+    }
+    .detail-item {
+        padding: 10px 10px 10px 50px;
+        border-bottom: 1px solid #e5e5e5;
+        &.detail-item-comment {
+            background: #fff url(../images/comment.png) no-repeat 3px 5px;
+            background-size: 33px 33px;
+            margin-bottom: 12px;
+        }
+        &.detail-item-record {
+            background: #fff url(../images/record.png) no-repeat 10px 4px;
+            background-size: 25px 33px;
+        }
+        &.detail-item-points {
+            background: #fff url(../images/points.png) no-repeat 10px 4px;
+            background-size: 24px 33px;
+        }
+        &.detail-item-collect {
+            background: #fff url(../images/my_collect.png) no-repeat 7px 4px;
+            background-size: 29px 33px;
+            border-bottom: 0 none;
+        }
+        &.detail-item-tel {
+            background: #fff url(../images/custom_service.png) no-repeat 10px 3px;
+            background-size: 28px 33px;
+            margin-bottom: 12px;
+        }
+        i.fa {
+            float: right;
+        }
+    }
+
+    .detail-shop-wrap {
+        height: 50px;
+        background: #f8f8f8;
+        font-size: 14px;
+        color: #333;
+        .detail-shop {
+            overflow: hidden;
+            padding: 10px 10px 10px 34px;
+            background: #fff url(../images/shop.png) no-repeat 10px 10px;
+            background-size: 18px 18px;
+        }
+        a {
+            float: right;
+            border-left: 1px solid #b3b3b3;
+            color: #b3b3b3;
+            padding-left: 10px;
+            height: 20px;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+<div class="detail-title">
+    <div ng-click="pageBack()" class="detail-title-logo">
+    </div>
+    Urcoffee  麦啡商城
+    <a ng-click="vm.attend()">关注</a>
+    <a href="#/my_record">我的纪录</a>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content detail-content" scroll>
+        <ul class="detail-imgs" rn-carousel rn-carousel-index="vm.carouselIndex">
+            <li ng-repeat="item in vm.slides track by $index">
+                <img ng-src="{{item.img}}" alt="{{item.img}}">
+            </li>
+        </ul>
+        <div class="ad-indicator" rn-carousel-indicators ng-if="vm.slides.length > 1" slides="vm.slides" rn-carousel-index="vm.carouselIndex"></div>
+        <div class="detail-desc">
+            <h3>精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚</h3>
+            <div class="detail-price">
+                <em>￥64.45</em>
+                <del>淘价￥65</del>
+                <a class="detail-collect" href="javascript:;"></a>
+                <a class="detail-share" href="javascript:;"></a>
+            </div>
+        </div>
+        <div class="detail-charge">
+            <em>减满</em>满200包邮<i class="fa fa-angle-right"></i>
+        </div>
+        <div class="detail-items">
+            <div class="detail-item"><label>净含量：</label><span>227g</span></div>
+            <div class="detail-item"><label>剩余：</label><span>48</span></div>
+            <div class="detail-item"><label>运费：</label><span>¥6.00~35.00</span></div>
+        </div>
+        <div class="detail-shop-wrap">
+            <div class="detail-shop">
+                Urcoffee  麦啡商城
+                <a href="">进入店铺</a>
+            </div>
+        </div>
+        <ul class="nav nav-tabs" ui-state='activeTab' ui-default='1'>
+          <li ui-class="{'active': activeTab == 1}">
+            <a ui-set="{'activeTab': 1}">详细信息</a>
+          </li>
+          <li ui-class="{'active': activeTab == 2}">
+            <a ui-set="{'activeTab': 2}">评价晒单</a>
+          </li>
+        </ul>
+
+        <div class="tab-cont" ui-if="activeTab == 1">
+            <img src="../images/p2.jpg" alt="">
+        </div>
+
+        <div class="tab-cont" ui-if="activeTab == 2">
+            <img src="../images/p2.jpg" alt="">
+        </div>
+
+    </div>
+</div>
+<div class="detail-buy-buttons navbar-absolute-bottom">
+    <div class="btn btn-danger">
+        立即购买
+    </div>
+    <div ng-click="go('/add_shopping_cart')" class="btn btn-default">
+        加入购物车
+    </div>
+</div>

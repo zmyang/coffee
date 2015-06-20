@@ -1,0 +1,85 @@
+<div class="add-shopping-cart-title">
+    <img ng-src="{{vm.productInfo.img}}" alt="" />
+    {{vm.productInfo.name}}
+    <em>￥{{vm.productInfo.price}}</em>
+    <div ng-click="pageBack()" class="add-shopping-cart-title-back">
+    </div>
+</div>
+<div class="scrollable">
+    <div class="scrollable-content add-shopping-cart-content" scroll>
+        <div class="add-shopping-cart-setup">
+            <div class="setup-item">
+                <div class="select-title">
+                    净含量：
+                </div>
+                <div class="select-weight">
+                    <button ng-repeat="weight in vm.productInfo.weight_items" class="btn btn-default" ng-class="{'selected-weight': weight == vm.productInfo.select_weight}" ng-click="vm.productInfo.select_weight = weight">{{weight}}</button>
+                </div>
+            </div>
+            <div class="setup-item">
+                <div class="select-title-left">
+                    数量：
+                </div>
+                <div class="select-num">
+                    <div class="btn-group" role="group" aria-label="...">
+                      <button ng-click="vm.productInfo.buy_num = (vm.productInfo.buy_num > 1) ? vm.productInfo.buy_num - 1 : 1" type="button" class="btn btn-default">-</button>
+                      <span class="btn btn-default">{{vm.productInfo.buy_num}}</span>
+                      <button ng-click="vm.productInfo.buy_num = vm.productInfo.buy_num + 1" type="button" class="btn btn-default">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="setup-item">
+                <div class="select-title-left">
+                    研磨：
+                </div>
+                <div class="select-item-right">
+                    <ui-switch  ng-model="vm.productInfo.grind"></ui-switch>
+                </div>
+            </div>
+            <div class="setup-item">
+                <div class="select-title">
+                    研磨程度：
+                </div>
+                <div class="select-weight">
+                    <button ng-repeat="deep in vm.productInfo.grind_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_grind_deep}" ng-click="vm.productInfo.select_grind_deep = deep">{{deep}}</button>
+                </div>
+            </div>
+            <div class="setup-item">
+                <div class="select-title-left">
+                    烘焙：
+                </div>
+                <div class="select-item-right">
+                    <ui-switch  ng-model="vm.productInfo.cook"></ui-switch>
+                </div>
+            </div>
+            <div class="setup-item">
+                <div class="select-title-left">
+                    烘焙数量：
+                </div>
+                <div class="select-num">
+                    <div class="btn-group" role="group" aria-label="...">
+                      <button ng-click="vm.productInfo.cook_num = (vm.productInfo.cook_num > 0) ? vm.productInfo.cook_num - 1 : 0" type="button" class="btn btn-default">-</button>
+                      <span class="btn btn-default">{{vm.productInfo.cook_num}}</span>
+                      <button ng-click="vm.productInfo.cook_num = vm.productInfo.cook_num + 1" type="button" class="btn btn-default">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="setup-item">
+                <div class="select-title">
+                    烘焙程度：
+                </div>
+                <div class="select-weight">
+                    <button ng-repeat="deep in vm.productInfo.cook_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_cook_deep}" ng-click="vm.productInfo.select_cook_deep = deep">{{deep}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="detail-buy-buttons navbar-absolute-bottom">
+    <div class="btn btn-danger">
+        立即购买
+    </div>
+    <div ng-click="vm.joinCart();go('/edit_shopping_cart')" class="btn btn-warning">
+        加入购物车
+    </div>
+</div>

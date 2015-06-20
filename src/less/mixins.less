@@ -4,8 +4,42 @@
     -webkit-border-radius: @radius;
 }
 
+.box-shadow(@v: 1px 1px 4px #666) {
+    -webkit-box-shadow: @v;
+    -moz-box-shadow: @v;
+    box-shadow: @v;
+}
+
 .translate3d(@x:-50%, @y: -50%, @z: 0) {
     transform: translate3d(@x, @y, @z);
     -moz-transform: translate3d(@x, @y, @z);
     -webkit-transform: translate3d(@x, @y, @z);
+}
+
+.display-flex() {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;
+}
+
+.flex-item(@v: 1) {
+    -webkit-box-flex: @v;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: @v;         /* OLD - Firefox 19- */
+    -webkit-flex: @v;          /* Chrome */
+    -ms-flex: @v;              /* IE 10 */
+    flex: @v; 
+}
+
+.text-ellipsis() {
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.clear-float {
+    overflow: hidden;
+    zoom: 1;
 }

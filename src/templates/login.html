@@ -1,0 +1,26 @@
+<div class="area-title">
+    <div ng-click="pageBack()" class="area-title-back">
+    </div>
+    账户登录
+</div>
+
+<div class="scrollable">
+  <div ng-init="" class="scrollable-content login-cont" scroll>
+
+      <div class="login-input-wrap marginTop10">
+        <p>
+          <label>账户</label><input type="text" ng-model="vm.Account.logTel" placeholder="手机/会员/邮箱"/>
+        </p>
+        <p>
+          <label>登录密码</label><input type="tel" ng-model="vm.Account.legPwd" placeholder="请输入密码"/>
+        </p>
+      </div>
+
+      <span ng-click="vm.Account.send()" class="submit-login-btn">登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+
+      <div class="login-control">
+        <a class="fast-reg" href="#/reg">快速注册</a>
+        <a class="find-pwd" href="">找回密码</a>
+      </div>
+  </div>
+</div>
