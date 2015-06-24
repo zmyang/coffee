@@ -11,6 +11,7 @@ var config = {
   
   vendor: {
     js: [
+      'http://res.wx.qq.com/open/js/jweixin-1.0.0.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/angular-touch/angular-touch.js',
@@ -207,7 +208,10 @@ gulp.task('less', function () {
 gulp.task('js', function() {
     streamqueue({ objectMode: true },
       gulp.src(config.vendor.js),
-      gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
+      gulp.src('./src/js/app.js'),
+      gulp.src('./src/js/services/*.js'),
+      gulp.src('./src/js/directives/*.js'),
+      gulp.src('./src/js/controllers/*.js'),
       gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Coffee' }))
     )
     .pipe(sourcemaps.init())

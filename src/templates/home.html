@@ -2,7 +2,7 @@
   <div class="home-ad-banner">
       <ul rn-carousel rn-carousel-index="vm.carouselIndex">
         <li ng-repeat="item in vm.slides track by $index">
-            <img ng-src="{{item.img}}" alt="{{item.img}}">
+            <a href="{{item.url}}"><img ng-src="{{item.path}}" alt="{{item.img}}"></a>
         </li>
       </ul>
       <div class="ad-indicator" rn-carousel-indicators ng-if="vm.slides.length > 1" slides="vm.slides" rn-carousel-index="vm.carouselIndex"></div>

@@ -39,4 +39,15 @@ angular.module('Coffee.controllers.List', [])
             'payedNum': 89
         },
     ];
+
+    // 产品列表
+    vm.items = [];
+    $http.get('http://www.urcoffee.com/api/product/list.jhtml')
+      .success(function (data) {
+        if (data && 1 == data['result']) {
+          vm.items = data['data']['content'];
+        }
+      })
+      .finally(function () {
+      });
 });

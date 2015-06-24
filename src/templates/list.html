@@ -27,9 +27,9 @@
 
       <div class="list-cont">
         <a href="#/detail?item={{item.id}}" ng-repeat="item in vm.items track by $index" class="list-item">
-          <img ng-src="{{item.img}}" alt="" />
-          <h4>{{item.desc}}</h4>
-          <p><em>￥{{item.price}}</em>{{item.payedNum}}人付款 <span class="item-buy"></span></p>
+          <img ng-src="{{item.image}}" alt="" />
+          <h4>{{item.name}}</h4>
+          <p><em>￥{{item.price}}</em>{{item.sales}}人付款 <span class="item-buy"></span></p>
         </a>
       </div>
     </div>

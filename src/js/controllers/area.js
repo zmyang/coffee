@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Area', [])
 
-.controller('AreaController', function($scope, $http) {
+.controller('AreaController', function($scope, $http, globalData) {
   var vm = this;
 
   var areaData = {
@@ -25,9 +25,22 @@ angular.module('Coffee.controllers.Area', [])
   };
 
   vm.levels = areaData["attributes"][1]["options"];
-  vm.areas = [];
+  vm.areas = areaData["attributes"][0]["options"];
 
-  angular.forEach(areaData["attributes"][0]["options"], function (a) {
-    vm.areas.push({'name': a});
-  });
+  // 等级和地区
+  vm.areas = [];
+  var saveAreas = globalData.get('product_areas');
+  if (saveAreas) {
+    vm.areas = saveAreas;
+  }
+  else {
+    $http.get('http://www.urcoffee.com/api/product/levelAndArea.jhtml')
+      .success(function (data) {
+        if (data && data['attributes']) {
+          globalData.set('product_areas', data["attributes"][0]["options"]);
+        }
+      })
+      .finally(function () {
+      });
+  }
 });
