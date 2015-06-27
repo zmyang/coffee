@@ -43,6 +43,20 @@ var Coffee_App = angular.module('Coffee', [
     reloadOnSearch: false
   });
 
+  $routeProvider.when('/list2', {
+    templateUrl: 'list.html',
+    controller: 'ListController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
+
+  $routeProvider.when('/list3', {
+    templateUrl: 'list.html',
+    controller: 'ListController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
+
   $routeProvider.when('/area', {
     templateUrl: 'area.html',
     controller: 'AreaController',

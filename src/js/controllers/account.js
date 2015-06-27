@@ -1,12 +1,10 @@
 angular.module('Coffee.controllers.Account', [])
 
-.controller('AccountController', function($scope, $location) {
+.controller('AccountController', function($scope, $location, $http, userInfo) {
     var vm = this;
 
     // 我的联系方式
     vm.Account = {
-        get: function() {
-        },
         name: '',
         tel: '',
         codeText: '获取验证码',
@@ -28,8 +26,8 @@ angular.module('Coffee.controllers.Account', [])
                 return;
             }
 
-            if (!utils.checkTell(this.inTel)) {
-                utils.alert('请输入正确的手机号码');
+            if (!this.inTel) {
+                alert('请输入手机号码');
                 return;
             }
             this.isTickTacking = true;
@@ -53,14 +51,85 @@ angular.module('Coffee.controllers.Account', [])
         checkCode: function(cb) {
         },
         send: function() {
-            if (!utils.checkTell(this.inTel)) {
-                utils.alert('请输入正确的手机号码');
+            if (!this.logTel) {
+                alert('请输入账号');
                 return;
             }
-            if (!this.code) {
-                utils.alert('请获取并输入验证码！');
+            if (!this.logPwd) {
+                alert('请输入密码！');
                 return;
             }
+
+
+            var me = this;
+            function doSend () {
+                var loginUrl = 'http://www.urcoffee.com/api/member/login.jhtml';
+                userInfo.postData($http, loginUrl, {
+                    'username': me.logTel, 
+                    'password': me.logPwd,
+                    'wechatId': userInfo.openId || ''
+                })
+                  .success(function (data) {
+                    console.log(data);
+                    userInfo.info = data['data'];
+                    if (userInfo.openId) {
+                        userInfo.hasLogin = true;
+                    }
+                  })
+                  .error(function () {
+                    alert('登陆失败!');
+                  })
+                  .finally(function () {
+                  });
+            }
+
+            userInfo.getOpenId($http, doSend, doSend);
+            
+        },
+        reg: function () {
+            console.log(this.regCountry);
+            if (!this.regName) {
+                alert('请输入用户名');
+                return;
+            }
+            if (!this.regPwd) {
+                alert('请输入密码！');
+                return;
+            }
+            if (!this.regMail) {
+                alert('请输入邮箱！');
+                return;
+            }
+            if (!this.regPhone) {
+                alert('请输入电话！');
+                return;
+            }
+
+            var me = this;
+            function doReg() {
+                var loginUrl = 'http://www.urcoffee.com/api/member/singup.jhtml';
+                $http.post(loginUrl, {
+                    'username': this.regName, 
+                    'password': this.regPwd,
+                    'email': this.regMail,
+                    'phone': this.regPhone,
+                    'wechatId': userInfo.openId || ''
+                })
+                  .success(function (data) {
+                    console.log(data);
+                    userInfo.info = data['data'];
+                    if (userInfo.openId) {
+                        userInfo.hasLogin = true;
+                    }
+                  })
+                  .error(function () {
+                    alert('注册失败!');
+                  })
+                  .finally(function () {
+                  });
+            }
+
+            userInfo.getOpenId($http, doReg, doReg);
         }
     };
 });

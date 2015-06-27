@@ -109,7 +109,7 @@ gulp.task('connect', function() {
       root: config.dest,
       host: config.server.host,
       port: config.server.port,
-      livereload: true
+      livereload: false
     });
   } else {
     throw new Error('Connect is not configured');
