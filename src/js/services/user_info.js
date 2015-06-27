@@ -4,20 +4,28 @@ Coffee_App.service('userInfo', function () {
         fromPage: null,
         info: null,
         openId: null,
+        recodeCode: null,
         getOpenId: function(xhr, done, fail) {
             if (userInfo.openId) {
                 done && done();
                 return;
             }
-            var codeParam = /code=(\w+)/.exec(location.href);
+
             var code;
-            if (!codeParam) {
-                fail && fail();
-                return;
+            if (this.recodeCode) {
+                code = this.recodeCode;
             }
             else {
-                code = codeParam[1];
+                var codeParam = /code=(\w+)/.exec(location.href);
+                if (!codeParam) {
+                    fail && fail();
+                    return;
+                }
+                else {
+                    code = codeParam[1];
+                }
             }
+            
             xhr.get('http://www.urcoffee.com/api/wechat/authorize/' + code + '/1.jhtml', {
                 code: code
             })

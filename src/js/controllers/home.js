@@ -42,5 +42,4 @@ angular.module('Coffee.controllers.Home', [])
       });
   }
 
-
 });

@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.GroupPurchase', [])
 
-.controller('GroupPurchaseController', function($scope, $http, shoppingCart) {
+.controller('GroupPurchaseController', function($scope, $http, shoppingCart, userInfo) {
   var vm = this;
 
   vm.activeTab = 1;
@@ -26,4 +26,5 @@ angular.module('Coffee.controllers.GroupPurchase', [])
         'index': 4
       }
   ];
+
 });

@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Main', [])
 
-.controller('MainController', function ($scope, $location) {
+.controller('MainController', function ($scope, $location, $http, userInfo) {
     $scope.mainHost = /^http/.test(location.href) ? location.href.replace(location.hash, '') : '';
 
     $scope.pageBack = function () {
@@ -14,4 +14,6 @@ angular.module('Coffee.controllers.Main', [])
             $location.path(path);
         }
     };
+
+    userInfo.getOpenId($http);
 });
