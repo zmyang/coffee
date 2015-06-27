@@ -49,9 +49,14 @@ Coffee_App.service('userInfo', function () {
             }
             xhr.get('http://www.urcoffee.com/api/member/weixin/' + userInfo.openId + '.jhtml')
               .success(function (data) {
-                userInfo.info = data['info'];
-                userInfo.hasLogin = true;
-                done && done();
+                if (data['data']) {
+                    userInfo.info = data['data'];
+                    userInfo.hasLogin = true;
+                    done && done();
+                }
+                else {
+                    fail && fail();
+                }
               })
               .error(function () {
                 fail && fail();
