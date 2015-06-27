@@ -80,7 +80,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
-www/
+#www/
 
 # External tool builders
 .externalToolBuilders/
