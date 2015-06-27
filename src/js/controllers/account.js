@@ -70,11 +70,12 @@ angular.module('Coffee.controllers.Account', [])
                     'wechatId': userInfo.openId || ''
                 })
                   .success(function (data) {
-                    console.log(data);
+                    alert(JSON.stringify(data));
                     userInfo.info = data['data'];
                     if (userInfo.openId) {
                         userInfo.hasLogin = true;
                     }
+                    window.history.back();
                   })
                   .error(function () {
                     alert('登陆失败!');
@@ -96,10 +97,10 @@ angular.module('Coffee.controllers.Account', [])
                 alert('请输入密码！');
                 return;
             }
-            if (!this.regMail) {
-                alert('请输入邮箱！');
-                return;
-            }
+            // if (!this.regMail) {
+            //     alert('请输入邮箱！');
+            //     return;
+            // }
             if (!this.regPhone) {
                 alert('请输入电话！');
                 return;
@@ -107,20 +108,27 @@ angular.module('Coffee.controllers.Account', [])
 
             var me = this;
             function doReg() {
-                var loginUrl = 'http://www.urcoffee.com/api/member/singup.jhtml';
-                $http.post(loginUrl, {
-                    'username': this.regName, 
-                    'password': this.regPwd,
-                    'email': this.regMail,
-                    'phone': this.regPhone,
+                var regUrl = 'http://www.urcoffee.com/api/member/singup.jhtml';
+                var params = {
+                    'username': me.regName, 
+                    'password': me.regPwd,
+                    'phone': me.regPhone,
                     'wechatId': userInfo.openId || ''
-                })
+                };
+
+                if (me.regMail) {
+                    params['email'] = me.regMail;
+                }
+
+                userInfo.postData($http, regUrl, params)
                   .success(function (data) {
                     console.log(data);
                     userInfo.info = data['data'];
                     if (userInfo.openId) {
                         userInfo.hasLogin = true;
                     }
+                    alert(JSON.stringify(data));
+                    window.history.back();
                   })
                   .error(function () {
                     alert('注册失败!');

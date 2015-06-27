@@ -33,7 +33,7 @@
                 我的购物记录<i class="fa fa-angle-right"></i>
             </div>
             <div class="detail-item detail-item-points">
-                本店积分<i class="fa fa-angle-right"></i>
+                本店积分{{vm.userinfo.point}}<i class="fa fa-angle-right"></i>
             </div>
             <div class="detail-item detail-item-collect">
                 我的收藏<i class="fa fa-angle-right"></i>
@@ -42,7 +42,7 @@
         <div class="detail-item detail-item-tel">
             客服电话<i class="fa fa-angle-right"></i>
         </div>
-        <div class="detail-shop-wrap">
+        <div ng-hide="true" class="detail-shop-wrap">
             <div class="detail-shop">
                 Urcoffee  麦啡商城
                 <a href="">进入店铺</a>

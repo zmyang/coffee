@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Detail', [])
 
-.controller('DetailController', function($scope, $http, currentProduct) {
+.controller('DetailController', function($scope, $http, currentProduct, weixinBridge) {
   var vm = this;
 
   vm.attend = function() {
@@ -8,17 +8,7 @@ angular.module('Coffee.controllers.Detail', [])
   };
 
   vm.carouselIndex = 0;
-  vm.slides = [
-    {
-        'img': $scope.mainHost + 'images/p1.jpg'
-    },
-    {
-        'img': $scope.mainHost + 'images/p1.jpg'
-    },
-    {
-        'img': $scope.mainHost + 'images/p1.jpg'
-    }
-  ];
+  vm.slides = [];
 
   vm.productInfo = {
     'name': '精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚'
@@ -49,5 +39,12 @@ angular.module('Coffee.controllers.Detail', [])
   }
 
   vm.getDetail = getDetail;
+
+
+  function buyIt () {
+
+  }
+
+  vm.buyIt = buyIt;
   currentProduct.setProduct(vm.productInfo);
 });

@@ -20,7 +20,7 @@ angular.module('Coffee.controllers.MemberShip', [])
     userInfo.getOpenId($http, function () {
         userInfo.getUserInfo($http, function () {
           var infoData = userInfo.info;
-          // ...
+          vm.userinfo = infoData;
         }, noLogin) ;
     }, noLogin);
 });

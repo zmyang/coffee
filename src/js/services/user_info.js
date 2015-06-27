@@ -26,21 +26,28 @@ Coffee_App.service('userInfo', function () {
                 }
             }
             
-            xhr.get('http://www.urcoffee.com/api/wechat/authorize/' + code + '/1.jhtml', {
+            xhr.get('http://www.urcoffee.com/api/wechat/authorize/' + code + '/STATE.jhtml', {
                 code: code
             })
               .success(function (data) {
-                userInfo.openId = data['openid'];
-                done && done();
+                if (data['data'] && data['data']['openid']) {
+                    userInfo.openId = data['data']['openid'];
+                    done && done();   
+                }
+                else {
+                    fail && fail();
+                }
               })
               .error(function () {
                 fail && fail();
               });
         },
         getUserInfo: function (xhr, done, fail) {
-            xhr.get('http://www.urcoffee.com/api/userinfo.jhtml', {
-                openid: userInfo.openId
-            })
+            if (userInfo.info) {
+                done && done();
+                return;
+            }
+            xhr.get('http://www.urcoffee.com/api/member/weixin/' + userInfo.openId + '.jhtml')
               .success(function (data) {
                 userInfo.info = data['info'];
                 userInfo.hasLogin = true;
