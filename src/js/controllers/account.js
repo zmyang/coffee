@@ -108,7 +108,7 @@ angular.module('Coffee.controllers.Account', [])
 
             var me = this;
             function doReg() {
-                var regUrl = 'http://www.urcoffee.com/api/member/singup.jhtml';
+                var regUrl = 'http://www.urcoffee.com/api/member/signup.jhtml';
                 var params = {
                     'username': me.regName, 
                     'password': me.regPwd,
@@ -122,7 +122,6 @@ angular.module('Coffee.controllers.Account', [])
 
                 userInfo.postData($http, regUrl, params)
                   .success(function (data) {
-                    console.log(data);
                     userInfo.info = data['data'];
                     if (userInfo.openId) {
                         userInfo.hasLogin = true;
