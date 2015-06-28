@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Detail', [])
 
-.controller('DetailController', function($scope, $http, currentProduct, weixinBridge) {
+.controller('DetailController', function($scope, $http, currentProduct, weixinBridge, userInfo) {
   var vm = this;
 
   vm.attend = function() {
@@ -42,7 +42,9 @@ angular.module('Coffee.controllers.Detail', [])
 
 
   function buyIt () {
-    weixinBridge.config($http, window.location.href);
+    weixinBridge.config($http, window.location.href, function() {
+      weixinBridge.pay($http, userInfo.openId, new Date().getTime());
+    });
   }
 
   vm.buyIt = buyIt;

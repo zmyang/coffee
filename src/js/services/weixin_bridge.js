@@ -2,22 +2,23 @@ Coffee_App.service('weixinBridge', function () {
 
     var wb = {
         debug: true,
-        config: function (xhr, url) {
+        config: function (xhr, url, done, fail) {
             // var timestamp = Math.floor(new Date().getTime() / 1000);
             // var nonceStr = this.genNonceStr(16);
             var me = this;
             function callConfig (so) {
                 var configData = {
                     debug: me.debug,
-                    appId: 'wx6a5937f045ee75ad1',
+                    appId: 'wx6a5937f045ee75ad',
                     nonceStr: so['noncestr'],
-                    timestamp: so['timestamp'] + "",
+                    timestamp: so['timestamp'],
                     signature: so['sign'],
                     jsApiList: ['chooseWXPay']
 
                 };
                 alert(JSON.stringify(configData, 4, null));
                 me.callWx('config', configData);
+                done && done();
             }
 
             this.genSignature(
@@ -58,23 +59,84 @@ Coffee_App.service('weixinBridge', function () {
                 fail && fail();
               });
         },
-        pay: function (xhr) {
+        pay: function (xhr, openid, out_trade_no) {
             var timestamp = Math.floor(new Date().getTime() / 1000);
-            this.callWx('chooseWXPay', {
-                timestamp: timestamp,
-                nonceStr: 'noncestr',
-                package: 'addition=action_id%3dgaby1234%26limit_pay%3d&bank_type=WX&body=innertest&fee_type=1&input_charset=GBK&notify_url=http%3A%2F%2F120.204.206.246%2Fcgi-bin%2Fmmsupport-bin%2Fnotifypay&out_trade_no=1414723227818375338&partner=1900000109&spbill_create_ip=127.0.0.1&total_fee=1&sign=432B647FE95C7BF73BCD177CEECBEF8D',
-                signType: 'SHA1', // 注意：新版支付接口使用 MD5 加密
-                paySign: 'bd5b1933cda6e9548862944836a9b52e8c9a2b69'
-            });
+
+            var me = this;
+
+            function callPay (preObj) {
+                var payObj = {
+                    timestamp: preObj['timestamp'],
+                    nonceStr: preObj['nonce_str'],
+                    package: 'prepay_id=' + preObj['prepay_id'],
+                    signType: 'MD5', // 注意：新版支付接口使用 MD5 加密
+                    paySign: preObj['paysign'],
+                    success: function (res) {
+                        alert('pay ok');
+                        alert(JSON.stringify(res));
+                    }
+                };
+
+                alert(JSON.stringify(payObj));
+                me.callWx('chooseWXPay', payObj);
+            }
+            this.getPrePayId(xhr, openid, out_trade_no,
+                function (preObj) {
+                    callPay(preObj);
+                },
+                function () {
+                    alert('unifiedorder fail');
+                });
+        },
+        getPrePayId: function (xhr, openid, out_trade_no, done, fail) {
+            var prepaUrl = 'http://www.urcoffee.com/api/wechat/unifiedorder.jhtml';
+            xhr({
+                method: 'POST',
+                url: prepaUrl,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: {
+                    openid: openid,
+                    out_trade_no: out_trade_no
+                }
+            })
+              .success(function (data) {
+                alert(JSON.stringify(data));
+                if (data['data'] && data['data']['prepay_id']) {
+                    done && done(data['data']);   
+                }
+                else {
+                    fail && fail();
+                }
+              })
+              .error(function () {
+                fail && fail();
+              });
         },
         callWx: function (api, params) {
             if (wx) {
                 wx[api](params);
+                this.listenErr();
             }
             else {
                 alert('未能获取微信JSSDK权限。');
             }
+        },
+        listenErr: function () {
+            if (this.errorListened) {
+                return;
+            }
+            wx.error(function(res){
+
+                // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                alert(JSON.stringify(res));
+            });
+            this.errorListened = true;
         },
         genNonceStr: function (l) {
             var str = "";
