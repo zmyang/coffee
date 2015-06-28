@@ -42,7 +42,7 @@ angular.module('Coffee.controllers.Detail', [])
 
 
   function buyIt () {
-
+    weixinBridge.config($http, window.location.href);
   }
 
   vm.buyIt = buyIt;

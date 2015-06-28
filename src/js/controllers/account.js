@@ -70,7 +70,6 @@ angular.module('Coffee.controllers.Account', [])
                     'wechatId': userInfo.openId || ''
                 })
                   .success(function (data) {
-                    alert(JSON.stringify(data));
                     userInfo.info = data['data'];
                     if (userInfo.openId) {
                         userInfo.hasLogin = true;
@@ -126,7 +125,6 @@ angular.module('Coffee.controllers.Account', [])
                     if (userInfo.openId) {
                         userInfo.hasLogin = true;
                     }
-                    alert(JSON.stringify(data));
                     window.history.back();
                   })
                   .error(function () {

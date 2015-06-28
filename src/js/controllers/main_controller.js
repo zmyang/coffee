@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Main', [])
 
-.controller('MainController', function ($scope, $location, $http, userInfo) {
+.controller('MainController', function ($scope, $location, $http, userInfo, weixinBridge) {
     $scope.mainHost = /^http/.test(location.href) ? location.href.replace(location.hash, '') : '';
 
     $scope.pageBack = function () {
@@ -16,4 +16,6 @@ angular.module('Coffee.controllers.Main', [])
     };
 
     userInfo.getOpenId($http);
+
+    // weixinBridge.config();
 });
