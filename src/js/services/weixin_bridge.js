@@ -16,7 +16,6 @@ Coffee_App.service('weixinBridge', function () {
                     jsApiList: ['chooseWXPay']
 
                 };
-                alert(JSON.stringify(configData, 4, null));
                 me.callWx('config', configData);
                 done && done();
             }
@@ -47,7 +46,6 @@ Coffee_App.service('weixinBridge', function () {
                 }
             })
               .success(function (data) {
-                alert(JSON.stringify(data));
                 if (data['data'] && data['data']['sign']) {
                     done && done(data['data']);   
                 }
@@ -72,12 +70,10 @@ Coffee_App.service('weixinBridge', function () {
                     signType: 'MD5', // 注意：新版支付接口使用 MD5 加密
                     paySign: preObj['paysign'],
                     success: function (res) {
-                        alert('pay ok');
                         alert(JSON.stringify(res));
                     }
                 };
 
-                alert(JSON.stringify(payObj));
                 me.callWx('chooseWXPay', payObj);
             }
             this.getPrePayId(xhr, openid, out_trade_no,
@@ -106,7 +102,6 @@ Coffee_App.service('weixinBridge', function () {
                 }
             })
               .success(function (data) {
-                alert(JSON.stringify(data));
                 if (data['data'] && data['data']['prepay_id']) {
                     done && done(data['data']);   
                 }
