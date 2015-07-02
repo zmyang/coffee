@@ -91,6 +91,12 @@ var Coffee_App = angular.module('Coffee', [
     controllerAs: 'vm',
     reloadOnSearch: false
   });
+  $routeProvider.when('/member_info', {
+    templateUrl: 'member_info.html',
+    controller: 'MemberShipController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
   $routeProvider.when('/group_purchase', {
     templateUrl: 'group_purchase.html',
     controller: 'GroupPurchaseController',

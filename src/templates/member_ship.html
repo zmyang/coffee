@@ -6,7 +6,7 @@
                 亲爱的小伙伴，欢迎光临 麦啡商城
             </div>
         </div>
-        <div class="detail-item-tab">
+        <!-- <div class="detail-item-tab">
             <div class="detail-tab">
                 {{vm.memberShip.wait_pay}}
                 <div>待付款</div>
@@ -23,8 +23,11 @@
                 {{vm.memberShip.done}}
                 <div>已完成</div>
             </div>
+        </div> -->
+        <div ng-click="go('/my_orders')" class="detail-item detail-item-comment">
+            我的订单<i class="fa fa-angle-right"></i>
         </div>
-        <div class="detail-item detail-item-comment">
+        <div ng-click="go('/member_info')" class="detail-item detail-item-comment">
             会员信息<i class="fa fa-angle-right"></i>
         </div>
 
@@ -33,7 +36,7 @@
                 我的购物记录<i class="fa fa-angle-right"></i>
             </div>
             <div class="detail-item detail-item-points">
-                本店积分:&nbps;{{vm.userinfo.point}}<i class="fa fa-angle-right"></i>
+                本店积分： {{vm.userinfo.point}}<i class="fa fa-angle-right"></i>
             </div>
             <div class="detail-item detail-item-collect">
                 我的收藏<i class="fa fa-angle-right"></i>
