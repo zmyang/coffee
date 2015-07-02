@@ -29,6 +29,9 @@
         <a href="#/detail?item={{item.id}}" ng-repeat="item in vm.items track by $index" class="list-item">
           <img ng-src="{{item.image}}" alt="" />
           <h4>{{item.name}}</h4>
+          <div>
+            等级: {{item.attributeValue1}} 地域: {{item.attributeValue0}}
+          </div>
           <p><em>￥{{item.price}}</em>{{item.sales}}人付款 <span class="item-buy"></span></p>
         </a>
       </div>

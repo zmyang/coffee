@@ -49,4 +49,9 @@ angular.module('Coffee.controllers.Detail', [])
 
   vm.buyIt = buyIt;
   currentProduct.setProduct(vm.productInfo);
+
+  function sharePage () {
+    weixinBridge.shareItem(location.href, '');
+  }
+  vm.sharePage = sharePage;
 });

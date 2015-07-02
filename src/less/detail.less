@@ -13,117 +13,119 @@
         color: #939393;
     }
 }
-.detail-content {
-    background: #fff;
-    padding-top: 40px;
-    padding-bottom: 50px;
-    .detail-imgs {
-        height: 240px;
-        text-align: center;
-        img {
-            height: 100%;
-        }
-    }
-    .ad-indicator {
-        text-align: center;
-        .rn-carousel-indicator span {
-            margin-right: 5px;
-            &.active {
-              color: #f30;
-            }
-        }
-        padding-bottom: 5px;
-    }
-    .detail-desc {
-        border-top: 1px solid #f2f2f2;
-        border-bottom: 1px solid #f2f2f2;
-        h3 {
-            color: #333;
-            font-size: 18px;
-            padding: 14px 10px 10px;
-            margin: 0;
-            line-height: 20px;
-        }
-        .detail-price {
-            color: #999;
-            padding: 0 10px 10px;
-            em {
-                color: #f60;
-                font-size: 18px;
-                font-weight: bold;
-                font-style: normal;
-            }
-            .detail-collect {
-                float: right;
-                width: 63px;
-                height: 28px;
-                margin-right: 5px;
-                background: url(../images/collect.png) no-repeat;
-                background-size: 63px 28px;
-            }
-            .detail-share {
-                float: right;
-                width: 63px;
-                height: 28px;
-                margin-right: 5px;
-                background: url(../images/share.png) no-repeat;
-                background-size: 63px 28px;
-            }
-        }
-    }
-    .detail-charge {
-        padding: 10px;
-        text-align: right;
-        border-bottom: 1px solid #f2f2f2;
-        overflow: hidden;
-        line-height: 25px;
-        em {
-            float: left;
-            font-style: normal;
-            width: 45px;
-            height: 25px;
-            line-height: 25px;
+.app-content {
+    .detail-content {
+        background: #fff;
+        padding-top: 0;
+        padding-bottom: 50px;
+        .detail-imgs {
+            height: 240px;
             text-align: center;
-            font-size: 14px;
-            background-color: #f30;
-            color: #fff;
-            .border-radius(3px);
+            img {
+                height: 100%;
+            }
         }
-        i {
-            margin-left: 10px;
+        .ad-indicator {
+            text-align: center;
+            .rn-carousel-indicator span {
+                margin-right: 5px;
+                &.active {
+                  color: #f30;
+                }
+            }
+            padding-bottom: 5px;
         }
-    }
-    .detail-items {
-        padding: 5px 10px;
-        line-height: 24px;
-        border-bottom: 1px solid #f2f2f2;
-        label {
-            color: #a4a4a4;
-            font-weight: normal;
+        .detail-desc {
+            border-top: 1px solid #f2f2f2;
+            border-bottom: 1px solid #f2f2f2;
+            h3 {
+                color: #333;
+                font-size: 18px;
+                padding: 14px 10px 10px;
+                margin: 0;
+                line-height: 20px;
+            }
+            .detail-price {
+                color: #999;
+                padding: 0 10px 10px;
+                em {
+                    color: #f60;
+                    font-size: 18px;
+                    font-weight: bold;
+                    font-style: normal;
+                }
+                .detail-collect {
+                    float: right;
+                    width: 63px;
+                    height: 28px;
+                    margin-right: 5px;
+                    background: url(../images/collect.png) no-repeat;
+                    background-size: 63px 28px;
+                }
+                .detail-share {
+                    float: right;
+                    width: 63px;
+                    height: 28px;
+                    margin-right: 5px;
+                    background: url(../images/share.png) no-repeat;
+                    background-size: 63px 28px;
+                }
+            }
         }
-    }
-    .detail-shop-wrap {
-        height: 50px;
-        padding: 5px 0;
-        background: #f8f8f8;
-        font-size: 14px;
-        color: #333;
-        .detail-shop {
+        .detail-charge {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #f2f2f2;
             overflow: hidden;
-            padding: 10px 10px 10px 34px;
-            background: #fff url(../images/shop.png) no-repeat 10px 10px;
-            background-size: 18px 18px;
+            line-height: 25px;
+            em {
+                float: left;
+                font-style: normal;
+                width: 45px;
+                height: 25px;
+                line-height: 25px;
+                text-align: center;
+                font-size: 14px;
+                background-color: #f30;
+                color: #fff;
+                .border-radius(3px);
+            }
+            i {
+                margin-left: 10px;
+            }
         }
-        a {
-            float: right;
-            border-left: 1px solid #b3b3b3;
-            color: #b3b3b3;
-            padding-left: 10px;
-            height: 20px;
+        .detail-items {
+            padding: 5px 10px;
+            line-height: 24px;
+            border-bottom: 1px solid #f2f2f2;
+            label {
+                color: #a4a4a4;
+                font-weight: normal;
+            }
         }
-    }
-    .tab-cont {
-        padding: 5px;
+        .detail-shop-wrap {
+            height: 50px;
+            padding: 5px 0;
+            background: #f8f8f8;
+            font-size: 14px;
+            color: #333;
+            .detail-shop {
+                overflow: hidden;
+                padding: 10px 10px 10px 34px;
+                background: #fff url(../images/shop.png) no-repeat 10px 10px;
+                background-size: 18px 18px;
+            }
+            a {
+                float: right;
+                border-left: 1px solid #b3b3b3;
+                color: #b3b3b3;
+                padding-left: 10px;
+                height: 20px;
+            }
+        }
+        .tab-cont {
+            padding: 5px;
+        }
     }
 }
 

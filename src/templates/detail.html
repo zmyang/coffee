@@ -1,4 +1,4 @@
-<div class="detail-title">
+<div ng-hide="true" class="detail-title">
     <div ng-click="pageBack()" class="detail-title-logo">
     </div>
     Urcoffee  麦啡商城
@@ -17,18 +17,18 @@
             <h3>{{vm.productInfo.name}}</h3>
             <div class="detail-price">
                 <em>￥{{vm.productInfo.price}}</em>
-                <del>淘价￥{{vm.productInfo.point}}</del>
+                <del ng-hide="true">淘价￥{{vm.productInfo.point}}</del>
                 <a class="detail-collect" href="javascript:;"></a>
-                <a class="detail-share" href="javascript:;"></a>
+                <a ng-click="vm.sharePage()" class="detail-share" href="javascript:;"></a>
             </div>
         </div>
         <div ng-hide="true" class="detail-charge">
             <em>减满</em>满200包邮<i class="fa fa-angle-right"></i>
         </div>
         <div class="detail-items">
-            <div class="detail-item"><label>净含量：</label><span>227g</span></div>
+            <div ng-hide="true" class="detail-item"><label>净含量：</label><span>227g</span></div>
             <div class="detail-item"><label>剩余：</label><span>{{vm.productInfo.stock}}</span></div>
-            <div class="detail-item"><label>运费：</label><span>¥6.00~35.00</span></div>
+            <div ng-hide="true" class="detail-item"><label>运费：</label><span>¥6.00~35.00</span></div>
         </div>
         <div ng-hide="true" class="detail-shop-wrap">
             <div class="detail-shop">

@@ -13,7 +13,7 @@ Coffee_App.service('weixinBridge', function () {
                     nonceStr: so['noncestr'],
                     timestamp: so['timestamp'],
                     signature: so['sign'],
-                    jsApiList: ['chooseWXPay']
+                    jsApiList: ['chooseWXPay', 'onMenuShareTimeline']
 
                 };
                 me.callWx('config', configData);
@@ -143,6 +143,21 @@ Coffee_App.service('weixinBridge', function () {
                 str += arr[pos];
             }
             return str;
+        },
+        shareItem: function (link, imgUrl) {
+            alert(2);
+            alert(wx.onMenuShareTimeline);
+            wx.onMenuShareTimeline({
+                title: 'test', // 分享标题
+                link: link, // 分享链接
+                imgUrl: imgUrl || '', // 分享图标
+                success: function () { 
+                    alert('success');
+                },
+                cancel: function () { 
+                    alert('fail');
+                }
+            });
         }
     };
 
