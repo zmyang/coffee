@@ -1,0 +1,5 @@
+<div class="scrollable">
+    <div class="scrollable-content collection-content" scroll>
+        <div ng-init="vm.getList()" class="collection-item" ng-repeat="a in vm.collections track by $index">{{a.name}}</div>
+    </div>
+</div>

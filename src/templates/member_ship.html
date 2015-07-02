@@ -24,7 +24,7 @@
                 <div>已完成</div>
             </div>
         </div> -->
-        <div ng-click="go('/my_orders')" class="detail-item detail-item-comment">
+        <div ng-click="go('/orders')" class="detail-item detail-item-comment">
             我的订单<i class="fa fa-angle-right"></i>
         </div>
         <div ng-click="go('/member_info')" class="detail-item detail-item-comment">
@@ -38,7 +38,7 @@
             <div class="detail-item detail-item-points">
                 本店积分： {{vm.userinfo.point}}<i class="fa fa-angle-right"></i>
             </div>
-            <div class="detail-item detail-item-collect">
+            <div ng-click="go('/collections')" class="detail-item detail-item-collect">
                 我的收藏<i class="fa fa-angle-right"></i>
             </div>
         </div>

@@ -12,6 +12,7 @@ var Coffee_App = angular.module('Coffee', [
   'Coffee.controllers.EditShoppingCart',
   'Coffee.controllers.MemberShip',
   'Coffee.controllers.GroupPurchase',
+  'Coffee.controllers.Collections',
 ])
 
 .config(function($routeProvider) {
@@ -97,9 +98,21 @@ var Coffee_App = angular.module('Coffee', [
     controllerAs: 'vm',
     reloadOnSearch: false
   });
+  $routeProvider.when('/orders', {
+    templateUrl: 'orders.html',
+    controller: 'MemberShipController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
   $routeProvider.when('/group_purchase', {
     templateUrl: 'group_purchase.html',
     controller: 'GroupPurchaseController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
+  $routeProvider.when('/collections', {
+    templateUrl: 'collections.html',
+    controller: 'CollectionsController',
     controllerAs: 'vm',
     reloadOnSearch: false
   });

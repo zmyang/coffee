@@ -13,7 +13,7 @@ angular.module('Coffee.controllers.MemberShip', [])
     vm.memberShip = memberShip;
 
     function noLogin () {
-        return;
+        return;// for test
         userInfo.fromPage = '/member_ship';
         $location.path('/login');
     }
