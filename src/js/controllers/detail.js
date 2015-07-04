@@ -29,7 +29,9 @@ angular.module('Coffee.controllers.Detail', [])
               vm.productInfo = data['data'];
               vm.slides = vm.productInfo['productImages'] ? vm.productInfo['productImages']  : [{
                 'medium': vm.productInfo['image']
-              }]
+              }];
+
+              currentProduct.setProduct(vm.productInfo);
           }
         })
         .finally(function () {
@@ -46,7 +48,6 @@ angular.module('Coffee.controllers.Detail', [])
   }
 
   vm.buyIt = buyIt;
-  currentProduct.setProduct(vm.productInfo);
 
   function sharePage () {
     weixinBridge.shareItem(location.href, '');

@@ -23,7 +23,7 @@
                 <div class="select-num">
                     <div class="btn-group" role="group" aria-label="...">
                       <button ng-click="vm.productInfo.buy_num = (vm.productInfo.buy_num > 1) ? vm.productInfo.buy_num - 1 : 1" type="button" class="btn btn-default">-</button>
-                      <span class="btn btn-default">{{vm.productInfo.buy_num}}</span>
+                      <span class="btn btn-default">{{vm.productInfo.buy_num || 0}}</span>
                       <button ng-click="vm.productInfo.buy_num = vm.productInfo.buy_num + 1" type="button" class="btn btn-default">+</button>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="select-num">
                     <div class="btn-group" role="group" aria-label="...">
                       <button ng-click="vm.productInfo.cook_num = (vm.productInfo.cook_num > 0) ? vm.productInfo.cook_num - 1 : 0" type="button" class="btn btn-default">-</button>
-                      <span class="btn btn-default">{{vm.productInfo.cook_num}}</span>
+                      <span class="btn btn-default">{{vm.productInfo.cook_num || 0}}</span>
                       <button ng-click="vm.productInfo.cook_num = vm.productInfo.cook_num + 1" type="button" class="btn btn-default">+</button>
                     </div>
                 </div>

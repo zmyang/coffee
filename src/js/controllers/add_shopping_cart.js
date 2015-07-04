@@ -3,9 +3,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
 .controller('AddShoppingCartController', function($scope, $http, $location, currentProduct, shoppingCart, userInfo) {
   var vm = this;
 
-  var productInfo = currentProduct.getProduct();
-
-  vm.productInfo = productInfo;
+  vm.productInfo = currentProduct.getProduct();;
 
   vm.joinCart = function () {
     if (!userInfo.openId) {
