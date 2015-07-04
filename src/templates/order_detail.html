@@ -1,0 +1,31 @@
+<div class="area-title">
+    <div ng-click="pageBack()" class="area-title-back">
+        返回
+    </div>
+    订单详情
+</div>
+<div class="scrollable">
+    <div class="scrollable-content order-detail-content" scroll>
+        <div class="order-info">
+            <div class="prod-info">
+                <img ng-src="" alt="">
+                <h4>{{vm.order.name}}</h4>
+                <em>￥{{vm.order.price}}</em>
+            </div>
+            <div class="order-detail">
+                <p>下单时间：{{vm.order.createDate | humanDate}}</p>
+                <p>订单编号：</p>
+                <p>订单金额：<em>￥{{vm.order.price}}</em>()</p>
+                <p>状态：</p>
+                <a ng-show="'unpaid' == vm.order.paymentStatus" href="javascript:;">微信支付</a>
+            </div>
+        </div>
+        <div class="sent-address">
+            <h4>收货信息</h4>
+            <p>收货人：{{vm.order.shippings.consignee}} {{vm.order.shippings.phone}}</p>
+            <p>收货地址：{{vm.order.shippings.area}} {{vm.order.shippings.address}}</p>
+            <p>运送方式：{{vm.order.shippings.shippingMethod}}</p>
+            <p>物流信息：{{vm.order.shippings.deliveryCorp}} 单号{{vm.order.shippings.trackingNo}}</p>
+        </div>
+    </div>
+</div>

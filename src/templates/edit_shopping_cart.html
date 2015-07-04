@@ -12,7 +12,7 @@
 <div class="scrollable">
     <div class="scrollable-content edit-cart-content" scroll>
 
-        <div class="tab-cont" ui-if="activeTab == 1">
+        <div ng-init="vm.initList()" class="tab-cont" ui-if="activeTab == 1">
             <div ng-repeat="p in vm.products" class="edit-cart-item">
                 <div class="product-title">店铺：{{p.shop_name}}<a href="javascript:;" ng-click="vm.doedit=!vm.doedit">编辑</a></div>
                 <div class="product-desc-wrap">

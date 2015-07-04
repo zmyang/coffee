@@ -3,16 +3,14 @@ angular.module('Coffee.controllers.Detail', [])
 .controller('DetailController', function($scope, $http, currentProduct, weixinBridge, userInfo) {
   var vm = this;
 
-  vm.attend = function() {
-    alert('关注');
-  };
+  // vm.attend = function() {
+  //   alert('关注');
+  // };
 
   vm.carouselIndex = 0;
   vm.slides = [];
 
-  vm.productInfo = {
-    'name': '精品意大利咖啡豆 新鲜中深度烘培 香醇浓厚'
-  };
+  vm.productInfo = null;
 
   var itemReg = /item=([^&^$]+)/;
   function getDetail (item) {

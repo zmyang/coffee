@@ -1,5 +1,20 @@
+<div class="area-title">
+    <div ng-click="pageBack()" class="area-title-back">
+        返回
+    </div>
+    我的收藏
+</div>
 <div class="scrollable">
     <div class="scrollable-content collection-content" scroll>
-        <div ng-init="vm.getList()" class="collection-item" ng-repeat="a in vm.collections track by $index">{{a.name}}</div>
+        <div ng-init="vm.getList()" class="collection-item" ng-repeat="a in vm.items track by $index">
+            <img ng-src="{{a.thumbnail}}" alt="" />
+            <div class="collection-title">
+                <h4><a href="#/detail?item={{a.id}}">{{a.name}}</a><em>￥{{a.price}}</em></h4>
+                <a class="collection-buy" ng-click="vm.buyIt(a)" href="javascript:;">立即购买</a>
+            </div>
+        </div>
+        <div ng-show="vm.items.length <= 0" class="collection-no-item">
+            暂无收藏~
+        </div>
     </div>
 </div>

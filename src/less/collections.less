@@ -1,3 +1,45 @@
 .collection-content {
     background: #f8f8f8;
+    padding-top: 40px;
+    .collection-item {
+        margin-top: 10px;
+        background: #fff;
+        position: relative;
+        padding: 5px 10px 5px 80px;
+        min-height: 70px;
+        img {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            top: 5px;
+            left: 10px;
+        }
+        .collection-title {
+            h4 {
+                margin: 0;
+                font-size: 14px;
+                font-weight: bold;
+                a {
+                    text-decoration: none;
+                    color: #333;
+                }
+                em {
+                    float: right;
+                    color: #f00;
+                    font-style: normal;
+                }
+            }
+            .collection-buy {
+                position: absolute;
+                right: 10px;
+                bottom: 5px;
+                color: #666;
+            }
+        }
+    }
+}
+
+.collection-no-item {
+    padding: 20px;
+    text-align: center;
 }

@@ -1,7 +1,7 @@
 Coffee_App.service('weixinBridge', function () {
 
     var wb = {
-        debug: true,
+        debug: false,
         config: function (xhr, url, done, fail) {
             // var timestamp = Math.floor(new Date().getTime() / 1000);
             // var nonceStr = this.genNonceStr(16);

@@ -8,7 +8,7 @@
 <div class="scrollable">
     <div class="scrollable-content add-shopping-cart-content" scroll>
         <div class="add-shopping-cart-setup">
-            <div class="setup-item">
+            <div ng-hide="true" class="setup-item">
                 <div class="select-title">
                     净含量：
                 </div>
@@ -76,10 +76,10 @@
     </div>
 </div>
 <div class="detail-buy-buttons navbar-absolute-bottom">
-    <div class="btn btn-danger">
+    <div ng-click="vm.buyIt()" class="btn btn-danger">
         立即购买
     </div>
-    <div ng-click="vm.joinCart();go('/edit_shopping_cart')" class="btn btn-warning">
+    <div ng-click="vm.joinCart();" class="btn btn-warning">
         加入购物车
     </div>
 </div>

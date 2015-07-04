@@ -210,6 +210,7 @@ gulp.task('js', function() {
       gulp.src(config.vendor.js),
       gulp.src('./src/js/app.js'),
       gulp.src('./src/js/services/*.js'),
+      gulp.src('./src/js/filters/*.js'),
       gulp.src('./src/js/directives/*.js'),
       gulp.src('./src/js/controllers/*.js'),
       gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'Coffee' }))

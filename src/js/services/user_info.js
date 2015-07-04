@@ -42,25 +42,39 @@ Coffee_App.service('userInfo', function () {
                 fail && fail();
               });
         },
-        getUserInfo: function (xhr, done, fail) {
-            if (userInfo.info) {
+        getUserInfo: function (xhr, done, fail, isForce) {
+            if (userInfo.info && !isForce) {
                 done && done();
                 return;
             }
-            xhr.get('http://www.urcoffee.com/api/member/weixin/' + userInfo.openId + '.jhtml')
-              .success(function (data) {
-                if (data['data']) {
-                    userInfo.info = data['data'];
-                    userInfo.hasLogin = true;
-                    done && done();
-                }
-                else {
+
+            function _doGet () {
+                xhr.get('http://www.urcoffee.com/api/member/weixin/' + userInfo.openId + '.jhtml')
+                  .success(function (data) {
+                    if (data['data']) {
+                        userInfo.info = data['data'];
+                        userInfo.hasLogin = true;
+                        done && done();
+                    }
+                    else {
+                        fail && fail();
+                    }
+                  })
+                  .error(function () {
                     fail && fail();
-                }
-              })
-              .error(function () {
-                fail && fail();
-              });
+                  });
+            }
+
+            if (!userInfo.openId) {
+                this.getOpenId(xhr, 
+                    function () {
+                        _doGet();
+                    }, fail);
+            }
+            else {
+                _doGet();
+            }
+            
         },
         postData: function (xhr, url, data) {
             return xhr({
