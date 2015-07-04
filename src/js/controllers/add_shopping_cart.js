@@ -3,7 +3,10 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
 .controller('AddShoppingCartController', function($scope, $http, $location, currentProduct, shoppingCart, userInfo) {
   var vm = this;
 
-  vm.productInfo = currentProduct.getProduct();;
+  vm.productInfo = currentProduct.getProduct();
+
+  vm.cook_deeps = ['浅焙', '中浅焙', '中焙', '中深焙', '深焙'];
+  vm.grind_deeps = ['细', '极细', '粗'];
 
   vm.joinCart = function () {
     if (!userInfo.openId) {

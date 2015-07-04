@@ -27,6 +27,7 @@ angular.module('Coffee.controllers.Detail', [])
         .success(function (data) {
           if (data && 1 == data['result']) {
               vm.productInfo = data['data'];
+              vm.productInfo.buy_num = 1;
               vm.slides = vm.productInfo['productImages'] ? vm.productInfo['productImages']  : [{
                 'medium': vm.productInfo['image']
               }];

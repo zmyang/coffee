@@ -41,7 +41,7 @@
                     研磨程度：
                 </div>
                 <div class="select-weight">
-                    <button ng-repeat="deep in vm.productInfo.grind_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_grind_deep}" ng-click="vm.productInfo.select_grind_deep = deep">{{deep}}</button>
+                    <button ng-repeat="deep in vm.grind_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_grind_deep}" ng-click="vm.productInfo.select_grind_deep = deep">{{deep}}</button>
                 </div>
             </div>
             <div class="setup-item">
@@ -69,7 +69,7 @@
                     烘焙程度：
                 </div>
                 <div class="select-weight">
-                    <button ng-repeat="deep in vm.productInfo.cook_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_cook_deep}" ng-click="vm.productInfo.select_cook_deep = deep">{{deep}}</button>
+                    <button ng-repeat="deep in vm.cook_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_cook_deep}" ng-click="vm.productInfo.select_cook_deep = deep">{{deep}}</button>
                 </div>
             </div>
         </div>
