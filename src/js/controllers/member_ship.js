@@ -3,60 +3,7 @@ angular.module('Coffee.controllers.MemberShip', [])
 .controller('MemberShipController', function($scope, $location, $http, currentOrder, shoppingCart, userInfo) {
     var vm = this;
 
-    vm.unPaidOrders = [{
-            "id": 71,
-            "createDate": 1435629289000,
-            "modifyDate": 1435664034000,
-            "sn": "201506303840",
-            "orderStatus": "confirmed",
-            "paymentStatus": "paid",
-            "shippingStatus": "shipped",
-            "freight": 0,
-            "point": 0,
-            "consignee": "张国华",
-            "areaName": "江苏省南京市雨花台区",
-            "address": "宁双路",
-            "zipCode": "210012",
-            "phone": "18651649663",
-            "isInvoice": false,
-            "invoiceTitle": null,
-            "tax": 0,
-            "memo": null,
-            "paymentMethodName": "网上支付",
-            "shippingMethodName": "普通快递",
-            "area": {
-                "id": 820,
-                "createDate": 1357002126000,
-                "modifyDate": 1357002126000,
-                "order": null,
-                "name": "雨花台区",
-                "fullName": "江苏省南京市雨花台区"
-            },
-            "shippings": [
-                {
-                    "id": 10,
-                    "createDate": 1435663306000,
-                    "modifyDate": 1435663306000,
-                    "sn": "20150630505",
-                    "shippingMethod": "顺丰速递",
-                    "deliveryCorp": "顺丰速递",
-                    "trackingNo": "918246491606",
-                    "consignee": "张国华",
-                    "area": "江苏省南京市雨花台区",
-                    "address": "宁双路",
-                    "zipCode": "210012",
-                    "phone": "18651649663",
-                    "quantity": 1
-                }
-            ],
-            "amount": 0.01,
-            "usePoint": 0,
-            "name": "测试商品[1kg]",
-            "quantity": 1,
-            "shippedQuantity": 1,
-            "weight": 1000,
-            "price": 0.01
-        }];
+    vm.unPaidOrders = [];
     vm.paidOrders = [];
     vm.shipedOrders = [];
     vm.finishedOrders = [];

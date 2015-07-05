@@ -18,8 +18,8 @@
             <div class="detail-price">
                 <em>￥{{vm.productInfo.price}}</em>
                 <del ng-hide="true">淘价￥{{vm.productInfo.point}}</del>
-                <a class="detail-collect" href="javascript:;"></a>
-                <a ng-click="vm.sharePage()" class="detail-share" href="javascript:;"></a>
+                <a ng-click="vm.collectProduct()" class="detail-collect" href="javascript:;"></a>
+                <a ng-hide="true" ng-click="vm.sharePage()" class="detail-share" href="javascript:;"></a>
             </div>
         </div>
         <div ng-hide="true" class="detail-charge">

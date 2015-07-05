@@ -3,24 +3,27 @@ angular.module('Coffee.controllers.Detail', [])
 .controller('DetailController', function($scope, $http, currentProduct, weixinBridge, userInfo) {
   var vm = this;
 
-  // vm.attend = function() {
-  //   alert('关注');
-  // };
-
   vm.carouselIndex = 0;
   vm.slides = [];
 
   vm.productInfo = null;
 
-  var itemReg = /item=([^&^$]+)/;
+  function getProductId (item) {
+    var itemReg = /item=([^&^$]+)/;
+    var itemVal;
+
+    if (!item) {
+        itemVal = itemReg.exec(location.hash)[1];
+    }
+    else {
+        itemVal = item;
+    }
+
+    return itemVal;
+  }
+
   function getDetail (item) {
-      var itemVal;
-      if (!item) {
-          itemVal = itemReg.exec(location.hash)[1];
-      }
-      else {
-          itemVal = item;
-      }
+      var itemVal = getProductId(item);
 
       var itemUrl = 'http://www.urcoffee.com/api/product/product/' + itemVal + '.jhtml';
       $http.get(itemUrl)
@@ -50,8 +53,30 @@ angular.module('Coffee.controllers.Detail', [])
 
   vm.buyIt = buyIt;
 
-  function sharePage () {
-    weixinBridge.shareItem(location.href, '');
+  function collectProduct() {
+    var itemVal = getProductId(item);
+    var addUrl = 'http://www.urcoffee.com/api/member/addFavorite.jhtml';
+    var params = {
+      wechatId: userInfo.openId,
+      id: itemVal
+    };
+
+
+    userInfo.postData($http, addUrl, params)
+      .success(function (data) {
+        if (1 == data['result']) {
+          alert('收藏成功!');
+        }
+        else {
+          alert('收藏失败!');
+        }
+      })
+      .error(function () {
+        alert('收藏失败!');
+      })
+      .finally(function () {
+      });
+
   }
-  vm.sharePage = sharePage;
+  vm.collectProduct = collectProduct;
 });

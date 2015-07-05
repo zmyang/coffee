@@ -19,7 +19,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
         'baking': vm.productInfo.grind,
         'bakingStage': vm.productInfo.select_cook_deep,
         'processingCount': vm.productInfo.cook_num,
-        'processingPrice': ''
+        'processingPrice': 0
     };
 
     alert(JSON.stringify(params));
