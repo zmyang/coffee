@@ -8,17 +8,25 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
   vm.cook_deeps = ['浅焙', '中浅焙', '中焙', '中深焙', '深焙'];
   vm.grind_deeps = ['细', '极细', '粗'];
 
+  vm.productInfo.select_cook_deep = '浅焙';
+
+  var joiningCart = false;
   vm.joinCart = function () {
+    if (joiningCart) {
+      return;
+    }
+    joiningCart = true;
     if (!userInfo.openId) {
         alert('未能获取用户信息，请重新登陆。');
     }
     var addUrl = 'http://www.urcoffee.com/api/cart/add.jhtml';
     var params = {
-        'id': userInfo.openId, 
+        'wechatId': userInfo.openId,
+        'id': vm.productInfo.id, 
         'quantity': vm.productInfo.buy_num,
-        'baking': vm.productInfo.grind,
+        'baking': ['否', '是'][vm.productInfo.grind || 0],
         'bakingStage': vm.productInfo.select_cook_deep,
-        'processingCount': vm.productInfo.cook_num,
+        'processingCount': vm.productInfo.cook_num || 0,
         'processingPrice': 0
     };
 
@@ -32,8 +40,8 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
         alert('加入购物车失败!');
       })
       .finally(function () {
+        joiningCart = false;
       });
-    // shoppingCart.joinCart(productInfo);
   };
 
   vm.buyIt = function () {
