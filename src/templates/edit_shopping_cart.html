@@ -11,15 +11,15 @@
 
         <div ng-init="vm.initList()" class="tab-cont" ui-if="activeTab == 1">
             <div ng-repeat="p in vm.products" class="edit-cart-item">
-                <div class="product-title">店铺：{{p.shop_name}}<a href="javascript:;" ng-click="vm.doedit=!vm.doedit">编辑</a></div>
+                <div class="product-title">店铺：{{p.product.shop_name}}<a href="javascript:;" ng-click="vm.doedit=!vm.doedit">编辑</a></div>
                 <div class="product-desc-wrap">
                     <div ng-hide="vm.doedit" class="product-choose"><span ng-class="{'select-product':p.be_selected}" ng-click="p.be_selected=!p.be_selected;vm.calculateTotlePrice();"></span></div>
                     <div class="product-desc">
-                        <img ng-src="{{p.img}}" alt="" />
-                        {{p.name}}
-                        <span>{{p.select_weight}}</span>
+                        <img ng-src="{{p.product.image}}" alt="" />
+                        {{p.product.fullName}}
+                        <!-- <span>{{p.select_weight}}</span> -->
                     </div>
-                   <div class="product-price">￥{{p.price}}<span>x{{p.buy_num}}</span></div>
+                   <div class="product-price">￥{{p.product.price}}<span>x{{p.product.buy_num}}</span></div>
                 </div> 
             </div>
         </div>

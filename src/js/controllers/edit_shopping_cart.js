@@ -3,27 +3,17 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
 .controller('EditShoppingCartController', function($scope, $http, shoppingCart, userInfo) {
   var vm = this;
 
-  // vm.products = shoppingCart.getCart($http)['products'];
   vm.products = [];
+
 
   vm.initList = function () {
     if (!userInfo.openId) {
         alert('未能获取用户信息，请重新登陆。');
     }
-    var listUrl = 'http://www.urcoffee.com/api/cart/list/' + userInfo.openId + '.jhtml';
 
-    $http.get(listUrl)
-      .success(function (data) {
-        if (1 == data['result']) {
-          vm.products = data['data'];
-        }
-        else {
-          alert('获取购物车失败!');
-        }
-      })
-      .error(function () {
-        alert('获取购物车失败!');
-      });
+    shoppingCart.getCart($http, function (data) {
+      vm.products = data;
+    }, userInfo.openId);
   };
 
   vm.deleteProduct = function (id) {
