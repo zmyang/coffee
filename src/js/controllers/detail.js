@@ -22,6 +22,14 @@ angular.module('Coffee.controllers.Detail', [])
     return itemVal;
   }
 
+  var typeReg = /type=([^&^$]+)/;
+  try {
+    vm.type = typeReg.exec(location.hash)[1];
+  }
+  catch (e) {
+    vm.type = 2;
+  }
+
   function getDetail (item) {
       var itemVal = getProductId(item);
 
@@ -54,7 +62,7 @@ angular.module('Coffee.controllers.Detail', [])
   vm.buyIt = buyIt;
 
   function collectProduct() {
-    var itemVal = getProductId(item);
+    var itemVal = getProductId();
     var addUrl = 'http://www.urcoffee.com/api/member/addFavorite.jhtml';
     var params = {
       wechatId: userInfo.openId,
@@ -68,7 +76,7 @@ angular.module('Coffee.controllers.Detail', [])
           alert('收藏成功!');
         }
         else {
-          alert('收藏失败!');
+          alert(data['msg'] || '收藏失败!');
         }
       })
       .error(function () {

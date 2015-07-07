@@ -8,6 +8,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
   vm.cook_deeps = ['浅焙', '中浅焙', '中焙', '中深焙', '深焙'];
   vm.grind_deeps = ['细', '极细', '粗'];
 
+  vm.productInfo.buy_num = 1;
   vm.productInfo.select_cook_deep = '浅焙';
 
   var joiningCart = false;

@@ -7,6 +7,8 @@ angular.module('Coffee.controllers.List', [])
 
     vm.items = [];
 
+    vm.type = null;
+
     var typeReg = /type=([^&^$]+)/;
     // 获取产品列表
     function getList (type) {
@@ -17,6 +19,8 @@ angular.module('Coffee.controllers.List', [])
         else {
             typeVal = type;
         }
+
+        vm.type = typeVal
 
         var listUrl = 'http://www.urcoffee.com/api/product/list.jhtml';
         if (0 !== typeVal * 1) {

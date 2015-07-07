@@ -10,7 +10,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
     if (!userInfo.openId) {
         alert('未能获取用户信息，请重新登陆。');
     }
-    var listUrl = 'http://www.urcoffee.com/cart/list/' + userInfo.openId + '.jhtml';
+    var listUrl = 'http://www.urcoffee.com/api/cart/list/' + userInfo.openId + '.jhtml';
 
     $http.get(listUrl)
       .success(function (data) {

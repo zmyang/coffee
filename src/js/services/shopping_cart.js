@@ -4,8 +4,27 @@ Coffee_App.service('shoppingCart', function () {
     };
 
     return {
-        getCart: function () {
-            return shoppingCart;
+        getCart: function (xhr, done, openid, force) {
+            if (!force && shoppingCart['products'].length > 0) {
+                done && done(shoppingCart['products']);
+            }
+            else {
+                var listUrl = 'http://www.urcoffee.com/api/cart/list/' + openid + '.jhtml';
+
+                xhr.get(listUrl)
+                  .success(function (data) {
+                    if (1 == data['result']) {
+                      shoppingCart['products'] = data['data'];
+                      done && done(shoppingCart['products']);
+                    }
+                    else {
+                      alert('获取购物车失败!');
+                    }
+                  })
+                  .error(function () {
+                    alert('获取购物车失败!');
+                  });
+            }
         },
         joinCart: function (p) {
             var productIndex = this.checkIndex(p['product_id']);

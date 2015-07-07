@@ -1,6 +1,6 @@
 <section class="list-container">
-  <div class="list-nav">
-    <div href="javascript:;" class="btn btn-navbar">
+  <div  class="list-nav">
+    <div ng-hide="vm.type == 2" href="javascript:;" class="btn btn-navbar">
     <span ui-turn-on='listDropdown'>精品级咖啡豆<i class="fa fa-chevron-circle-down"></i></span>
     <ul 
       class="dropdown-menu"
@@ -16,7 +16,7 @@
     </ul>
     </div>
 
-    <div class="list-place" ng-click="go('/area')"><i class="fa fa-map-marker fa-2x"></i></div>
+    <div ng-hide="vm.type == 2" class="list-place" ng-click="go('/area')"><i class="fa fa-map-marker fa-2x"></i></div>
   </div>
 
   <div class="scrollable">
@@ -26,10 +26,10 @@
       </div>
 
       <div class="list-cont">
-        <a href="#/detail?item={{item.id}}" ng-repeat="item in vm.items track by $index" class="list-item">
+        <a href="#/detail?item={{item.id}}&type={{vm.type}}" ng-repeat="item in vm.items track by $index" class="list-item">
           <img ng-src="{{item.image}}" alt="" />
           <h4>{{item.name}}
-            <div>
+            <div ng-hide="vm.type == 2">
               等级: {{item.attributeValue1}}<br/>地域: {{item.attributeValue0}}
             </div>
           </h4>

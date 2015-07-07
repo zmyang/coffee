@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Main', [])
 
-.controller('MainController', function ($scope, $location, $http, userInfo, weixinBridge) {
+.controller('MainController', function ($scope, $location, $http, userInfo, shoppingCart) {
     $scope.mainHost = /^http/.test(location.href) ? location.href.replace(location.hash, '') : '';
 
     $scope.pageBack = function () {
@@ -17,5 +17,15 @@ angular.module('Coffee.controllers.Main', [])
 
     userInfo.getOpenId($http);
 
-    // weixinBridge.config();
+    // 获取购物车，有的话显示提示
+    shoppingCart.getCart($http, function (data) {
+        if (data && data.length > 0) {
+            $scope.hasCart = true;
+        }
+        else {
+            $scope.hasCart = false;
+        }
+
+    }, userInfo.openId);
+
 });
