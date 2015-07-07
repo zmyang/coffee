@@ -15,17 +15,17 @@ angular.module('Coffee.controllers.Main', [])
         }
     };
 
-    userInfo.getOpenId($http);
+    userInfo.getOpenId($http, function () {
+        // 获取购物车，有的话显示提示
+        shoppingCart.getCart($http, function (data) {
+            if (data && data.length > 0) {
+                $scope.hasCart = true;
+            }
+            else {
+                $scope.hasCart = false;
+            }
 
-    // 获取购物车，有的话显示提示
-    shoppingCart.getCart($http, function (data) {
-        if (data && data.length > 0) {
-            $scope.hasCart = true;
-        }
-        else {
-            $scope.hasCart = false;
-        }
-
-    }, userInfo.openId);
+        }, userInfo.openId);
+    });
 
 });
