@@ -3,14 +3,7 @@ angular.module('Coffee.controllers.Collections', [])
 .controller('CollectionsController', function($scope, $http, $location, userInfo, currentProduct) {
     var vm = this;
 
-    vm.items = [
-      {
-        "id": 123,
-        "name": "哥斯达黎加塔拉珠SHB", 
-        "price": 0.020000,
-        "thumbnail": "http://120.26.122.43/upload/image/201506/730ea55a-d190-4551-9959-bdf41fc6b726-thumbnail.jpg"
-      }
-    ];
+    vm.items = [];
 
     // 获取收藏列表
     function getList () {
@@ -29,7 +22,7 @@ angular.module('Coffee.controllers.Collections', [])
         userInfo.getUserInfo($http, function () {
           var infoData = userInfo.info;
           _doGet(infoData.id);
-        }, noLogin) ;
+        });
     }
     vm.getList = getList;
 

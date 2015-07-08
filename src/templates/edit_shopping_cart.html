@@ -9,11 +9,10 @@
 <div class="scrollable">
     <div class="scrollable-content edit-cart-content" scroll>
 
-        <div ng-init="vm.initList()" class="tab-cont" ui-if="activeTab == 1">
+        <div ng-init="vm.initList(false)" class="tab-cont" ui-if="activeTab == 1">
             <div ng-repeat="p in vm.products" class="edit-cart-item">
-                <div class="product-title">店铺：{{p.product.shop_name}}<a href="javascript:;" ng-click="vm.doedit=!vm.doedit">编辑</a></div>
+                <div class="product-title">订单时间：{{p.product.createDate | humanDate}}<a ng-click="vm.deleteProduct(p.product.id)" href="javascript:;">删除</a></div>
                 <div class="product-desc-wrap">
-                    <div ng-hide="vm.doedit" class="product-choose"><span ng-class="{'select-product':p.be_selected}" ng-click="p.be_selected=!p.be_selected;vm.calculateTotlePrice();"></span></div>
                     <div class="product-desc">
                         <img ng-src="{{p.product.image}}" alt="" />
                         {{p.product.fullName}}
@@ -29,10 +28,9 @@
 
     </div>
 </div>
-<div ng-init="vm.calculateTotlePrice()" class="edit-shopping-cart-buy-buttons navbar-absolute-bottom">
-    <div class="select-product" ng-click="vm.doSelectAll();"><span ng-class="{'select-all-product':vm.selectAll}"></span>全选</div>
+<div class="edit-shopping-cart-buy-buttons navbar-absolute-bottom">
     <div class="total-price">合计：{{vm.totalPrice}}元</div>
-    <div class="btn btn-danger">
+    <div ng-click="go('/pay_order')" class="btn btn-danger">
         结算({{vm.products.length}})
     </div>
 </div>

@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Detail', [])
 
-.controller('DetailController', function($scope, $http, currentProduct, weixinBridge, userInfo) {
+.controller('DetailController', function($scope, $http, $location, currentProduct, weixinBridge, userInfo) {
   var vm = this;
 
   vm.carouselIndex = 0;
@@ -39,6 +39,7 @@ angular.module('Coffee.controllers.Detail', [])
           if (data && 1 == data['result']) {
               vm.productInfo = data['data'];
               vm.productInfo.buy_num = 1;
+              vm.productInfo.type = vm.type;
               vm.slides = vm.productInfo['productImages'] ? vm.productInfo['productImages']  : [{
                 'medium': vm.productInfo['image']
               }];
@@ -54,12 +55,54 @@ angular.module('Coffee.controllers.Detail', [])
 
 
   function buyIt () {
-    weixinBridge.config($http, window.location.href, function() {
-      weixinBridge.pay($http, userInfo.openId, new Date().getTime());
-    });
+    vm.productInfo['detail_action'] = 'buyIt';
+    currentProduct.setProduct(vm.productInfo);
+
+    if (2 == vm.type) {
+      $location.path('/pay_order');
+    }
+    else {
+      $location.path('/add_shopping_cart');
+    }
+
   }
 
   vm.buyIt = buyIt;
+
+  var joiningCart = false;
+
+  function addCart () {
+    vm.productInfo['detail_action'] = 'addCart';
+    currentProduct.setProduct(vm.productInfo);
+
+    if (2 == vm.type) {
+      if (joiningCart) {
+        return;
+      }
+      joiningCart = true;
+      if (!userInfo.openId) {
+          alert('未能获取用户信息，请重新登陆。');
+      }
+      var params = {
+          'wechatId': userInfo.openId,
+          'id': vm.productInfo.id, 
+          'quantity': 1,
+          'processingPrice': 0
+      };
+      shoppingCart.add(xhr, params, function () {
+        $location.path('/edit_shopping_cart');
+      }, function () {
+        joiningCart = false;
+      });
+
+      alert(JSON.stringify(params));
+    }
+    else {
+      $location.path('/add_shopping_cart');
+    }
+  }
+
+  vm.addCart = addCart;
 
   function collectProduct() {
     var itemVal = getProductId();

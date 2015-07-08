@@ -49,7 +49,7 @@
                     烘焙：
                 </div>
                 <div class="select-item-right">
-                    <ui-switch  ng-model="vm.productInfo.cook"></ui-switch>
+                    <ui-switch  ng-model="vm.productInfo.baking"></ui-switch>
                 </div>
             </div>
             <div class="setup-item">
@@ -58,9 +58,9 @@
                 </div>
                 <div class="select-num">
                     <div class="btn-group" role="group" aria-label="...">
-                      <button ng-click="vm.productInfo.cook_num = (vm.productInfo.cook_num > 0) ? vm.productInfo.cook_num - 1 : 0" type="button" class="btn btn-default">-</button>
-                      <span class="btn btn-default">{{vm.productInfo.cook_num || 0}}</span>
-                      <button ng-click="vm.productInfo.cook_num = vm.productInfo.cook_num + 1" type="button" class="btn btn-default">+</button>
+                      <button ng-click="vm.productInfo.baking_num = (vm.productInfo.baking_num > 0) ? vm.productInfo.baking_num - 1 : 0" type="button" class="btn btn-default">-</button>
+                      <span class="btn btn-default">{{vm.productInfo.baking_num || 0}}</span>
+                      <button ng-click="vm.productInfo.baking_num = vm.productInfo.baking_num + 1" type="button" class="btn btn-default">+</button>
                     </div>
                 </div>
             </div>
@@ -69,17 +69,17 @@
                     烘焙程度：
                 </div>
                 <div class="select-weight">
-                    <button ng-repeat="deep in vm.cook_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_cook_deep}" ng-click="vm.productInfo.select_cook_deep = deep">{{deep}}</button>
+                    <button ng-repeat="deep in vm.baking_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_baking_deep}" ng-click="vm.productInfo.select_baking_deep = deep">{{deep}}</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="detail-buy-buttons navbar-absolute-bottom">
-    <div ng-click="vm.buyIt()" class="btn btn-danger">
-        立即购买
+    <div ng-show="!vm.isAddCart" ng-click="vm.buyIt()" class="btn btn-danger">
+        下一步
     </div>
-    <div ng-click="vm.joinCart();" class="btn btn-warning">
+    <div ng-show="vm.isAddCart" ng-click="vm.joinCart();" class="btn btn-danger">
         加入购物车
     </div>
 </div>

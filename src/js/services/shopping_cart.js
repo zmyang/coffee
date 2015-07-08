@@ -26,17 +26,21 @@ Coffee_App.service('shoppingCart', function () {
                   });
             }
         },
-        joinCart: function (p) {
-            var productIndex = this.checkIndex(p['product_id']);
-            if (typeof productIndex !== 'number') {
-              shoppingCart['products'].push(p);
-            }
+        add: function (xhr, p, done, finalFn) {
+            var addUrl = 'http://www.urcoffee.com/api/cart/add.jhtml';
+
+            this.postData(xhr, url, p)
+              .success(function (data) {
+                done&&done();
+              })
+              .error(function () {
+                alert('加入购物车失败!');
+              })
+              .finally(function () {
+                finalFn&&finalFn();
+              });
         },
-        deleteCart: function (id) {
-            var productIndex = this.checkIndex(id);
-            if (typeof productIndex === 'number') {
-                shoppingCart['products'].splice(productIndex, 1);
-            }
+        deleteCart: function (xhr, id, done, fail) {
         },
         clearCart: function () {
             shoppingCart['products'] = [];
@@ -48,6 +52,20 @@ Coffee_App.service('shoppingCart', function () {
                 }
             }
             return null;
+        },
+        postData: function (xhr, url, data) {
+            return xhr({
+                method: 'POST',
+                url: url,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data: data
+            })
         }
     }
 });

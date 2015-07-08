@@ -25,7 +25,7 @@
         <img src="{{vm.adImage}}" alt=""/>
       </div>
 
-      <div class="list-cont">
+      <div class="list-cont" ng-class="{'low-list-cont':2==vm.type}">
         <a href="#/detail?item={{item.id}}&type={{vm.type}}" ng-repeat="item in vm.items track by $index" class="list-item">
           <img ng-src="{{item.image}}" alt="" />
           <h4>{{item.name}}

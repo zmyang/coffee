@@ -14,6 +14,7 @@ var Coffee_App = angular.module('Coffee', [
   'Coffee.controllers.GroupPurchase',
   'Coffee.controllers.Collections',
   'Coffee.controllers.OrderDetail',
+  'Coffee.controllers.PayOrder',
 ])
 
 .config(function($routeProvider) {
@@ -108,6 +109,12 @@ var Coffee_App = angular.module('Coffee', [
   $routeProvider.when('/order_detail', {
     templateUrl: 'order_detail.html',
     controller: 'OrderDetailController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
+  $routeProvider.when('/pay_order', {
+    templateUrl: 'pay_order.html',
+    controller: 'PayOrderController',
     controllerAs: 'vm',
     reloadOnSearch: false
   });

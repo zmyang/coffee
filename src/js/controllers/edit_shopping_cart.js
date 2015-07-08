@@ -6,14 +6,15 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
   vm.products = [];
 
 
-  vm.initList = function () {
+  vm.initList = function (force) {
     if (!userInfo.openId) {
         alert('未能获取用户信息，请重新登陆。');
     }
 
     shoppingCart.getCart($http, function (data) {
       vm.products = data;
-    }, userInfo.openId);
+      calculateTotlePrice();
+    }, userInfo.openId, force);
   };
 
   vm.deleteProduct = function (id) {
@@ -27,7 +28,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
     userInfo.postData($http, deleteUrl, params)
       .success(function (data) {
         if (1 == data['result']) {
-          vm.initList();
+          vm.initList(true);
         }
         else {
           alert('删除购物车失败!');
@@ -35,33 +36,21 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
       })
       .error(function () {
         alert('删除购物车失败!');
-      })
-      .finally(function () {
       });
   }
 
-  vm.doedit = false;
-  vm.selectAll = true;
+  vm.totalPrice = 0;
 
   var calculateTotlePrice = function () {
     var totalPrice = 0;
     for (var i = vm.products.length - 1; i >= 0; i--) {
-      if (vm.products[i]['be_selected']) {
-        totalPrice += vm.products[i]['price'] * (vm.products[i]['buy_num'] || 1);
-      }
+      vm.products[i]['buy_num'] = vm.products[i]['buy_num'] || 1;
+      totalPrice += vm.products[i]['price'] * vm.products[i]['buy_num'];
     }
     vm.totalPrice = totalPrice;
   };
 
-  var doSelectAll = function () {
-      vm.selectAll = !vm.selectAll;
-      for (var i = vm.products.length - 1; i >= 0; i--) {
-        vm.products[i]['be_selected'] = vm.selectAll;
-      }
-      calculateTotlePrice();
-  };
 
   vm.calculateTotlePrice = calculateTotlePrice;
-  vm.doSelectAll = doSelectAll;
 
 });

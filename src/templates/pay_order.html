@@ -1,0 +1,35 @@
+<div class="scrollable">
+    <div class="scrollable-content edit-cart-content" scroll>
+        <div ng-show="vm.userinfo.receivers.length > 0" class="pay-order-address">
+            <h4>收货人: {{vm.userinfo.receivers.consignee}} <span>{{vm.userinfo.receivers.phone}}</span></h4>
+            <p>收获地址: {{vm.userinfo.receivers.address}}</p>
+        </div>
+
+        <div ng-show="vm.userinfo.receivers.length <= 0" class="pay-order-address">
+            添加收货人
+        </div>
+
+        <div ng-init="vm.initList()" class="tab-cont">
+            <div ng-repeat="p in vm.products" class="edit-cart-item">
+                <div class="product-title">订单时间：{{p.product.createDate | humanDate}}</div>
+                <div class="product-desc-wrap">
+                    <div ng-hide="vm.doedit" class="product-choose"><span ng-class="{'select-product':p.be_selected}" ng-click="p.be_selected=!p.be_selected;vm.calculateTotlePrice();"></span></div>
+                    <div class="product-desc">
+                        <img ng-src="{{p.product.image}}" alt="" />
+                        {{p.product.fullName}}
+                        <!-- <span>{{p.select_weight}}</span> -->
+                    </div>
+                   <div class="product-price">￥{{p.product.price}}<span>x{{p.product.buy_num}}</span></div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-init="vm.calculateTotlePrice()" class="order-pay-button navbar-absolute-bottom">
+    <div class="total-price">合计：{{vm.totalPrice}}元</div>
+
+    <div ng-click="vm.payCart();" class="btn btn-danger">
+        微信支付
+    </div>
+</div>
