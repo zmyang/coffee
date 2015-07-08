@@ -7,7 +7,9 @@ angular.module('Coffee.controllers.Collections', [])
 
     // 获取收藏列表
     function getList () {
+        alert(1);
         function _doGet(id) {
+          alert(3);
           var listUrl = 'www.urcoffee.com/api/member/favorites/' + id + '.jhtml';
           $http.get(listUrl)
             .success(function (data) {
@@ -20,6 +22,7 @@ angular.module('Coffee.controllers.Collections', [])
         }
 
         userInfo.getUserInfo($http, function () {
+          alert(2);
           var infoData = userInfo.info;
           _doGet(infoData.id);
         });

@@ -19,7 +19,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
 
   vm.deleteProduct = function (id) {
     // shoppingCart.deleteProduct(id);
-    var deleteUrl = 'www.urcoffee.com/api/cart/delete.jhtml';
+    var deleteUrl = 'http://www.urcoffee.com/api/cart/delete.jhtml';
     var params = {
       wechatId: userInfo.openId,
       id: id
@@ -44,8 +44,8 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
   var calculateTotlePrice = function () {
     var totalPrice = 0;
     for (var i = vm.products.length - 1; i >= 0; i--) {
-      vm.products[i]['buy_num'] = vm.products[i]['buy_num'] || 1;
-      totalPrice += vm.products[i]['price'] * vm.products[i]['buy_num'];
+      vm.products[i]['product']['buy_num'] = vm.products[i]['product']['buy_num'] || 1;
+      totalPrice += vm.products[i]['product']['price'] * vm.products[i]['product']['buy_num'];
     }
     vm.totalPrice = totalPrice;
   };
