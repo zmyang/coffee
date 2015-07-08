@@ -6,7 +6,7 @@ angular.module('Coffee.controllers.Collections', [])
     vm.items = [];
 
     // 获取收藏列表
-    function getList () {
+    vm.getList = function getList () {
         alert(1);
         function _doGet(id) {
           alert(3);
@@ -26,14 +26,11 @@ angular.module('Coffee.controllers.Collections', [])
           var infoData = userInfo.info;
           _doGet(infoData.id);
         });
-    }
-    vm.getList = getList;
-
+    };
 
     // 点击立即购买
-    function buyIt(p) {
+    vm.buyIt = function buyIt(p) {
         currentProduct.setProduct(p);
         $location.path('/add_shopping_cart');
-    }
-    vm.buyIt = buyIt;
+    };
 });

@@ -36,7 +36,7 @@ angular.module('Coffee.controllers.PayOrder', [])
     };
 
     vm.payCart = function () {
-        var payUrl = 'www.urcoffee.com/api/order/create.jhtml';
+        var payUrl = 'http://www.urcoffee.com/api/order/create.jhtml';
 
         var params = { 
             wechatId: userInfo.openId,

@@ -44,7 +44,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
         'processingCount': vm.productInfo.baking_num,
         'processingPrice': 0
     };
-    shoppingCart.add(xhr, params, function () {
+    shoppingCart.add($http, params, function () {
       $location.path('/edit_shopping_cart');
     }, function () {
       joiningCart = false;

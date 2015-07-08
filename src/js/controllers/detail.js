@@ -89,7 +89,7 @@ angular.module('Coffee.controllers.Detail', [])
           'quantity': 1,
           'processingPrice': 0
       };
-      shoppingCart.add(xhr, params, function () {
+      shoppingCart.add($http, params, function () {
         $location.path('/edit_shopping_cart');
       }, function () {
         joiningCart = false;
