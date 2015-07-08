@@ -5,8 +5,8 @@
     我的收藏
 </div>
 <div class="scrollable">
-    <div class="scrollable-content collection-content" scroll>
-        <div ng-init="vm.getList()" class="collection-item" ng-repeat="a in vm.items track by $index">
+    <div ng-init="vm.getList()" class="scrollable-content collection-content" scroll>
+        <div class="collection-item" ng-repeat="a in vm.items track by $index">
             <img ng-src="{{a.thumbnail}}" alt="" />
             <div class="collection-title">
                 <h4><a href="#/detail?item={{a.id}}">{{a.name}}</a><em>￥{{a.price}}</em></h4>

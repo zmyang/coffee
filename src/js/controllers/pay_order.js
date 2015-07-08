@@ -62,7 +62,7 @@ angular.module('Coffee.controllers.PayOrder', [])
                 });
             }
             else {
-              alert(data['msg'] || '下单失败!');
+              alert(data['msg']['content'] || '下单失败!');
             }
           })
           .error(function () {

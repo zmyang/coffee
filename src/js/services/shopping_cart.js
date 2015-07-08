@@ -29,7 +29,7 @@ Coffee_App.service('shoppingCart', function () {
         add: function (xhr, p, done, finalFn) {
             var addUrl = 'http://www.urcoffee.com/api/cart/add.jhtml';
 
-            this.postData(xhr, url, p)
+            this.postData(xhr, addUrl, p)
               .success(function (data) {
                 done&&done();
               })
