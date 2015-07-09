@@ -11,7 +11,7 @@
 
         <div ng-init="vm.initList(true)" class="tab-cont" ui-if="activeTab == 1">
             <div ng-repeat="p in vm.products" class="edit-cart-item">
-                <div class="product-title">订单时间：{{p.product.createDate | humanDate}}<a ng-click="vm.deleteProduct(p.product.id)" href="javascript:;">删除</a></div>
+                <div class="product-title">订单时间：{{p.product.createDate | humanDate}}<a ng-click="vm.deleteProduct(p.cartItemId)" href="javascript:;">删除</a></div>
                 <div class="product-desc-wrap">
                     <div class="product-desc">
                         <img ng-src="{{p.product.image}}" alt="" />

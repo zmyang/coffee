@@ -119,7 +119,7 @@ angular.module('Coffee.controllers.Detail', [])
           alert('收藏成功!');
         }
         else {
-          alert(data['msg'] || '收藏失败!');
+          alert(data['msg']['content'] || '收藏失败!');
         }
       })
       .error(function () {

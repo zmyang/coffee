@@ -7,21 +7,23 @@ angular.module('Coffee.controllers.Collections', [])
 
     // 获取收藏列表
     vm.getList = function getList () {
-        function _doGet(id) {
-          var listUrl = 'http://www.urcoffee.com/api/member/favorites/' + id + '.jhtml';
-          $http.get(listUrl)
-            .success(function (data) {
-              if (data && 1 == data['result']) {
-                vm.items = data['data'];
-              }
-            })
-            .finally(function () {
-            });
-        }
+        // function _doGet(id) {
+        //   var listUrl = 'http://www.urcoffee.com/api/member/favorites/' + id + '.jhtml';
+        //   $http.get(listUrl)
+        //     .success(function (data) {
+        //       if (data && 1 == data['result']) {
+        //         vm.items = data['data'];
+        //       }
+        //     })
+        //     .finally(function () {
+        //     });
+        // }
 
         userInfo.getUserInfo($http, function () {
           var infoData = userInfo.info;
-          _doGet(infoData.id);
+          // _doGet(infoData['memberRank']['id']);
+
+          vm.items = infoData['favoriteProducts'];
         });
     };
 
