@@ -50,7 +50,6 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
       joiningCart = false;
     });
 
-    alert(JSON.stringify(params));
   };
 
   vm.buyIt = function () {
