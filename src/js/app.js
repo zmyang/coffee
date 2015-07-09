@@ -15,6 +15,8 @@ var Coffee_App = angular.module('Coffee', [
   'Coffee.controllers.Collections',
   'Coffee.controllers.OrderDetail',
   'Coffee.controllers.PayOrder',
+  'Coffee.controllers.SelectReceiver',
+  'Coffee.controllers.AddReceiver',
 ])
 
 .config(function($routeProvider) {
@@ -127,6 +129,18 @@ var Coffee_App = angular.module('Coffee', [
   $routeProvider.when('/collections', {
     templateUrl: 'collections.html',
     controller: 'CollectionsController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
+  $routeProvider.when('/select_receiver', {
+    templateUrl: 'select_receiver.html',
+    controller: 'SelectReceiverController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
+  $routeProvider.when('/add_receiver', {
+    templateUrl: 'add_receiver.html',
+    controller: 'AddReceiverController',
     controllerAs: 'vm',
     reloadOnSearch: false
   });

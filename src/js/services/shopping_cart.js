@@ -1,6 +1,7 @@
 Coffee_App.service('shoppingCart', function () {
     var shoppingCart = {
-      'products': []
+      'products': [],
+      'receiver': null
     };
 
     return {
@@ -40,19 +41,20 @@ Coffee_App.service('shoppingCart', function () {
                 finalFn&&finalFn();
               });
         },
-        deleteCart: function (xhr, id, done, fail) {
+        setReceiver: function (r) {
+            shoppingCart['receiver'] = r;
         },
-        clearCart: function () {
-            shoppingCart['products'] = [];
+        getReceiver: function () {
+            return shoppingCart['receiver'];
         },
-        checkIndex: function (id) {
-            for (var i = shoppingCart['products'].length - 1; i >= 0; i--) {
-                if (shoppingCart['products'][i] && shoppingCart['products'][i]['product_id'] == id) {
-                  return i;
-                }
-            }
-            return null;
-        },
+        // checkIndex: function (id) {
+        //     for (var i = shoppingCart['products'].length - 1; i >= 0; i--) {
+        //         if (shoppingCart['products'][i] && shoppingCart['products'][i]['product_id'] == id) {
+        //           return i;
+        //         }
+        //     }
+        //     return null;
+        // },
         postData: function (xhr, url, data) {
             return xhr({
                 method: 'POST',

@@ -1,0 +1,15 @@
+<div class="area-title">
+    <div ng-click="pageBack()" class="area-title-back">
+        返回
+    </div>
+    选择收获地址
+    <a class="add-receiver-btn" href="#/add_receiver">新增</a>
+</div>
+<div class="scrollable">
+    <div ng-init="vm.getList()" class="scrollable-content select-receiver-content" scroll>
+        <div class="receiver-item" ng-repeat="a in vm.items track by $index">
+            <h4>adf <span>qwer</span></h4>
+            <p>1234</p>
+        </div>
+    </div>
+</div>

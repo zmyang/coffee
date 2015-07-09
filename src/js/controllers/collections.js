@@ -21,7 +21,7 @@ angular.module('Coffee.controllers.Collections', [])
 
         userInfo.getUserInfo($http, function () {
           var infoData = userInfo.info;
-          // _doGet(infoData['memberRank']['id']);
+          // _doGet(userInfo.openId);
 
           vm.items = infoData['favoriteProducts'];
         });

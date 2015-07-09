@@ -7,9 +7,14 @@ angular.module('Coffee.controllers.PayOrder', [])
 
     vm.userinfo = {};
 
+    vm.selectReceiver = null;
+
+    vm.sendPrice = 0;
+
     userInfo.getUserInfo($http, function () {
       var infoData = userInfo.info;
       vm.userinfo = infoData;
+      vm.selectReceiver = shoppingCart.getReceiver() || infoData['receivers'][0]
     });
 
     vm.initList = function (force) {
@@ -35,8 +40,12 @@ angular.module('Coffee.controllers.PayOrder', [])
         vm.totalPrice = totalPrice;
     };
 
+
     vm.payCart = function () {
         var payUrl = 'http://www.urcoffee.com/api/order/create.jhtml';
+
+        alert('memo:' + vm.memo);
+        alert('userPoint:' + vm.userPoint);
 
         var params = { 
             wechatId: userInfo.openId,
@@ -47,10 +56,10 @@ angular.module('Coffee.controllers.PayOrder', [])
             // isInvoice: false,
             invoiceTitle: '',
             // useBalance: false,
-            memo: '',
+            memo: vm.memo,
             point: 0,
             amount: 1000,
-            usePoint: 100
+            usePoint: vm.userPoint
         };
 
         userInfo.postData($http, payUrl, params)

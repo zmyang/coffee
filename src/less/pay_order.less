@@ -1,3 +1,86 @@
+.pay-order-content {
+    padding-top: 0;
+
+    .pay-order-address {
+        position: relative;
+        padding: 10px;
+        background: #fff;
+        margin-bottom: 5px;
+        h4 {
+            font-size: 15px;
+            span {
+                padding-left: 80px;
+            }
+        }
+        .fa {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+        }
+    }
+
+    .pay-order-address-none {
+        margin-bottom: 5px;
+        background: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+    .fa {
+        float: right;
+    }
+
+    .pay-order-word {
+        background: #fff;
+        padding: 5px 10px;
+        textarea {
+            width: 100%;
+            min-height: 30px;
+            border: 1px solid #ccc;
+            .border-radius(2px);
+        }
+    }
+
+    .pay-order-total {
+        background: #fff;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+        span {
+            float: right;
+        }
+    }
+
+    .pay-order-point {
+        background: #fff;
+        padding: 5px 10px;
+        .clear-float();
+        .pay-order-use-point {
+            float: right;
+            widows: 150px;
+            input {
+                width: 60px;
+                border: 1px solid #ccc;
+                .border-radius(2px);
+            }
+        }
+    }
+}
+
 .order-pay-button {
-    
+    height: 90px;
+    padding: 4px 5px;
+    .box-shadow(0 -1px 2px #eee);
+    background: #fff;
+    .calcul-price,
+    .total-price {
+        height: 24px;
+        line-height: 24px;
+        color: #333;
+        text-align: center;
+    }
+    .total-price {
+        color: #f15a0c;
+    }
+    .btn {
+        display: block;
+    }
 }

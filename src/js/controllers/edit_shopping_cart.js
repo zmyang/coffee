@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.EditShoppingCart', [])
 
-.controller('EditShoppingCartController', function($scope, $http, shoppingCart, userInfo) {
+.controller('EditShoppingCartController', function($scope, $rootScope, $http, shoppingCart, userInfo) {
   var vm = this;
 
   vm.products = [];
@@ -14,6 +14,12 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
     shoppingCart.getCart($http, function (data) {
       vm.products = data;
       calculateTotlePrice();
+      if (data && data.length > 0) {
+        $rootScope.hasCart = true;
+      }
+      else {
+        $rootScope.hasCart = false;
+      }
     }, userInfo.openId, force);
   };
 
@@ -27,11 +33,9 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
 
     userInfo.postData($http, deleteUrl, params)
       .success(function (data) {
-        if (1 == data['result']) {
-          vm.initList(true);
-        }
-        else {
-          alert('删除购物车失败!');
+        vm.initList(true);
+        if (1 != data['result']) {
+          alert(data['msg']);
         }
       })
       .error(function () {
@@ -44,8 +48,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
   var calculateTotlePrice = function () {
     var totalPrice = 0;
     for (var i = vm.products.length - 1; i >= 0; i--) {
-      vm.products[i]['product']['buy_num'] = vm.products[i]['product']['buy_num'] || 1;
-      totalPrice += vm.products[i]['product']['price'] * vm.products[i]['product']['buy_num'];
+      totalPrice += vm.products[i]['subtotal'];
     }
     vm.totalPrice = totalPrice;
   };

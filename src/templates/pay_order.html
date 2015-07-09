@@ -1,12 +1,13 @@
 <div class="scrollable">
-    <div class="scrollable-content edit-cart-content" scroll>
-        <div ng-show="vm.userinfo.receivers.length > 0" class="pay-order-address">
-            <h4>收货人: {{vm.userinfo.receivers.consignee}} <span>{{vm.userinfo.receivers.phone}}</span></h4>
-            <p>收获地址: {{vm.userinfo.receivers.address}}</p>
+    <div class="scrollable-content edit-cart-content pay-order-content" scroll>
+        <div ng-show="vm.selectReceiver" ng-click="go('/select_receiver')" class="pay-order-address">
+            <h4>收货人: {{vm.selectReceiver.consignee}} <span>{{vm.selectReceiver.phone}}</span></h4>
+            <p>收获地址: {{vm.selectReceiver.address}}</p>
+            <i class="fa fa-angle-right"></i>
         </div>
 
-        <div ng-show="vm.userinfo.receivers.length <= 0" class="pay-order-address">
-            添加收货人
+        <div ng-show="!vm.selectReceiver" ng-click="go('/add_receiver')" class="pay-order-address-none">
+            添加收货人<i class="fa fa-angle-right"></i>
         </div>
 
         <div ng-init="vm.initList()" class="tab-cont">
@@ -23,11 +24,26 @@
                 </div> 
             </div>
         </div>
+
+        <div class="pay-order-word"><textarea ng-model="vm.memo" placeholder=""></textarea></div>
+
+        <div class="pay-order-total">
+            合计<span>￥{{vm.totalPrice}}</span>
+        </div>
+
+        <div class="pay-order-point">
+            积分：{{vm.userinfo.point}}
+            <div class="pay-order-use-point">
+                使用积分：<input type="text" ng-model="vm.usePoint" />
+            </div>
+        </div>
     </div>
 </div>
 
 <div ng-init="vm.calculateTotlePrice()" class="order-pay-button navbar-absolute-bottom">
-    <div class="total-price">合计：{{vm.totalPrice}}元</div>
+    <div class="calcul-price">￥{{vm.totalPrice}} + ￥{{vm.sendPrice}}运费</div>
+
+    <div class="total-price">合计：￥{{vm.totalPrice + vm.sendPrice}}元</div>
 
     <div ng-click="vm.payCart();" class="btn btn-danger">
         微信支付
