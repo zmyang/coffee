@@ -54,12 +54,37 @@ angular.module('Coffee.controllers.Detail', [])
   vm.getDetail = getDetail;
 
 
+  var joiningCart = false;
+  function doAddCart(done) {
+    if (joiningCart) {
+      return;
+    }
+    joiningCart = true;
+    if (!userInfo.openId) {
+        alert('未能获取用户信息，请重新登陆。');
+    }
+    var params = {
+        'wechatId': userInfo.openId,
+        'id': vm.productInfo.id, 
+        'quantity': 1,
+        'processingPrice': 0
+    };
+    shoppingCart.add($http, params, function () {
+      done && done();
+    }, function () {
+      joiningCart = false;
+    });
+  }
+
+
   function buyIt () {
     vm.productInfo['detail_action'] = 'buyIt';
     currentProduct.setProduct(vm.productInfo);
 
     if (2 == vm.type) {
-      $location.path('/pay_order');
+      doAddCart(function () {
+        $location.path('/pay_order');
+      });
     }
     else {
       $location.path('/add_shopping_cart');
@@ -69,30 +94,14 @@ angular.module('Coffee.controllers.Detail', [])
 
   vm.buyIt = buyIt;
 
-  var joiningCart = false;
 
   function addCart () {
     vm.productInfo['detail_action'] = 'addCart';
     currentProduct.setProduct(vm.productInfo);
 
     if (2 == vm.type) {
-      if (joiningCart) {
-        return;
-      }
-      joiningCart = true;
-      if (!userInfo.openId) {
-          alert('未能获取用户信息，请重新登陆。');
-      }
-      var params = {
-          'wechatId': userInfo.openId,
-          'id': vm.productInfo.id, 
-          'quantity': 1,
-          'processingPrice': 0
-      };
-      shoppingCart.add($http, params, function () {
+      doAddCart(function () {
         $location.path('/edit_shopping_cart');
-      }, function () {
-        joiningCart = false;
       });
 
       alert(JSON.stringify(params));

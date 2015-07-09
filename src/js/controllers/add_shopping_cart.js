@@ -26,7 +26,8 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
   }
 
   var joiningCart = false;
-  vm.joinCart = function () {
+
+  function doJoinCart (done) {
     if (joiningCart) {
       return;
     }
@@ -45,11 +46,16 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
         'processingPrice': 0
     };
     shoppingCart.add($http, params, function () {
-      $location.path('/edit_shopping_cart');
+      done && done();
     }, function () {
       joiningCart = false;
     });
+  }
 
+  vm.joinCart = function () {
+    doJoinCart(function () {
+      $location.path('/edit_shopping_cart');
+    });
   };
 
   vm.buyIt = function () {
@@ -57,7 +63,9 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
 
     currentProduct.setProduct(vm.productInfo);
 
-    $location.path('/pay_order');
+    doJoinCart(function () {
+      $location.path('/pay_order');
+    });
     // weixinBridge.config($http, window.location.href, function() {
     //   weixinBridge.pay($http, userInfo.openId, new Date().getTime());
     // });
