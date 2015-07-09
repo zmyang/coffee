@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Detail', [])
 
-.controller('DetailController', function($scope, $http, $location, currentProduct, weixinBridge, userInfo) {
+.controller('DetailController', function($scope, $rootScope, $http, $location, currentProduct, weixinBridge, userInfo) {
   var vm = this;
 
   vm.carouselIndex = 0;

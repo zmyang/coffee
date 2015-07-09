@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.AddShoppingCart', [])
 
-.controller('AddShoppingCartController', function($scope, $http, $location, currentProduct, shoppingCart, userInfo) {
+.controller('AddShoppingCartController', function($scope, $rootScope, $http, $location, currentProduct, shoppingCart, userInfo) {
   var vm = this;
 
   vm.productInfo = currentProduct.getProduct();
