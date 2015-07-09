@@ -32,7 +32,7 @@ Coffee_App.service('shoppingCart', function () {
 
             this.postData(xhr, addUrl, p)
               .success(function (data) {
-                done&&done();
+                done&&done(data);
               })
               .error(function () {
                 alert('加入购物车失败!');

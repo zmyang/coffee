@@ -69,7 +69,13 @@ angular.module('Coffee.controllers.Detail', [])
         'quantity': 1,
         'processingPrice': 0
     };
-    shoppingCart.add($http, params, function () {
+    shoppingCart.add($http, params, function (data) {
+      if (data && data.length > 0) {
+        $rootScope.hasCart = true;
+      }
+      else {
+        $rootScope.hasCart = false;
+      }
       done && done();
     }, function () {
       joiningCart = false;

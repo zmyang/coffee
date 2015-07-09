@@ -44,23 +44,22 @@ angular.module('Coffee.controllers.PayOrder', [])
     vm.payCart = function () {
         var payUrl = 'http://www.urcoffee.com/api/order/create.jhtml';
 
-        alert('memo:' + vm.memo);
-        alert('userPoint:' + vm.userPoint);
-
         var params = { 
             wechatId: userInfo.openId,
-            receiverId: '',
+            receiverId:  vm.selectReceiver ? vm.selectReceiver['id'] : '',
             // paymentMethodId: 1,
             shippingMethodId: 1,
             code: '',
             // isInvoice: false,
             invoiceTitle: '',
             // useBalance: false,
-            memo: vm.memo,
+            memo: vm.memo || '',
             point: 0,
             amount: 1000,
-            usePoint: vm.userPoint
+            usePoint: vm.userPoint || ''
         };
+
+        alert('order params:' + JSON.stringity(params));
 
         userInfo.postData($http, payUrl, params)
           .success(function (data) {
