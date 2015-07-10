@@ -21,7 +21,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
         $rootScope.hasCart = false;
       }
       $rootScope.refreshView();
-      alert('refresh->');
+      alert('refresh->' + JSON.stringify(data));
       $scope.$apply();
     }, userInfo.openId, force);
   };
@@ -36,6 +36,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
 
     userInfo.postData($http, deleteUrl, params)
       .success(function (data) {
+        alert('delete done');
         vm.initList(true);
         if (1 != data['result']) {
           alert(data['msg']);
