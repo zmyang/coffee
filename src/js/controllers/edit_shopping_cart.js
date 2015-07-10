@@ -20,6 +20,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
       else {
         $rootScope.hasCart = false;
       }
+      $rootScope.refreshView();
     }, userInfo.openId, force);
   };
 

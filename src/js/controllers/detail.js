@@ -56,9 +56,12 @@ angular.module('Coffee.controllers.Detail', [])
 
   var joiningCart = false;
   function doAddCart(done) {
+    alert(1);
     if (joiningCart) {
+      alert(3);
       return;
     }
+    alert(2);
     joiningCart = true;
     if (!userInfo.openId) {
         alert('未能获取用户信息，请重新登陆。');

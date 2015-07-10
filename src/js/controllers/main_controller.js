@@ -28,4 +28,18 @@ angular.module('Coffee.controllers.Main', [])
         }, userInfo.openId);
     });
 
+        // 刷新view
+    function refreshView() {
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+    }
+
+    $rootScope.refreshView = refreshView;
+
+
+    $scope.$watch('hasCart', function(value) {
+        refreshView();
+    });
+
 });

@@ -7,7 +7,7 @@
 </div>
 <div class="scrollable">
     <div ng-init="vm.getDetail()" class="scrollable-content detail-content" scroll>
-        <ul class="detail-imgs" rn-carousel rn-carousel-index="vm.carouselIndex">
+        <ul ng-hide="vm.slides.length <= 0" class="detail-imgs" rn-carousel rn-carousel-index="vm.carouselIndex">
             <li ng-repeat="item in vm.slides track by $index">
                 <img ng-src="{{item.medium}}" alt="{{item.medium}}">
             </li>

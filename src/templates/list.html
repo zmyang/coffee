@@ -1,7 +1,7 @@
 <section class="list-container">
-  <div  class="list-nav">
-    <div ng-hide="vm.type == 2" href="javascript:;" class="btn btn-navbar">
-    <span ui-turn-on='listDropdown'>精品级咖啡豆<i class="fa fa-chevron-circle-down"></i></span>
+  <div ng-hide="vm.type == 2" class="list-nav">
+    <div href="javascript:;" class="btn btn-navbar">
+    <span ui-turn-on='listDropdown'>{{vm.selectLevel}}咖啡豆<i class="fa fa-chevron-circle-down"></i></span>
     <ul 
       class="dropdown-menu"
       ui-outer-click="Ui.turnOff('listDropdown')"
@@ -10,18 +10,16 @@
       ui-show="listDropdown" 
       ui-state="listDropdown"
       ui-turn-off="listDropdown">
-      <li><a href="javascript:vm.getList(0)">精品级</a></li>
-      <li><a href="">商业级</a></li>
-      <li><a href="">高级商业</a></li>
+      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel(l)" href="javascript:;">{{l}}</a></li>
     </ul>
     </div>
 
-    <div ng-hide="vm.type == 2" class="list-place" ng-click="go('/area')"><i class="fa fa-map-marker fa-2x"></i></div>
+    <div class="list-place" ng-click="go('/area')"><i class="fa fa-map-marker fa-2x"></i></div>
   </div>
 
   <div class="scrollable">
     <div class="scrollable-content" scroll>
-      <div class="list-banner">
+      <div ng-class="{'list-banner-notop':vm.type == 2}" class="list-banner">
         <img ng-src="{{vm.adImage}}" alt=""/>
       </div>
 
