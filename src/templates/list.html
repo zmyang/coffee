@@ -10,7 +10,7 @@
       ui-show="listDropdown" 
       ui-state="listDropdown"
       ui-turn-off="listDropdown">
-      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel({{l}})" href="javascript:;">{{l}}</a></li>
+      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel('{{l}}')" href="javascript:;">{{l}}</a></li>
     </ul>
     </div>
 

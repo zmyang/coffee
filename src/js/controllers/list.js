@@ -12,6 +12,7 @@ angular.module('Coffee.controllers.List', [])
     vm.selectLevel = globalData.get('product_select_level');
     vm.selectArea = globalData.get('product_select_area');
 
+    var typeReg = /type=([^&^$]+)/;
     var saveAreas = globalData.get('product_areas');
     if (saveAreas) {
       vm.areas = saveAreas;
@@ -37,7 +38,6 @@ angular.module('Coffee.controllers.List', [])
         });
     }
 
-    var typeReg = /type=([^&^$]+)/;
     // 获取产品列表
     function getList (type) {
         var typeVal;
