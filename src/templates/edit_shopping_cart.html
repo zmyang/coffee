@@ -31,6 +31,6 @@
 <div class="edit-shopping-cart-buy-buttons navbar-absolute-bottom">
     <div class="total-price">合计：{{vm.totalPrice}}元</div>
     <div ng-click="go('/pay_order')" class="btn btn-danger">
-        结算({{vm.products.length}})
+        结算({{vm.products.length || 0}})
     </div>
 </div>

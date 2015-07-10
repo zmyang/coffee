@@ -1,7 +1,7 @@
 <section class="list-container">
   <div ng-hide="vm.type == 2" class="list-nav">
     <div href="javascript:;" class="btn btn-navbar">
-    <span ui-turn-on='listDropdown'>{{vm.selectLevel}}咖啡豆<i class="fa fa-chevron-circle-down"></i></span>
+    <span ui-turn-on='listDropdown'>{{vm.selectLevel}}级咖啡豆<i class="fa fa-chevron-circle-down"></i></span>
     <ul 
       class="dropdown-menu"
       ui-outer-click="Ui.turnOff('listDropdown')"
@@ -10,7 +10,7 @@
       ui-show="listDropdown" 
       ui-state="listDropdown"
       ui-turn-off="listDropdown">
-      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel(l)" href="javascript:;">{{l}}</a></li>
+      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel({{l}})" href="javascript:;">{{l}}</a></li>
     </ul>
     </div>
 

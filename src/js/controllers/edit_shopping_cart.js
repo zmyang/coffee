@@ -21,6 +21,8 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
         $rootScope.hasCart = false;
       }
       $rootScope.refreshView();
+      alert('refresh->');
+      $scope.$apply();
     }, userInfo.openId, force);
   };
 

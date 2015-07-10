@@ -88,6 +88,7 @@ angular.module('Coffee.controllers.List', [])
     vm.getList = getList;
 
     vm.doSelectLevel = function (v) {
+      vm.selectLevel = v;
       globalData.set('product_select_level', v);
       getList();
     };

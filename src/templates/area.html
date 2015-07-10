@@ -9,6 +9,6 @@
 </div>
 <div class="scrollable">
     <div class="scrollable-content area-content" scroll>
-        <div ng-click="vm.doSelectArea(a)" ng-class="{'select-area': vm.selectArea == a}" class="area-item" ng-repeat="a in vm.areas track by $index">{{a}}</div>
+        <div ng-click="vm.doSelectArea({{a}})" ng-class="{'select-area': vm.selectArea == a}" class="area-item" ng-repeat="a in vm.areas track by $index">{{a}}</div>
     </div>
 </div>
