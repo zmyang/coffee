@@ -11,6 +11,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
         alert('未能获取用户信息，请重新登陆。');
     }
 
+    alert('INIT LIST->');
     shoppingCart.getCart($http, function (data) {
       vm.products = data;
       calculateTotlePrice();
