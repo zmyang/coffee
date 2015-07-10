@@ -6,19 +6,16 @@ Coffee_App.service('shoppingCart', function () {
 
     return {
         getCart: function (xhr, done, openid, force) {
-          alert('sc-getCart');
             if (!force && shoppingCart['products'].length > 0) {
-              alert('sc-getCart not force');
                 done && done(shoppingCart['products']);
             }
             else {
-              alert('sc-getCart force');
                 var listUrl = 'http://www.urcoffee.com/api/cart/list/' + openid + '.jhtml';
 
                 xhr.get(listUrl)
                   .success(function (data) {
                     if (1 == data['result']) {
-                      shoppingCart['products'] = data['data'];
+                      shoppingCart['products'] = data['data'] || [];
                       done && done(shoppingCart['products']);
                     }
                     else {

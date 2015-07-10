@@ -11,7 +11,6 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
         alert('未能获取用户信息，请重新登陆。');
     }
 
-    alert('INIT LIST->');
     shoppingCart.getCart($http, function (data) {
       vm.products = data;
       calculateTotlePrice();
@@ -22,8 +21,6 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
         $rootScope.hasCart = false;
       }
       $rootScope.refreshView();
-      alert('refresh->');
-      $scope.$apply();
     }, userInfo.openId, force);
   };
 
@@ -39,7 +36,6 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
 
     userInfo.postData($http, deleteUrl, params)
       .success(function (data) {
-        alert('delete done');
         initList(true);
         if (1 != data['result']) {
           alert(data['msg']);

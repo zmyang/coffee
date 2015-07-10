@@ -91,5 +91,7 @@ angular.module('Coffee.controllers.List', [])
       vm.selectLevel = v;
       globalData.set('product_select_level', v);
       getList();
+      // hot fix
+      document.getElementById('level_selector').className += ' ng-hide';
     };
 });
