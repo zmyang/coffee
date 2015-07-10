@@ -10,11 +10,11 @@
       ui-show="listDropdown" 
       ui-state="listDropdown"
       ui-turn-off="listDropdown">
-      <li ng-repeat="l in vm.levels">{{vm.selectLevel}}<a ng-click="vm.doSelectLevel('{{l}}')" href="javascript:;">{{l}}</a></li>
+      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel('{{l}}')" href="javascript:;">{{l}}</a></li>
     </ul>
     </div>
 
-    <div class="list-place" ng-click="go('/area')"><i class="fa fa-map-marker fa-2x"></i></div>
+    <div class="list-place" ng-click="go('/area')">{{vm.selectArea}}<i class="fa fa-map-marker fa-2x"></i></div>
   </div>
 
   <div class="scrollable">
