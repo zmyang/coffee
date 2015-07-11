@@ -1,0 +1,24 @@
+<div class="modal" ui-if='region_selector' ui-state='region_selector'>
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" 
+                ui-turn-off="region_selector">&times;</button>
+        <h4 class="modal-title">地区：{{vm.addRegion}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="scrollable">
+          <div ng-init="vm.getProvinceList()" class="scrollable-content region-content" scroll>
+            <div class="region-item" ng-repeat="r in vm.provinceList track by $index" ng-click="vm.selectRegion({{r}})">
+              {{r.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="region_selector" class="btn btn-primary">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

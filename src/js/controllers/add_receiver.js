@@ -24,7 +24,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
         userInfo.postData(addUrl, {
                 memberId: userInfo.openId,
                 consignee: vm['addName'],
-                areaId: vm['addRegion'], 
+                areaId: vm['addRegionId'], 
                 address: vm['addAddress'],
                 zipCode: vm['addPostCode'],
                 phone: vm['addPhone'],
@@ -44,10 +44,41 @@ angular.module('Coffee.controllers.AddReceiver', [])
 
     vm.addReceiver = addReceiver;
 
-    // 选择地区
-    function selectRegion () {
 
+    vm.addRegion = "";
+    vm.addRegionId = null;
+    vm.provinceList = [];
+    // 选择地区
+    function getProvinceList () {
+        vm.addRegion = "";
+        vm.addRegionId = null;
+        userInfo.getProvinces(function (data) {
+            vm.provinceList = data;
+        });
     }
 
-    vm.selectRegion = selectRegion;
+    vm.getProvinceList = getProvinceList;
+
+    var selectFinished = false;
+    function selectRegion (r) {
+        if (selectFinished) {
+            vm.addRegion = vm.addRegion ? vm.addRegion.replace(/\s+[^\s]*$/,'') + ' ' + r.name : r.name;
+        }
+        else {
+            vm.addRegion = vm.addRegion ? vm.addRegion + ' ' + r.name : r.name;
+        }
+        vm.addRegionId = r.id;
+
+        userInfo.getChildAreas(r.id, function (data) {
+            if (data) {
+                vm.provinceList = data;
+                selectFinished = false;
+            }
+            else {
+                selectFinished = true;
+            }
+        }, function () {
+            selectFinished = true;
+        });
+    }
 });

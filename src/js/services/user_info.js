@@ -5,8 +5,10 @@ Coffee_App.service('userInfo', function ($http) {
         info: null,
         openId: null,
         recodeCode: null,
+        provinces: null,
+        childAreas: {},
         getOpenId: function(done, fail) {
-            if (userInfo.openId) {
+            if (this.openId) {
                 done && done();
                 return;
             }
@@ -43,7 +45,7 @@ Coffee_App.service('userInfo', function ($http) {
               });
         },
         getUserInfo: function (done, fail, isForce) {
-            if (userInfo.info && !isForce) {
+            if (this.info && !isForce) {
                 done && done();
                 return;
             }
@@ -65,7 +67,7 @@ Coffee_App.service('userInfo', function ($http) {
                   });
             }
 
-            if (!userInfo.openId) {
+            if (!this.openId) {
                 this.getOpenId(
                     function () {
                         _doGet();
@@ -89,6 +91,47 @@ Coffee_App.service('userInfo', function ($http) {
                 },
                 data: data
             })
+        },
+        getProvinces: function (done, fail) {
+            if (!this.provinces) {
+                $http.get('http://www.urcoffee.com/api/member/provinceList.jhtml')
+                    .success(function (data) {
+                        if (1 == data['result']) {
+                            done && done(data['data']);
+                            userInfo.provinces = data;
+                        }
+                        else {
+                            alert('获取省份失败');
+                        }
+                    })
+                    .error(function () {
+                        alert('获取省份失败');
+                    });
+            }
+            else {
+                done && done(this.provinces);
+            }
+        },
+        getChildAreas: function (pId, done, fail) {
+            if (!this.childAreas[pId]) {
+                var aUrl = 'http://www.urcoffee.com/api/member/childAreaList/' + pId + '.jhtml'
+                $http.get(aUrl)
+                    .success(function (data) {
+                        if (1 == data['result'] && data['data'].length > 0) {
+                            done && done(data['data']);
+                            userInfo.childAreas[pId] = data['data'];
+                        }
+                        else {
+                            fail && fail();
+                        }
+                    })
+                    .error(function () {
+                        fail && fail();
+                    });
+            }
+            else {
+                done && done(this.childAreas[pId]);
+            }
         }
     };
 
