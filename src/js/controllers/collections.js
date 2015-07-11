@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Collections', [])
 
-.controller('CollectionsController', function($scope, $http, $location, userInfo, currentProduct) {
+.controller('CollectionsController', function($scope, $rootScope, $http, $location, userInfo, currentProduct, shoppingCart) {
     var vm = this;
 
     vm.items = [];
@@ -14,9 +14,44 @@ angular.module('Coffee.controllers.Collections', [])
         });
     };
 
+    var joiningCart = false;
+    function doAddCart(p, done) {
+        if (joiningCart) {
+          return;
+        }
+        joiningCart = true;
+        if (!userInfo.openId) {
+            alert('未能获取用户信息，请重新登陆。');
+        }
+        var params = {
+            'wechatId': userInfo.openId,
+            'id': p.id, 
+            'quantity': 1,
+            'processingPrice': 0
+        };
+        shoppingCart.add(params, function (data) {
+          if (data && 1 == data['result']) {
+            $rootScope.hasCart = true;
+          }
+          else {
+            $rootScope.hasCart = false;
+          }
+          done && done();
+        }, function () {
+          joiningCart = false;
+        });
+    }
+
     // 点击立即购买
     vm.buyIt = function buyIt(p) {
         currentProduct.setProduct(p);
-        $location.path('/add_shopping_cart');
+        if (p['attributeValue1']) {
+            $location.path('/add_shopping_cart');
+        }
+        else {
+            doAddCart(p, function () {
+                $location.path('/pay_order');
+            });
+        }
     };
 });

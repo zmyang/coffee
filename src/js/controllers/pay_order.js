@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.PayOrder', [])
 
-.controller('PayOrderController', function($scope, $location, shoppingCart, userInfo) {
+.controller('PayOrderController', function($scope, $rootScope, $location, shoppingCart, userInfo) {
     var vm = this;
 
     vm.products = [];
@@ -25,6 +25,13 @@ angular.module('Coffee.controllers.PayOrder', [])
         shoppingCart.getCart(function (data) {
             vm.products = data;
             calculateTotlePrice();
+            if (data && data.length > 0) {
+              $rootScope.hasCart = true;
+            }
+            else {
+              $rootScope.hasCart = false;
+            }
+            $rootScope.refreshView();
         }, userInfo.openId, force);
     };
 
