@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="scrollable">
           <div ng-init="vm.getProvinceList()" class="scrollable-content region-content" scroll>
-            <div class="region-item" ng-repeat="r in vm.provinceList track by $index" ng-click="vm.selectRegion({{r}})">
+            <div class="region-item" ng-repeat="r in vm.provinceList" ng-click="vm.selectRegion({{r}})">
               {{r.name}}
             </div>
           </div>

@@ -2,7 +2,7 @@
     <div ng-click="pageBack()" class="area-title-back">
     </div>
     新增地址
-    <a class="add-receiver-btn" ng-click="vm.addReceiver()" href="javascript:;">完成</a>
+    <a class="add-receiver-btn" ng-click="vm.addReceiver()" href="javascript:void(0);">完成</a>
 </div>
 
 <div class="scrollable">
@@ -16,7 +16,7 @@
           <label>手机号码</label><input type="tel" ng-model="vm.addPhone" placeholder="11位手机号码"/>
         </p>
         <p class="reg-p">
-          <label>地区信息</label><input disabled="disabled" type="text" ng-model="vm.addRegion" placeholder="地区信息"/>
+          <label>地区信息</label><input type="text" ng-model="vm.addRegion" placeholder="地区信息"/>
           <i ui-turn-on="region_selector" class="fa fa-map-marker fa-2x"></i>
         </p>
         <p class="reg-p">

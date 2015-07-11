@@ -60,7 +60,11 @@ angular.module('Coffee.controllers.AddReceiver', [])
     vm.getProvinceList = getProvinceList;
 
     var selectFinished = false;
+    var preId = null;
     function selectRegion (r) {
+        if (r.id == preId) {
+            return;
+        }
         if (selectFinished) {
             vm.addRegion = vm.addRegion ? vm.addRegion.replace(/\s+[^\s]*$/,'') + ' ' + r.name : r.name;
         }
@@ -68,6 +72,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
             vm.addRegion = vm.addRegion ? vm.addRegion + ' ' + r.name : r.name;
         }
         vm.addRegionId = r.id;
+        preId = r.id;
 
         userInfo.getChildAreas(r.id, function (data) {
             if (data) {
@@ -81,4 +86,6 @@ angular.module('Coffee.controllers.AddReceiver', [])
             selectFinished = true;
         });
     }
+
+    vm.selectRegion = selectRegion;
 });

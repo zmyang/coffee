@@ -98,7 +98,7 @@ Coffee_App.service('userInfo', function ($http) {
                     .success(function (data) {
                         if (1 == data['result']) {
                             done && done(data['data']);
-                            userInfo.provinces = data;
+                            userInfo.provinces = data['data'];
                         }
                         else {
                             alert('获取省份失败');

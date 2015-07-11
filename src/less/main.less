@@ -114,3 +114,34 @@
     background: url(../images/maifei_cart.png) no-repeat;
     background-size: 46px 45px;
 }
+
+
+.modal-dialog {
+    height: 90%;
+    .modal-content {
+        height: 100%;
+        padding: 50px 0 55px;
+        .modal-header {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            top: 0;
+        }
+        .modal-body {
+            height: 100%;
+            .region-item {
+                padding: 10px;
+                border-bottom: 1px solid #eee;
+                &.ng-click-active {
+                    background: #eee;
+                }
+            }
+        }
+        .modal-footer {
+            position: absolute;
+            height: 55px;
+            width: 100%;
+            bottom: 0;
+        }
+    }
+}
