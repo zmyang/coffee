@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.MemberShip', [])
 
-.controller('MemberShipController', function($scope, $location, $http, currentOrder, shoppingCart, userInfo) {
+.controller('MemberShipController', function($scope, $location, currentOrder, shoppingCart, userInfo) {
     var vm = this;
 
     vm.unPaidOrders = [];
@@ -9,7 +9,7 @@ angular.module('Coffee.controllers.MemberShip', [])
     vm.finishedOrders = [];
 
     function noLogin () {
-        return;// for test
+        return;// no need login
         userInfo.fromPage = '/member_ship';
         $location.path('/login');
     }
@@ -48,7 +48,7 @@ angular.module('Coffee.controllers.MemberShip', [])
         if ('orders' == page) {
             doFilterOrders = true;
         }
-        userInfo.getUserInfo($http, function () {
+        userInfo.getUserInfo(function () {
           var infoData = userInfo.info;
           vm.userinfo = infoData;
 

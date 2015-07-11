@@ -69,7 +69,7 @@ angular.module('Coffee.controllers.Detail', [])
         'quantity': 1,
         'processingPrice': 0
     };
-    shoppingCart.add($http, params, function (data) {
+    shoppingCart.add(params, function (data) {
       if (data && 1 == data['result']) {
         $rootScope.hasCart = true;
       }
@@ -128,7 +128,7 @@ angular.module('Coffee.controllers.Detail', [])
     };
 
 
-    userInfo.postData($http, addUrl, params)
+    userInfo.postData(addUrl, params)
       .success(function (data) {
         if (1 == data['result']) {
           alert('收藏成功!');

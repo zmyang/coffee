@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.EditShoppingCart', [])
 
-.controller('EditShoppingCartController', function($scope, $rootScope, $http, shoppingCart, userInfo) {
+.controller('EditShoppingCartController', function($scope, $rootScope, shoppingCart, userInfo) {
   var vm = this;
 
   vm.products = [];
@@ -11,7 +11,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
         alert('未能获取用户信息，请重新登陆。');
     }
 
-    shoppingCart.getCart($http, function (data) {
+    shoppingCart.getCart(function (data) {
       vm.products = data;
       calculateTotlePrice();
       if (data && data.length > 0) {
@@ -34,7 +34,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
       id: id
     };
 
-    userInfo.postData($http, deleteUrl, params)
+    userInfo.postData(deleteUrl, params)
       .success(function (data) {
         initList(true);
         if (1 != data['result']) {

@@ -1,8 +1,8 @@
-Coffee_App.service('weixinBridge', function () {
+Coffee_App.service('weixinBridge', function ($http) {
 
     var wb = {
         debug: false,
-        config: function (xhr, url, done, fail) {
+        config: function (url, done, fail) {
             // var timestamp = Math.floor(new Date().getTime() / 1000);
             // var nonceStr = this.genNonceStr(16);
             var me = this;
@@ -21,7 +21,7 @@ Coffee_App.service('weixinBridge', function () {
             }
 
             this.genSignature(
-                xhr, url,
+                url,
                 function (so) {
                     callConfig(so);
                 },
@@ -29,9 +29,9 @@ Coffee_App.service('weixinBridge', function () {
                     alert('js sdk config fail');
                 });
         },
-        genSignature: function (xhr, url, done, fail) {
+        genSignature: function (url, done, fail) {
             var ticketUrl = 'http://www.urcoffee.com/api/wechat/signature.jhtml';
-            xhr({
+            $http({
                 method: 'POST',
                 url: ticketUrl,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -57,7 +57,7 @@ Coffee_App.service('weixinBridge', function () {
                 fail && fail();
               });
         },
-        pay: function (xhr, openid, out_trade_no) {
+        pay: function (openid, out_trade_no) {
             var timestamp = Math.floor(new Date().getTime() / 1000);
 
             var me = this;
@@ -76,7 +76,7 @@ Coffee_App.service('weixinBridge', function () {
 
                 me.callWx('chooseWXPay', payObj);
             }
-            this.getPrePayId(xhr, openid, out_trade_no,
+            this.getPrePayId(openid, out_trade_no,
                 function (preObj) {
                     callPay(preObj);
                 },
@@ -84,9 +84,9 @@ Coffee_App.service('weixinBridge', function () {
                     alert('unifiedorder fail');
                 });
         },
-        getPrePayId: function (xhr, openid, out_trade_no, done, fail) {
+        getPrePayId: function (openid, out_trade_no, done, fail) {
             var prepaUrl = 'http://www.urcoffee.com/api/wechat/unifiedorder.jhtml';
-            xhr({
+            $http({
                 method: 'POST',
                 url: prepaUrl,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},

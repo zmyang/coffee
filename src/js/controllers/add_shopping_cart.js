@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.AddShoppingCart', [])
 
-.controller('AddShoppingCartController', function($scope, $rootScope, $http, $location, currentProduct, shoppingCart, userInfo) {
+.controller('AddShoppingCartController', function($scope, $rootScope, $location, currentProduct, shoppingCart, userInfo) {
   var vm = this;
 
   vm.productInfo = currentProduct.getProduct();
@@ -45,7 +45,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
         'processingCount': vm.productInfo.baking_num,
         'processingPrice': 0
     };
-    shoppingCart.add($http, params, function (data) {
+    shoppingCart.add(params, function (data) {
       if (data && 1 == data['result']) {
         $rootScope.hasCart = true;
       }
@@ -72,9 +72,6 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
     doJoinCart(function () {
       $location.path('/pay_order');
     });
-    // weixinBridge.config($http, window.location.href, function() {
-    //   weixinBridge.pay($http, userInfo.openId, new Date().getTime());
-    // });
   };
 
 });

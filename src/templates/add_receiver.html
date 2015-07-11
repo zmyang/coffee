@@ -17,12 +17,13 @@
         </p>
         <p class="reg-p">
           <label>地区信息</label><input type="text" ng-model="vm.addRegion" placeholder="地区信息"/>
+          <i ng-click="vm.selectRegion()" class="fa fa-map-marker fa-2x"></i>
         </p>
         <p class="reg-p">
           <label>详细地址</label><input type="text" ng-model="vm.addAddress" placeholder="街道门牌信息"/>
         </p>
         <p>
-          <label>邮政编码</label><input type="text" ng-model="vm.addPostCode" placeholder="邮政编码"/>
+          <label>邮政编码</label><input type="tel" ng-model="vm.addPostCode" placeholder="邮政编码"/>
         </p>
       </div>
 

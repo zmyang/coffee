@@ -1,18 +1,18 @@
-Coffee_App.service('shoppingCart', function () {
+Coffee_App.service('shoppingCart', function ($http) {
     var shoppingCart = {
       'products': [],
       'receiver': null
     };
 
     return {
-        getCart: function (xhr, done, openid, force) {
+        getCart: function (done, openid, force) {
             if (!force && shoppingCart['products'].length > 0) {
                 done && done(shoppingCart['products']);
             }
             else {
                 var listUrl = 'http://www.urcoffee.com/api/cart/list/' + openid + '.jhtml';
 
-                xhr.get(listUrl)
+                $http.get(listUrl)
                   .success(function (data) {
                     if (1 == data['result']) {
                       shoppingCart['products'] = data['data'] || [];
@@ -27,10 +27,10 @@ Coffee_App.service('shoppingCart', function () {
                   });
             }
         },
-        add: function (xhr, p, done, finalFn) {
+        add: function (p, done, finalFn) {
             var addUrl = 'http://www.urcoffee.com/api/cart/add.jhtml';
 
-            this.postData(xhr, addUrl, p)
+            this.postData(addUrl, p)
               .success(function (data) {
                 done&&done(data);
               })
@@ -55,8 +55,8 @@ Coffee_App.service('shoppingCart', function () {
         //     }
         //     return null;
         // },
-        postData: function (xhr, url, data) {
-            return xhr({
+        postData: function (url, data) {
+            return $http({
                 method: 'POST',
                 url: url,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},

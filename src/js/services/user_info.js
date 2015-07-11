@@ -1,11 +1,11 @@
-Coffee_App.service('userInfo', function () {
+Coffee_App.service('userInfo', function ($http) {
     var userInfo = {
         hasLogin: false,
         fromPage: null,
         info: null,
         openId: null,
         recodeCode: null,
-        getOpenId: function(xhr, done, fail) {
+        getOpenId: function(done, fail) {
             if (userInfo.openId) {
                 done && done();
                 return;
@@ -26,7 +26,7 @@ Coffee_App.service('userInfo', function () {
                 }
             }
             
-            xhr.get('http://www.urcoffee.com/api/wechat/authorize/' + code + '/STATE.jhtml', {
+            $http.get('http://www.urcoffee.com/api/wechat/authorize/' + code + '/STATE.jhtml', {
                 code: code
             })
               .success(function (data) {
@@ -42,14 +42,14 @@ Coffee_App.service('userInfo', function () {
                 fail && fail();
               });
         },
-        getUserInfo: function (xhr, done, fail, isForce) {
+        getUserInfo: function (done, fail, isForce) {
             if (userInfo.info && !isForce) {
                 done && done();
                 return;
             }
 
             function _doGet () {
-                xhr.get('http://www.urcoffee.com/api/member/weixin/' + userInfo.openId + '.jhtml')
+                $http.get('http://www.urcoffee.com/api/member/weixin/' + userInfo.openId + '.jhtml')
                   .success(function (data) {
                     if (data['data']) {
                         userInfo.info = data['data'];
@@ -66,7 +66,7 @@ Coffee_App.service('userInfo', function () {
             }
 
             if (!userInfo.openId) {
-                this.getOpenId(xhr, 
+                this.getOpenId(
                     function () {
                         _doGet();
                     }, fail);
@@ -76,8 +76,8 @@ Coffee_App.service('userInfo', function () {
             }
             
         },
-        postData: function (xhr, url, data) {
-            return xhr({
+        postData: function (url, data) {
+            return $http({
                 method: 'POST',
                 url: url,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},

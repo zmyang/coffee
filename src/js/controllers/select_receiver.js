@@ -20,7 +20,7 @@ angular.module('Coffee.controllers.SelectReceiver', [])
                 });
         }
 
-        userInfo.getUserInfo($http, function () {
+        userInfo.getUserInfo(function () {
           _doGet(userInfo.openId);
         });
     };

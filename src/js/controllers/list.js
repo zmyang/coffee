@@ -59,7 +59,7 @@ angular.module('Coffee.controllers.List', [])
                 'attribute_1': vm.selectArea,
                 'attribute_2': vm.selectLevel
               };
-              userInfo.postData($http, listUrl, params)
+              userInfo.postData(listUrl, params)
                 .success(function (data) {
                   if (1 == data['result']) {
                     vm.items = data['data'];
@@ -91,7 +91,5 @@ angular.module('Coffee.controllers.List', [])
       vm.selectLevel = v;
       globalData.set('product_select_level', v);
       getList();
-      // hot fix
-      document.getElementById('level_selector').className += ' ng-hide';
     };
 });

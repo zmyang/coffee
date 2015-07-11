@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.Account', [])
 
-.controller('AccountController', function($scope, $location, $http, userInfo) {
+.controller('AccountController', function($scope, $location, userInfo) {
     var vm = this;
 
     // 我的联系方式
@@ -64,7 +64,7 @@ angular.module('Coffee.controllers.Account', [])
             var me = this;
             function doSend () {
                 var loginUrl = 'http://www.urcoffee.com/api/member/login.jhtml';
-                userInfo.postData($http, loginUrl, {
+                userInfo.postData(loginUrl, {
                     'username': me.logTel, 
                     'password': me.logPwd,
                     'wechatId': userInfo.openId || ''
@@ -83,7 +83,7 @@ angular.module('Coffee.controllers.Account', [])
                   });
             }
 
-            userInfo.getOpenId($http, doSend, doSend);
+            userInfo.getOpenId(doSend, doSend);
             
         },
         reg: function () {
@@ -119,7 +119,7 @@ angular.module('Coffee.controllers.Account', [])
                     params['email'] = me.regMail;
                 }
 
-                userInfo.postData($http, regUrl, params)
+                userInfo.postData(regUrl, params)
                   .success(function (data) {
                     userInfo.info = data['data'];
                     if (userInfo.openId) {
@@ -134,7 +134,7 @@ angular.module('Coffee.controllers.Account', [])
                   });
             }
 
-            userInfo.getOpenId($http, doReg, doReg);
+            userInfo.getOpenId(doReg, doReg);
         }
     };
 });

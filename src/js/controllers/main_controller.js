@@ -15,9 +15,9 @@ angular.module('Coffee.controllers.Main', [])
         }
     };
 
-    userInfo.getOpenId($http, function () {
+    userInfo.getOpenId(function () {
         // 获取购物车，有的话显示提示
-        shoppingCart.getCart($http, function (data) {
+        shoppingCart.getCart(function (data) {
             if (data && data.length > 0) {
                 $rootScope.hasCart = true;
             }

@@ -11,7 +11,7 @@
       ui-show="listDropdown" 
       ui-state="listDropdown"
       ui-turn-off="listDropdown">
-      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel('{{l}}')">{{l}}</a></li>
+      <li ng-repeat="l in vm.levels"><a ng-click="vm.doSelectLevel('{{l}}');Ui.turnOff('listDropdown')">{{l}}</a></li>
     </ul>
     </div>
 

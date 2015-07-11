@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.PayOrder', [])
 
-.controller('PayOrderController', function($scope, $location, $http, shoppingCart, userInfo) {
+.controller('PayOrderController', function($scope, $location, shoppingCart, userInfo) {
     var vm = this;
 
     vm.products = [];
@@ -11,7 +11,7 @@ angular.module('Coffee.controllers.PayOrder', [])
 
     vm.sendPrice = 0;
 
-    userInfo.getUserInfo($http, function () {
+    userInfo.getUserInfo(function () {
       var infoData = userInfo.info;
       vm.userinfo = infoData;
       vm.selectReceiver = shoppingCart.getReceiver() || infoData['receivers'][0]
@@ -22,7 +22,7 @@ angular.module('Coffee.controllers.PayOrder', [])
             alert('未能获取用户信息，请重新登陆。');
         }
 
-        shoppingCart.getCart($http, function (data) {
+        shoppingCart.getCart(function (data) {
             vm.products = data;
             calculateTotlePrice();
         }, userInfo.openId, force);
@@ -61,12 +61,12 @@ angular.module('Coffee.controllers.PayOrder', [])
 
         alert('order params:' + JSON.stringity(params));
 
-        userInfo.postData($http, payUrl, params)
+        userInfo.postData(payUrl, params)
           .success(function (data) {
             if (1 == data['result']) {
               alert('下单成功!');
-                weixinBridge.config($http, window.location.href, function() {
-                  weixinBridge.pay($http, userInfo.openId, new Date().getTime());
+                weixinBridge.config(window.location.href, function() {
+                  weixinBridge.pay(userInfo.openId, new Date().getTime());
                 });
             }
             else {
@@ -78,10 +78,5 @@ angular.module('Coffee.controllers.PayOrder', [])
           })
           .finally(function () {
           });
-
-
-        // weixinBridge.config($http, window.location.href, function() {
-        //   weixinBridge.pay($http, userInfo.openId, new Date().getTime());
-        // });
     };
 });
