@@ -37,9 +37,19 @@ angular.module('Coffee.controllers.Main', [])
 
     $rootScope.refreshView = refreshView;
 
+    $scope.customerService = function () {
+        var cUrl = 'http://www.urcoffee.com/api/wechat/sendServiceMsg.jhtml';
+        userInfo.getOpenId(function () {
+            $http({
+                method: 'POST',
+                url: cUrl,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: {
+                    openid: userInfo.openId
+                }
+            });
+        });
+    };
 
-    $scope.$watch('hasCart', function(value) {
-        refreshView();
-    });
 
 });

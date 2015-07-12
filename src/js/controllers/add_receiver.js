@@ -22,7 +22,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
         var addUrl = 'http://www.urcoffee.com/api/member/receiver.jhtml';
 
         userInfo.postData(addUrl, {
-                memberId: userInfo.openId,
+                openId: userInfo.openId,
                 consignee: vm['addName'],
                 areaId: vm['addRegionId'], 
                 address: vm['addAddress'],
