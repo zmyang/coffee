@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.PayOrder', [])
 
-.controller('PayOrderController', function($scope, $rootScope, $location, shoppingCart, userInfo) {
+.controller('PayOrderController', function($scope, $rootScope, $location, shoppingCart, userInfo, weixinBridge) {
     var vm = this;
 
     vm.products = [];
@@ -48,12 +48,17 @@ angular.module('Coffee.controllers.PayOrder', [])
     };
 
 
+    var paying = false;
     vm.payCart = function () {
+        if (paying) {
+          return;
+        }
+        paying = true;
         var payUrl = 'http://www.urcoffee.com/api/order/create.jhtml';
 
         var params = { 
             wechatId: userInfo.openId,
-            receiverId:  vm.selectReceiver ? vm.selectReceiver['id'] : '',
+            receiverId:  vm.selectReceiver ? vm.selectReceiver['id'] : '1',
             // paymentMethodId: 1,
             shippingMethodId: 1,
             code: '',
@@ -66,12 +71,11 @@ angular.module('Coffee.controllers.PayOrder', [])
             usePoint: vm.userPoint || ''
         };
 
-        alert('order params:' + JSON.stringity(params));
+        alert('order params:' + JSON.stringify(params));
 
         userInfo.postData(payUrl, params)
           .success(function (data) {
             if (1 == data['result']) {
-              alert('下单成功!');
                 weixinBridge.config(window.location.href, function() {
                   weixinBridge.pay(userInfo.openId, new Date().getTime());
                 });
@@ -84,6 +88,7 @@ angular.module('Coffee.controllers.PayOrder', [])
             alert('下单失败!');
           })
           .finally(function () {
+            paying = false;
           });
     };
 });

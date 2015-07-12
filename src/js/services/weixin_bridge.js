@@ -1,7 +1,7 @@
 Coffee_App.service('weixinBridge', function ($http) {
 
     var wb = {
-        debug: false,
+        debug: true,
         config: function (url, done, fail) {
             // var timestamp = Math.floor(new Date().getTime() / 1000);
             // var nonceStr = this.genNonceStr(16);
@@ -13,7 +13,7 @@ Coffee_App.service('weixinBridge', function ($http) {
                     nonceStr: so['noncestr'],
                     timestamp: so['timestamp'],
                     signature: so['sign'],
-                    jsApiList: ['chooseWXPay', 'onMenuShareTimeline']
+                    jsApiList: ['chooseWXPay']
 
                 };
                 me.callWx('config', configData);
@@ -61,7 +61,6 @@ Coffee_App.service('weixinBridge', function ($http) {
             var timestamp = Math.floor(new Date().getTime() / 1000);
 
             var me = this;
-
             function callPay (preObj) {
                 var payObj = {
                     timestamp: preObj['timestamp'],
@@ -81,7 +80,7 @@ Coffee_App.service('weixinBridge', function ($http) {
                     callPay(preObj);
                 },
                 function () {
-                    alert('unifiedorder fail');
+                    alert('下单失败，请稍后再试。');
                 });
         },
         getPrePayId: function (openid, out_trade_no, done, fail) {
@@ -128,7 +127,7 @@ Coffee_App.service('weixinBridge', function ($http) {
             }
             wx.error(function(res){
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-                // alert(JSON.stringify(res));
+                alert(JSON.stringify(res));
             });
             this.errorListened = true;
         },
@@ -144,8 +143,6 @@ Coffee_App.service('weixinBridge', function ($http) {
             return str;
         },
         shareItem: function (link, imgUrl) {
-            alert(2);
-            alert(wx.onMenuShareTimeline);
             wx.onMenuShareTimeline({
                 title: 'test', // 分享标题
                 link: link, // 分享链接

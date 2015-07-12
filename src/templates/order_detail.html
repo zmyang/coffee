@@ -1,4 +1,4 @@
-<div class="area-title">
+<div class="area-title order-detail-title">
     <div ng-click="pageBack()" class="area-title-back">
         返回
     </div>
@@ -17,7 +17,7 @@
                 <p>订单编号：</p>
                 <p>订单金额：<em>￥{{vm.order.price}}</em>()</p>
                 <p>状态：</p>
-                <a ng-show="'unpaid' == vm.order.paymentStatus" href="javascript:;">微信支付</a>
+                <a ng-click="vm.payOrder()" ng-show="'unpaid' == vm.order.paymentStatus" href="javascript:;">微信支付</a>
             </div>
         </div>
         <div class="sent-address">

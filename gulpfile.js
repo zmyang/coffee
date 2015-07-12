@@ -11,7 +11,7 @@ var config = {
   
   vendor: {
     js: [
-      'http://res.wx.qq.com/open/js/jweixin-1.0.0.js',
+      // 'http://res.wx.qq.com/open/js/jweixin-1.0.0.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
       './bower_components/angular-touch/angular-touch.js',
