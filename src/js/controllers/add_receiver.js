@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.AddReceiver', [])
 
-.controller('AddReceiverController', function($scope, $location, userInfo) {
+.controller('AddReceiverController', function($scope, $rootScope, $location, userInfo) {
     var vm = this;
     var inputMap = {
         'addName': '收货人',
@@ -50,6 +50,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
     vm.provinceList = [];
     // 选择地区
     function getProvinceList () {
+        selectFinished = false;
         vm.addRegion = "";
         vm.addRegionId = null;
         userInfo.getProvinces(function (data) {
@@ -82,8 +83,10 @@ angular.module('Coffee.controllers.AddReceiver', [])
             else {
                 selectFinished = true;
             }
+            $rootScope.refreshView();
         }, function () {
             selectFinished = true;
+            $rootScope.refreshView();
         });
     }
 
