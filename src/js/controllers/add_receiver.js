@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.AddReceiver', [])
 
-.controller('AddReceiverController', function($scope, $rootScope, $location, userInfo) {
+.controller('AddReceiverController', function($scope, $location, userInfo) {
     var vm = this;
     var inputMap = {
         'addName': '收货人',
@@ -83,10 +83,10 @@ angular.module('Coffee.controllers.AddReceiver', [])
             else {
                 selectFinished = true;
             }
-            $rootScope.refreshView();
+            $scope.$apply();
         }, function () {
             selectFinished = true;
-            $rootScope.refreshView();
+            $scope.$apply();
         });
     }
 

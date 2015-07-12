@@ -6,7 +6,6 @@ Coffee_App.service('userInfo', function ($http) {
         openId: null,
         recodeCode: null,
         provinces: null,
-        childAreas: {},
         getOpenId: function(done, fail) {
             if (this.openId) {
                 done && done();
@@ -113,25 +112,19 @@ Coffee_App.service('userInfo', function ($http) {
             }
         },
         getChildAreas: function (pId, done, fail) {
-            if (!this.childAreas[pId]) {
-                var aUrl = 'http://www.urcoffee.com/api/member/childAreaList/' + pId + '.jhtml'
-                $http.get(aUrl)
-                    .success(function (data) {
-                        if (1 == data['result'] && data['data'].length > 0) {
-                            done && done(data['data']);
-                            userInfo.childAreas[pId] = data['data'];
-                        }
-                        else {
-                            fail && fail();
-                        }
-                    })
-                    .error(function () {
+            var aUrl = 'http://www.urcoffee.com/api/member/childAreaList/' + pId + '.jhtml'
+            $http.get(aUrl)
+                .success(function (data) {
+                    if (1 == data['result'] && data['data'].length > 0) {
+                        done && done(data['data']);
+                    }
+                    else {
                         fail && fail();
-                    });
-            }
-            else {
-                done && done(this.childAreas[pId]);
-            }
+                    }
+                })
+                .error(function () {
+                    fail && fail();
+                });
         }
     };
 

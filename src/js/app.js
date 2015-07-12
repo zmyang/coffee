@@ -1,5 +1,6 @@
 var Coffee_App = angular.module('Coffee', [
   'ngRoute',
+  'ngTouch',
   'mobile-angular-ui',
   'angular-carousel',
   'Coffee.controllers.Main',
