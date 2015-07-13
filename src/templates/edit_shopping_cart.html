@@ -11,7 +11,7 @@
 
         <div ng-init="vm.initList(true)" class="tab-cont" ui-if="activeTab == 1">
             <div ng-repeat="p in vm.products" class="edit-cart-item">
-                <div class="product-title">订单时间：{{p.product.createDate | humanDate}}<a ng-click="vm.deleteProduct(p.cartItemId)" href="javascript:;">删除</a></div>
+                <div class="product-title">时间：{{p.product.createDate | humanDate}}<a ng-click="vm.deleteProduct(p.cartItemId)" href="javascript:;">删除</a></div>
                 <div class="product-desc-wrap">
                     <div class="product-desc">
                         <img ng-src="{{p.product.image}}" alt="" />
@@ -23,7 +23,17 @@
             </div>
         </div>
 
-        <div class="tab-cont" ui-if="activeTab == 2">
+        <div ng-init="vm.getHistory()" class="tab-cont" ui-if="activeTab == 2">
+            <div ng-repeat="p in vm.historyOrders" class="edit-cart-item">
+                <div class="product-title">时间：{{p.product.createDate | humanDate}}</div>
+                <div class="product-desc-wrap">
+                    <div class="product-desc">
+                        <img ng-src="{{p.product.image}}" alt="" />
+                        {{p.product.fullName}}
+                    </div>
+                   <div class="product-price">￥{{p.price}}<span>x{{p.quantity}}</span></div>
+                </div> 
+            </div>
         </div>
 
     </div>

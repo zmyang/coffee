@@ -8,6 +8,9 @@ angular.module('Coffee.controllers.MemberShip', [])
     vm.shipedOrders = [];
     vm.finishedOrders = [];
 
+    // orders page
+    vm.activeTab = 1;
+
     function noLogin () {
         return;// no need login
         userInfo.fromPage = '/member_ship';
@@ -62,4 +65,11 @@ angular.module('Coffee.controllers.MemberShip', [])
         currentOrder.setOrder(o);
         $location.path('/order_detail');
     };
+
+    vm.historyOrders = [];
+    vm.getOrderHistory = function () {
+        userinfo.getOrderHistory(function (data) {
+            vm.historyOrders = data;
+        });
+    }
 });

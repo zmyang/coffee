@@ -24,7 +24,7 @@ angular.module('Coffee.controllers.Collections', [])
             alert('未能获取用户信息，请重新登陆。');
         }
         var params = {
-            'wechatId': userInfo.openId,
+            'openid': userInfo.openId,
             'id': p.id, 
             'quantity': 1,
             'processingPrice': 0

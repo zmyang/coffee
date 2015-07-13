@@ -37,7 +37,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
     }
     setCartVal();
     var params = {
-        'wechatId': userInfo.openId,
+        'openid': userInfo.openId,
         'id': vm.productInfo.id, 
         'quantity': vm.productInfo.buy_num,
         'baking': vm.productInfo.baking_value,

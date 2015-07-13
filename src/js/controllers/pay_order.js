@@ -44,7 +44,12 @@ angular.module('Coffee.controllers.PayOrder', [])
           vm.products[i]['buy_num'] = vm.products[i]['buy_num'] || 1;
           totalPrice += vm.products[i]['price'] * vm.products[i]['buy_num'];
         }
-        vm.totalPrice = totalPrice;
+
+        var tA = totalPrice.toString().split('.');
+        if (tA[1]) {
+          tA[1] = tA[1].substring(0, 2);
+        }
+        vm.totalPrice = tA.join('.');
     };
 
 
@@ -57,7 +62,7 @@ angular.module('Coffee.controllers.PayOrder', [])
         var payUrl = 'http://www.urcoffee.com/api/order/create.jhtml';
 
         var params = { 
-            wechatId: userInfo.openId,
+            openid: userInfo.openId,
             receiverId:  vm.selectReceiver ? vm.selectReceiver['id'] : '1',
             // paymentMethodId: 1,
             shippingMethodId: 1,

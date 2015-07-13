@@ -109,6 +109,12 @@ var Coffee_App = angular.module('Coffee', [
     controllerAs: 'vm',
     reloadOnSearch: false
   });
+  $routeProvider.when('/order_records', {
+    templateUrl: 'order_records.html',
+    controller: 'MemberShipController',
+    controllerAs: 'vm',
+    reloadOnSearch: false
+  });
   $routeProvider.when('/order_detail', {
     templateUrl: 'order_detail.html',
     controller: 'OrderDetailController',

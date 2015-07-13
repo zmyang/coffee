@@ -30,7 +30,7 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
     // shoppingCart.deleteProduct(id);
     var deleteUrl = 'http://www.urcoffee.com/api/cart/delete.jhtml';
     var params = {
-      wechatId: userInfo.openId,
+      openid: userInfo.openId,
       id: id
     };
 
@@ -58,5 +58,13 @@ angular.module('Coffee.controllers.EditShoppingCart', [])
 
 
   vm.calculateTotlePrice = calculateTotlePrice;
+
+
+  vm.historyOrders = [];
+  vm.getHistory = function () {
+    userInfo.getOrderHistory(function (data) {
+      vm.historyOrders = data;
+    });
+  };
 
 });

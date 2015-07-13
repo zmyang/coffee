@@ -125,6 +125,26 @@ Coffee_App.service('userInfo', function ($http) {
                 .error(function () {
                     fail && fail();
                 });
+        },
+        getOrderHistory: function (done, force) {
+            if (this.orderHistory && !force) {
+                done && done(this.orderHistory);
+                return;
+            }
+            var gUrl = 'http://www.urcoffee.com/api/order/history/' + this.openId + '.jhtml';
+            $http.get(gUrl)
+                .success(function (data) {
+                    if (1 == data['result']) {
+                        this.orderHistory = data['data'];
+                        done && done(data['data']);
+                    }
+                    else {
+                        alert('获取购物记录失败');
+                    }
+                })
+                .error(function () {
+                    alert('获取购物记录失败');
+                });
         }
     };
 

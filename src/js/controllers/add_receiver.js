@@ -22,7 +22,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
         var addUrl = 'http://www.urcoffee.com/api/member/receiver.jhtml';
 
         userInfo.postData(addUrl, {
-                openId: userInfo.openId,
+                openid: userInfo.openId,
                 consignee: vm['addName'],
                 areaId: vm['addRegionId'], 
                 address: vm['addAddress'],
@@ -33,6 +33,9 @@ angular.module('Coffee.controllers.AddReceiver', [])
               .success(function () {
                 if (1 == data['result']) {
                     $location.path('/select_receiver');
+                }
+                else {
+                    alert('添加收货地址失败!');
                 }
               })
               .error(function () {

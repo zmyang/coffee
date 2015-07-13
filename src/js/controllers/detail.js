@@ -64,7 +64,7 @@ angular.module('Coffee.controllers.Detail', [])
         alert('未能获取用户信息，请重新登陆。');
     }
     var params = {
-        'wechatId': userInfo.openId,
+        'openid': userInfo.openId,
         'id': vm.productInfo.id, 
         'quantity': 1,
         'processingPrice': 0
@@ -123,7 +123,7 @@ angular.module('Coffee.controllers.Detail', [])
     var itemVal = getProductId();
     var addUrl = 'http://www.urcoffee.com/api/member/addFavorite.jhtml';
     var params = {
-      wechatId: userInfo.openId,
+      openid: userInfo.openId,
       id: itemVal
     };
 

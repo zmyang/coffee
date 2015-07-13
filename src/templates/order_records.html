@@ -1,0 +1,24 @@
+<div class="area-title">
+    <div ng-click="pageBack()" class="area-title-back">
+        返回
+    </div>
+    我的购物记录
+</div>
+<div class="scrollable">
+    <div ng-init="vm.historyOrders()" class="scrollable-content edit-cart-content" scroll>
+        <div ng-repeat="p in vm.historyOrders" class="edit-cart-item">
+            <div class="product-title">时间：{{p.createDate | humanDate}}<span class="product-title-type">已完成</span></div>
+            <div class="product-desc-wrap">
+                <div class="product-desc">
+                    <img ng-src="{{p.image}}" alt="" />
+                    {{p.name}}
+                    <!-- <span>{{p.select_weight}}</span> -->
+                </div>
+               <div class="product-price">￥{{p.price}}<span>x{{p.quantity}}</span></div>
+            </div> 
+        </div>
+        <div ng-show="vm.historyOrders.length <= 0" class="collection-no-item">
+            暂无购物记录~
+        </div>
+    </div>
+</div>

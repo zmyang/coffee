@@ -67,14 +67,19 @@ angular.module('Coffee.controllers.Account', [])
                 userInfo.postData(loginUrl, {
                     'username': me.logTel, 
                     'password': me.logPwd,
-                    'wechatId': userInfo.openId || ''
+                    'openid': userInfo.openId || ''
                 })
                   .success(function (data) {
-                    userInfo.info = data['data'];
-                    if (userInfo.openId) {
-                        userInfo.hasLogin = true;
+                    if (1 == data['result']) {
+                        userInfo.info = data['data'];
+                        if (userInfo.openId) {
+                            userInfo.hasLogin = true;
+                        }
+                        window.history.back();
                     }
-                    window.history.back();
+                    else {
+                        alert(data['msg']);
+                    }
                   })
                   .error(function () {
                     alert('登陆失败!');
@@ -112,7 +117,7 @@ angular.module('Coffee.controllers.Account', [])
                     'username': me.regName, 
                     'password': me.regPwd,
                     'phone': me.regPhone,
-                    'wechatId': userInfo.openId || ''
+                    'openid': userInfo.openId || ''
                 };
 
                 if (me.regMail) {
