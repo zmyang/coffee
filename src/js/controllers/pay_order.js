@@ -37,6 +37,7 @@ angular.module('Coffee.controllers.PayOrder', [])
 
 
     vm.totalPrice = 0;
+    vm.allPrice = 0;
 
     var calculateTotlePrice = function () {
         var totalPrice = 0;
@@ -45,11 +46,8 @@ angular.module('Coffee.controllers.PayOrder', [])
           totalPrice += vm.products[i]['price'] * vm.products[i]['buy_num'];
         }
 
-        var tA = totalPrice.toString().split('.');
-        if (tA[1]) {
-          tA[1] = tA[1].substring(0, 2);
-        }
-        vm.totalPrice = tA.join('.');
+        vm.totalPrice = totalPrice.toFixed(2);
+        vm.allPrice = parseFloat(vm.totalPrice) + vm.sendPrice;
     };
 
 

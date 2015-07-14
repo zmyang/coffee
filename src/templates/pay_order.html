@@ -2,7 +2,7 @@
     <div class="scrollable-content edit-cart-content pay-order-content" scroll>
         <div ng-show="vm.selectReceiver" ng-click="go('/select_receiver')" class="pay-order-address">
             <h4>收货人: {{vm.selectReceiver.consignee}} <span>{{vm.selectReceiver.phone}}</span></h4>
-            <p>收获地址: {{vm.selectReceiver.address}}</p>
+            <p>收获地址: {{vm.selectReceiver.areaName}} {{vm.selectReceiver.address}}</p>
             <i class="fa fa-angle-right"></i>
         </div>
 
@@ -43,7 +43,7 @@
 <div ng-init="vm.calculateTotlePrice()" class="order-pay-button navbar-absolute-bottom">
     <div class="calcul-price">￥{{vm.totalPrice}} + ￥{{vm.sendPrice}}运费</div>
 
-    <div class="total-price">合计：￥{{vm.totalPrice + vm.sendPrice}}元</div>
+    <div class="total-price">合计：￥{{vm.allPrice}}元</div>
 
     <div ng-click="vm.payCart();" class="btn btn-danger">
         微信支付

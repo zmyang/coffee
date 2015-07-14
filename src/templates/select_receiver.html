@@ -8,8 +8,9 @@
 <div class="scrollable">
     <div ng-init="vm.getList()" class="scrollable-content select-receiver-content" scroll>
         <div class="receiver-item" ng-repeat="a in vm.items track by $index">
-            <h4>adf <span>qwer</span></h4>
-            <p>1234</p>
+            <h4>{{a.consignee}} <span>{{a.phone}}</span></h4>
+            <p>{{a.areaName}} {{a.address}}</p>
         </div>
     </div>
+    <div class="select-receiver-content-no"> ng-show="vm.items.length <= 0">没有收获地址，点击新增添加。</div>
 </div>

@@ -12,8 +12,11 @@ angular.module('Coffee.controllers.SelectReceiver', [])
 
             $http.get(listUrl)
                 .success(function (data) {
-                  if (data && 1 == data['result']) {
+                  if (1 == data['result']) {
                     vm.items = data['data'];
+                  }
+                  else {
+                    alert('获取收获地址失败');
                   }
                 })
                 .finally(function () {
