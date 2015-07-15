@@ -88,7 +88,6 @@
 
 .edit-shopping-cart-buy-buttons.navbar-absolute-bottom {
     padding: 8px 5px;
-    .display-flex();
     background: #fbfbfb;
     height: 46px;
     line-height: 30px;
@@ -115,18 +114,21 @@
     //     }
     // }
     .total-price {
-        .flex-item();
         color: #f60;
         text-align: center;
         font-size: 16px;
         font-weight: bold;
+        padding-right: 70px;
     }
     .btn {
-        overflow: hidden;
-        float: right;
+        position: absolute;
         margin: 0 5px;
         line-height: 16px;
         min-width: 70px;
+        min-height: 30px;
+        right: 5px;
+        top: 7px;
+        overflow: hidden;
     }
     z-index: 100;
 }
