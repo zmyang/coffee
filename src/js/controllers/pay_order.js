@@ -74,13 +74,11 @@ angular.module('Coffee.controllers.PayOrder', [])
             usePoint: vm.userPoint || ''
         };
 
-        alert('order params:' + JSON.stringify(params));
-
         userInfo.postData(payUrl, params)
           .success(function (data) {
-            if (1 == data['result']) {
+            if (1 == data['result'] && data['data'] && data['data']['sn']) {
                 weixinBridge.config(window.location.href, function() {
-                  weixinBridge.pay(userInfo.openId, new Date().getTime());
+                  weixinBridge.pay(userInfo.openId, data['data']['sn']);
                 });
             }
             else {

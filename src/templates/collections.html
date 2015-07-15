@@ -11,6 +11,7 @@
             <div class="collection-title">
                 <h4><a href="#/detail?item={{a.id}}">{{a.name}}</a><em>￥{{a.price}}</em></h4>
                 <a class="collection-buy" ng-click="vm.buyIt(a)" href="javascript:;">立即购买</a>
+                <a class="collection-del" ng-click="vm.delIt(a)" href="javascript:;">取消收藏</a>
             </div>
         </div>
         <div ng-show="vm.items.length <= 0" class="collection-no-item">

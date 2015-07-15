@@ -50,6 +50,13 @@ angular.module('Coffee.controllers.MemberShip', [])
         }
         if ('orders' == page) {
             doFilterOrders = true;
+            userInfo.getOrders(function (data) {
+                vm.unShippedOrders = data['unShippedOrders'];
+                vm.completedOrders = data['completedOrders'];
+                vm.unpaidOrders = data['unpaidOrders'];
+                vm.shippedOrders = data['shippedOrders'];
+            });
+            return;
         }
         userInfo.getUserInfo(function () {
           var infoData = userInfo.info;
@@ -68,7 +75,7 @@ angular.module('Coffee.controllers.MemberShip', [])
 
     vm.historyOrders = [];
     vm.getOrderHistory = function () {
-        userinfo.getOrderHistory(function (data) {
+        userInfo.getOrderHistory(function (data) {
             vm.historyOrders = data;
         });
     }

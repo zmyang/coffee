@@ -6,12 +6,13 @@ angular.module('Coffee.controllers.Collections', [])
     vm.items = [];
 
     // 获取收藏列表
-    vm.getList = function getList () {
+    vm.getList = function getList (force) {
         userInfo.getUserInfo(function () {
           var infoData = userInfo.info;
 
           vm.items = infoData['favoriteProducts'];
-        });
+          $rootScope.refreshView();
+        }, null, force);
     };
 
     var joiningCart = false;
@@ -43,7 +44,7 @@ angular.module('Coffee.controllers.Collections', [])
     }
 
     // 点击立即购买
-    vm.buyIt = function buyIt(p) {
+    vm.buyIt = function (p) {
         currentProduct.setProduct(p);
         if (p['attributeValue1']) {
             $location.path('/add_shopping_cart');
@@ -54,4 +55,11 @@ angular.module('Coffee.controllers.Collections', [])
             });
         }
     };
+
+    // 取消收藏
+    vm.delIt = function (p) {
+        userInfo.delCollection(p.id, function () {
+            vm.getList(true);
+        });
+    }
 });

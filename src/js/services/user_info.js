@@ -126,17 +126,29 @@ Coffee_App.service('userInfo', function ($http) {
                     fail && fail();
                 });
         },
+        getOrders: function (done) {
+            var gUrl = 'http://www.urcoffee.com/api/order/list/' + this.openId + '.jhtml';
+            $http.get(gUrl)
+                .success(function (data) {
+                    if (1 == data['result']) {
+                        done && done(data);
+                    }
+                    else {
+                        alert('获取我的订单列表失败');
+                    }
+                })
+                .error(function () {
+                    alert('获取我的订单列表失败');
+                });
+        },
         getOrderHistory: function (done, force) {
-            if (this.orderHistory && !force) {
-                done && done(this.orderHistory);
-                return;
-            }
+            var me = this;
             var gUrl = 'http://www.urcoffee.com/api/order/history/' + this.openId + '.jhtml';
             $http.get(gUrl)
                 .success(function (data) {
                     if (1 == data['result']) {
-                        this.orderHistory = data['data'];
                         done && done(data['data']);
+                        me.orderHistory = data['data'];
                     }
                     else {
                         alert('获取购物记录失败');
@@ -145,6 +157,19 @@ Coffee_App.service('userInfo', function ($http) {
                 .error(function () {
                     alert('获取购物记录失败');
                 });
+        },
+        delCollection: function (id, done) {
+            this.postData('http://www.urcoffee.com/api/member/delFavorite.jhtml', {
+                openid: this.openId,
+                id: id
+            }).success(function (data) {
+                if (1 == data['result']) {
+                    done && done();
+                }
+                else {
+                    alert('取消失败，稍后再试');
+                }
+            });
         }
     };
 

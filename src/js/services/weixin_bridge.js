@@ -1,7 +1,7 @@
 Coffee_App.service('weixinBridge', function ($http) {
 
     var wb = {
-        debug: true,
+        debug: false,
         config: function (url, done, fail) {
             // var timestamp = Math.floor(new Date().getTime() / 1000);
             // var nonceStr = this.genNonceStr(16);
@@ -69,7 +69,7 @@ Coffee_App.service('weixinBridge', function ($http) {
                     signType: 'MD5', // 注意：新版支付接口使用 MD5 加密
                     paySign: preObj['paysign'],
                     success: function (res) {
-                        alert(JSON.stringify(res));
+                        // alert(JSON.stringify(res));
                     }
                 };
 
@@ -127,7 +127,7 @@ Coffee_App.service('weixinBridge', function ($http) {
             }
             wx.error(function(res){
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-                alert(JSON.stringify(res));
+                // alert(JSON.stringify(res));
             });
             this.errorListened = true;
         },
