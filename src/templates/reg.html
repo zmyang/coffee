@@ -4,32 +4,30 @@
     注册
 </div>
 
-<div class="scrollable">
-  <div ng-init="" class="scrollable-content login-cont" scroll>
+<div class="login-cont">
 
-      <div class="login-input-wrap marginTop10">
-        <p ng-hide="true" class="reg-region">
-          <label>国家地区</label>
-          <select ng-model="vm.Account.regCountry">
-            <option value="1">中国</option>
-            <option value="2">美国</option>
-            <option value="3">英国</option>
-          </select>
-        </p>
-        <p class="reg-p">
-          <label>用户名</label><input type="text" ng-model="vm.Account.regName" placeholder="请输入用户名"/>
-        </p>
-        <p class="reg-p">
-          <label>密码</label><input type="password" ng-model="vm.Account.regPwd" placeholder="请输入手密码"/>
-        </p>
-        <p class="reg-p">
-          <label>邮件</label><input type="text" ng-model="vm.Account.regMail" placeholder="请输入邮箱"/>
-        </p>
-        <p>
-          <label>电话</label><input type="tel" ng-model="vm.Account.regPhone" placeholder="请输入手机号码"/>
-        </p>
-      </div>
+    <div class="login-input-wrap marginTop10">
+      <p ng-hide="true" class="reg-region">
+        <label>国家地区</label>
+        <select ng-model="vm.Account.regCountry">
+          <option value="1">中国</option>
+          <option value="2">美国</option>
+          <option value="3">英国</option>
+        </select>
+      </p>
+      <p class="reg-p">
+        <label>用户名</label><input type="text" ng-model="vm.Account.regName" placeholder="请输入用户名"/>
+      </p>
+      <p class="reg-p">
+        <label>密码</label><input type="password" ng-model="vm.Account.regPwd" placeholder="请输入手密码"/>
+      </p>
+      <p class="reg-p">
+        <label>邮件</label><input type="text" ng-model="vm.Account.regMail" placeholder="请输入邮箱"/>
+      </p>
+      <p>
+        <label>电话</label><input type="tel" ng-model="vm.Account.regPhone" placeholder="请输入手机号码"/>
+      </p>
+    </div>
 
-      <span ng-click="vm.Account.reg()" class="submit-login-btn">下一步</span>
-  </div>
+    <span ng-click="vm.Account.reg()" class="submit-login-btn">下一步</span>
 </div>
