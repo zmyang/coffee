@@ -8,81 +8,79 @@
     background: #f8f8f8;
     padding-top: 44px;
     padding-bottom: 50px;
-    .tab-cont {
-        .edit-cart-item {
-            margin-top: 10px;
-            padding: 10px;
-            background: #fff;
-            border-top: 1px solid #e5e5e5;
-            border-bottom: 1px solid #e5e5e5;
-            .product-title {
-                .clear-float();
+    .edit-cart-item {
+        margin-top: 10px;
+        padding: 10px;
+        background: #fff;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+        .product-title {
+            .clear-float();
+            font-size: 16px;
+            padding-bottom: 10px;
+            a {
+                float: right;
+                font-size: 14px;
+                color: #f00;
+            }
+            .product-title-type {
+                float: right;
+                font-size: 14px;
+            }
+        }
+        .product-desc-wrap {
+            .display-flex();
+            .clear-float();
+            // .product-choose {
+            //     width: 30px;
+            //     float: left;
+            //     font-size: 40px;
+            //     text-align: center;
+            //     span {
+            //         display: block;
+            //         border: 1px solid #4cd964;
+            //         margin: 10px 0 0 5px;
+            //         width: 20px;
+            //         height: 20px;
+            //         .border-radius(10px);
+            //         &.select-product {
+            //             background: url(../images/check.png) no-repeat -1px -1px;
+            //             background-size: 20px 20px;
+            //         }
+            //     }
+            // }
+            .product-desc {
+                .flex-item();
+                position: relative;
+                padding-left: 60px;
+                color: #666;
+                img {
+                    position: absolute;
+                    width: 50px;
+                    height: 50px;
+                    top: 5px;
+                    left: 5px;
+                }
+                span {
+                    display: block;
+                    padding-top: 5px;
+                }
+            }
+            .product-price {
+                width: 60px;
+                text-align: right;
                 font-size: 16px;
-                padding-bottom: 10px;
-                a {
-                    float: right;
-                    font-size: 14px;
-                    color: #f00;
-                }
-                .product-title-type {
-                    float: right;
+                color: #666;
+                span {
+                    display: block;
                     font-size: 14px;
                 }
             }
-            .product-desc-wrap {
-                .display-flex();
-                .clear-float();
-                // .product-choose {
-                //     width: 30px;
-                //     float: left;
-                //     font-size: 40px;
-                //     text-align: center;
-                //     span {
-                //         display: block;
-                //         border: 1px solid #4cd964;
-                //         margin: 10px 0 0 5px;
-                //         width: 20px;
-                //         height: 20px;
-                //         .border-radius(10px);
-                //         &.select-product {
-                //             background: url(../images/check.png) no-repeat -1px -1px;
-                //             background-size: 20px 20px;
-                //         }
-                //     }
-                // }
-                .product-desc {
-                    .flex-item();
-                    position: relative;
-                    padding-left: 60px;
-                    color: #666;
-                    img {
-                        position: absolute;
-                        width: 50px;
-                        height: 50px;
-                        top: 5px;
-                        left: 5px;
-                    }
-                    span {
-                        display: block;
-                        padding-top: 5px;
-                    }
-                }
-                .product-price {
-                    width: 60px;
-                    text-align: right;
-                    font-size: 16px;
-                    color: #666;
-                    span {
-                        display: block;
-                        font-size: 14px;
-                    }
-                }
-            }
         }
-        .edit-cart-item-none {
-            padding: 20px;
-            text-align: center;
-        }
+    }
+    .edit-cart-item-none {
+        padding: 20px;
+        text-align: center;
     }
 }
 

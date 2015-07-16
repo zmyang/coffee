@@ -2,19 +2,19 @@
     <div ng-init="vm.getInfo('orders')" class="scrollable-content orders-content" scroll>
         <div class="detail-item-tab" ui-state='activeTab' ui-default='1'>
             <div ng-class="{'active': vm.activeTab == 1}" ng-click="vm.activeTab = 1" class="detail-tab" ui-set="{'activeTab': 1}">
-                {{vm.unPaidOrders.length || 0}}
+                {{vm.unpaidOrders.length || 0}}
                 <div>待付款</div>
             </div>
             <div ng-class="{'active': vm.activeTab == 2}" ng-click="vm.activeTab = 2" class="detail-tab" ui-set="{'activeTab': 2}">
-                {{vm.paidOrders.length || 0}}
+                {{vm.unShippedOrders.length || 0}}
                 <div>待发货</div>
             </div>
             <div ng-class="{'active': vm.activeTab == 3}" ng-click="vm.activeTab = 3" class="detail-tab" ui-set="{'activeTab': 3}">
-                {{vm.shipedOrders.length || 0}}
+                {{vm.shippedOrders.length || 0}}
                 <div>已发货</div>
             </div>
             <div ng-class="{'active': vm.activeTab == 4}" ng-click="vm.activeTab = 4" class="detail-tab" ui-set="{'activeTab': 4}">
-                {{vm.finishedOrders.length || 0}}
+                {{vm.completedOrders.length || 0}}
                 <div>已完成</div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <div class="order-price">￥{{item.price}}<a ng-click="vm.showOrderDetail(item)" href="javascript:;">订单详细</a></div>
                 </div>
             </div>
-            <div ng-show="vm.unPaidOrders.length <= 0" class="order-none">
+            <div ng-show="vm.unpaidOrders.length <= 0" class="order-none">
                 无待付款订单
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <div class="order-price">￥{{item.price}}<a ng-click="vm.showOrderDetail(item)" href="javascript:;">订单详细</a></div>
                 </div>
             </div>
-            <div ng-show="vm.paidOrders.length <= 0" class="order-none">
+            <div ng-show="vm.unShippedOrders.length <= 0" class="order-none">
                 无待发货订单
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <div class="order-price">￥{{item.price}}<a ng-click="vm.showOrderDetail(item)" href="javascript:;">订单详细</a></div>
                 </div>
             </div>
-            <div ng-show="vm.shipedOrders.length <= 0" class="order-none">
+            <div ng-show="vm.shippedOrders.length <= 0" class="order-none">
                 无已发货订单
             </div>
         </div>
@@ -68,7 +68,7 @@
                 </div>
                 
             </div>
-            <div ng-show="vm.finishedOrders.length <= 0" class="order-none">
+            <div ng-show="vm.completedOrders.length <= 0" class="order-none">
                 无已完成订单
             </div>
         </div>

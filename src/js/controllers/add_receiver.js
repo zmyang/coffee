@@ -10,14 +10,22 @@ angular.module('Coffee.controllers.AddReceiver', [])
         'addPostCode': '邮政编码'
     }
 
+    var posting = false;
+
     // 添加收货地址
     function addReceiver () {
+        if (posting) {
+            return;
+        }
+        posting = true;
         for (var name in inputMap) {
             if (!vm[name]) {
                 alert('请输入' + inputMap[name]);
+                posting = false;
                 return;
             }
         }
+
 
         var addUrl = 'http://www.urcoffee.com/api/member/receiver.jhtml';
 
@@ -30,7 +38,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
                 phone: vm['addPhone'],
                 isDefault: false
             })
-              .success(function () {
+              .success(function (data) {
                 if (1 == data['result']) {
                     $location.path('/select_receiver');
                 }
@@ -42,6 +50,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
                 alert('添加收货地址失败!');
               })
               .finally(function () {
+                posting = false;
               });
     }
 
