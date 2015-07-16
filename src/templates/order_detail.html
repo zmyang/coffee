@@ -8,15 +8,14 @@
     <div class="scrollable-content order-detail-content" scroll>
         <div class="order-info">
             <div class="prod-info">
-                <img ng-src="" alt="">
                 <h4>{{vm.order.name}}</h4>
                 <em>￥{{vm.order.price}}</em>
             </div>
             <div class="order-detail">
                 <p>下单时间：{{vm.order.createDate | humanDate}}</p>
-                <p>订单编号：</p>
-                <p>订单金额：<em>￥{{vm.order.price}}</em>()</p>
-                <p>状态：</p>
+                <p>订单编号：{{vm.order.sn}}</p>
+                <p>订单金额：<em>￥{{vm.order.price}}</em>({{vm.order.quantity})</p>
+                <p>状态：{{vm.order.sn}</p>
                 <a ng-click="vm.payOrder()" ng-show="'unpaid' == vm.order.paymentStatus" href="javascript:;">微信支付</a>
             </div>
         </div>
