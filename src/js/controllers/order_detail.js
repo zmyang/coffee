@@ -12,6 +12,13 @@ angular.module('Coffee.controllers.OrderDetail', [])
         'cancelled': '已取消'
     }[vm.order.orderStatus] || '';
 
+    vm.shippingsTrackingNo = '';
+    vm.shippingsDeliveryCorp = '';
+    if (vm.order.shippings && vm.order.shippings.length > 0) {
+        vm.shippingsTrackingNo = vm.order.shippings[0]['trackingNo'];
+        vm.shippingsDeliveryCorp = vm.order.shippings[0]['deliveryCorp'];
+    }
+
     vm.payOrder = function () {
         weixinBridge.config(window.location.href, function() {
           weixinBridge.pay(userInfo.openId, vm.order.sn);
