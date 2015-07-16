@@ -87,14 +87,16 @@ angular.module('Coffee.controllers.Detail', [])
     vm.productInfo['detail_action'] = 'buyIt';
     currentProduct.setProduct(vm.productInfo);
 
-    if (2 == vm.type) {
-      doAddCart(function () {
-        $location.path('/pay_order');
-      });
-    }
-    else {
-      $location.path('/add_shopping_cart');
-    }
+    setTimeout(function () {
+      if (2 == vm.type) {
+        doAddCart(function () {
+          $location.path('/pay_order');
+        });
+      }
+      else {
+        $location.path('/add_shopping_cart');
+      }
+    }, 500);
 
   }
 

@@ -57,7 +57,7 @@ Coffee_App.service('weixinBridge', function ($http) {
                 fail && fail();
               });
         },
-        pay: function (openid, out_trade_no) {
+        pay: function (openid, out_trade_no, done, fail) {
             var timestamp = Math.floor(new Date().getTime() / 1000);
 
             var me = this;
@@ -70,6 +70,7 @@ Coffee_App.service('weixinBridge', function ($http) {
                     paySign: preObj['paysign'],
                     success: function (res) {
                         // alert(JSON.stringify(res));
+                        done && done();
                     }
                 };
 
@@ -80,7 +81,8 @@ Coffee_App.service('weixinBridge', function ($http) {
                     callPay(preObj);
                 },
                 function () {
-                    alert('下单失败，请稍后再试。');
+                    alert('支付失败，请稍后再试。');
+                    fail && fail();
                 });
         },
         getPrePayId: function (openid, out_trade_no, done, fail) {

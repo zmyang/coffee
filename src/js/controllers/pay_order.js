@@ -74,11 +74,22 @@ angular.module('Coffee.controllers.PayOrder', [])
             usePoint: vm.userPoint || ''
         };
 
+
+        function payFinished () {
+            vm.initList(true);
+            $location.path('/order_records');
+        }
+
+        function payFail () {
+            vm.initList();
+            $location.path('/orders');
+        }
+
         userInfo.postData(payUrl, params)
           .success(function (data) {
             if (1 == data['result'] && data['data'] && data['data']['sn']) {
                 weixinBridge.config(window.location.href, function() {
-                  weixinBridge.pay(userInfo.openId, data['data']['sn']);
+                  weixinBridge.pay(userInfo.openId, data['data']['sn'], payFinished, payFail);
                 });
             }
             else {
@@ -86,7 +97,7 @@ angular.module('Coffee.controllers.PayOrder', [])
             }
           })
           .error(function () {
-            alert('下单失败!');
+            alert('下单失败，请稍后再试。');
           })
           .finally(function () {
             paying = false;
