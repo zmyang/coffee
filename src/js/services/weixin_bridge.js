@@ -1,4 +1,4 @@
-Coffee_App.service('weixinBridge', function ($http) {
+Coffee_App.service('weixinBridge', function ($http, $rootScope) {
 
     var wb = {
         debug: false,
@@ -26,6 +26,7 @@ Coffee_App.service('weixinBridge', function ($http) {
                     callConfig(so);
                 },
                 function () {
+                    $rootScope.ajaxDataLoading = false;
                     alert('js sdk config fail');
                 });
         },
@@ -78,6 +79,7 @@ Coffee_App.service('weixinBridge', function ($http) {
             }
             this.getPrePayId(openid, out_trade_no,
                 function (preObj) {
+                    $rootScope.ajaxDataLoading = false;
                     callPay(preObj);
                 },
                 function () {

@@ -51,5 +51,6 @@ angular.module('Coffee.controllers.Main', [])
         });
     };
 
+    $rootScope.ajaxDataLoading = false;
 
 });

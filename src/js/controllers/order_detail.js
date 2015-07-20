@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.OrderDetail', [])
 
-.controller('OrderDetailController', function($scope, $location, currentOrder, userInfo, weixinBridge) {
+.controller('OrderDetailController', function($scope, $rootScope, $location, currentOrder, userInfo, weixinBridge) {
     var vm = this;
 
     vm.order = currentOrder.getOrder();
@@ -19,9 +19,20 @@ angular.module('Coffee.controllers.OrderDetail', [])
         vm.shippingsDeliveryCorp = vm.order.shippings[0]['deliveryCorp'];
     }
 
+    function finalFn() {
+        $rootScope.ajaxDataLoading = false;
+    }
+
+    var paying = false;
     vm.payOrder = function () {
+        if (true == paying) {
+            return;
+        }
+        paying = true;
+        $rootScope.ajaxDataLoading = true;
         weixinBridge.config(window.location.href, function() {
-          weixinBridge.pay(userInfo.openId, vm.order.sn);
+          paying = false;
+          weixinBridge.pay(userInfo.openId, vm.order.sn, finalFn, finalFn);
         });
     };
 });

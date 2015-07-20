@@ -1,4 +1,4 @@
-Coffee_App.service('userInfo', function ($http) {
+Coffee_App.service('userInfo', function ($http, $rootScope) {
     var userInfo = {
         hasLogin: false,
         fromPage: null,
@@ -127,9 +127,11 @@ Coffee_App.service('userInfo', function ($http) {
                 });
         },
         getOrders: function (done) {
+            $rootScope.ajaxDataLoading = true;
             var gUrl = 'http://www.urcoffee.com/api/order/list/' + this.openId + '.jhtml';
             $http.get(gUrl)
                 .success(function (data) {
+                    $rootScope.ajaxDataLoading = false;
                     if (1 == data['result']) {
                         done && done(data);
                     }
@@ -138,6 +140,7 @@ Coffee_App.service('userInfo', function ($http) {
                     }
                 })
                 .error(function () {
+                    $rootScope.ajaxDataLoading = false;
                     alert('获取我的订单列表失败');
                 });
         },

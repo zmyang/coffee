@@ -129,20 +129,21 @@ angular.module('Coffee.controllers.Detail', [])
       id: itemVal
     };
 
-
+    $rootScope.ajaxDataLoading = true;
     userInfo.postData(addUrl, params)
       .success(function (data) {
         if (1 == data['result']) {
           alert('收藏成功!');
         }
         else {
-          alert(data['msg']['content'] || '收藏失败!');
+          alert(data['msg'] || '收藏失败!');
         }
       })
       .error(function () {
         alert('收藏失败!');
       })
       .finally(function () {
+        $rootScope.ajaxDataLoading = false;
       });
 
   }

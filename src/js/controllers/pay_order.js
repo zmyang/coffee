@@ -57,6 +57,7 @@ angular.module('Coffee.controllers.PayOrder', [])
           return;
         }
         paying = true;
+        $rootScope.ajaxDataLoading = true;
         var payUrl = 'http://www.urcoffee.com/api/order/create.jhtml';
 
         var params = { 
@@ -76,11 +77,13 @@ angular.module('Coffee.controllers.PayOrder', [])
 
 
         function payFinished () {
+            $rootScope.ajaxDataLoading = false;
             vm.initList(true);
             $location.path('/order_records');
         }
 
         function payFail () {
+            $rootScope.ajaxDataLoading = false;
             vm.initList();
             $location.path('/orders');
         }
@@ -93,10 +96,12 @@ angular.module('Coffee.controllers.PayOrder', [])
                 });
             }
             else {
+              $rootScope.ajaxDataLoading = false;
               alert(data['msg']['content'] || '下单失败!');
             }
           })
           .error(function () {
+            $rootScope.ajaxDataLoading = false;
             alert('下单失败，请稍后再试。');
           })
           .finally(function () {

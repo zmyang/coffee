@@ -1,6 +1,6 @@
 <section class="section container-fluid home-container">
   <div class="home-ad-banner">
-      <ul rn-carousel rn-carousel-index="vm.carouselIndex">
+      <ul rn-carousel rn-carousel-auto-slide rn-carousel-index="vm.carouselIndex">
         <li ng-repeat="item in vm.slides track by $index">
             <a href="{{item.url}}"><img ng-src="{{item.path}}" alt="{{item.img}}"></a>
         </li>

@@ -7,7 +7,7 @@
 </div>
 <div class="scrollable">
     <div ng-init="vm.getDetail()" class="scrollable-content detail-content" scroll>
-        <ul ng-hide="vm.slides.length <= 0" class="detail-imgs" rn-carousel rn-carousel-index="vm.carouselIndex">
+        <ul ng-hide="vm.slides.length <= 0" class="detail-imgs" rn-carousel rn-carousel-auto-slide rn-carousel-index="vm.carouselIndex">
             <li ng-repeat="item in vm.slides track by $index">
                 <img ng-src="{{item.medium}}" alt="{{item.medium}}">
             </li>
@@ -37,7 +37,7 @@
                 <a href="">进入店铺</a>
             </div>
         </div>
-        <ul class="nav nav-tabs" ui-state='activeTab' ui-default='1'>
+        <!-- <ul class="nav nav-tabs" ui-state='activeTab' ui-default='1'>
           <li ui-class="{'active': activeTab == 1}">
             <a ui-set="{'activeTab': 1}">详细信息</a>
           </li>
@@ -52,6 +52,9 @@
 
         <div class="tab-cont" ui-if="activeTab == 2">
             <img src="images/p2.jpg" alt="">
+        </div> -->
+        <div class="detail-desc-imgs">
+            <img ng-repeat="i in vm.productInfo.productWeiXinImages" ng-src="{{i.medium}}" alt="" />
         </div>
 
     </div>

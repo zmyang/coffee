@@ -92,7 +92,6 @@ angular.module('Coffee.controllers.Account', [])
             
         },
         reg: function () {
-            console.log(this.regCountry);
             if (!this.regName) {
                 alert('请输入用户名');
                 return;

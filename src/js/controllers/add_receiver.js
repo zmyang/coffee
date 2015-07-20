@@ -1,6 +1,6 @@
 angular.module('Coffee.controllers.AddReceiver', [])
 
-.controller('AddReceiverController', function($scope, $location, userInfo) {
+.controller('AddReceiverController', function($scope, $rootScope, $location, userInfo) {
     var vm = this;
     var inputMap = {
         'addName': '收货人',
@@ -29,6 +29,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
 
         var addUrl = 'http://www.urcoffee.com/api/member/receiver.jhtml';
 
+        $rootScope.ajaxDataLoading = true;
         userInfo.postData(addUrl, {
                 openid: userInfo.openId,
                 consignee: vm['addName'],
@@ -51,6 +52,7 @@ angular.module('Coffee.controllers.AddReceiver', [])
               })
               .finally(function () {
                 posting = false;
+                $rootScope.ajaxDataLoading = false;
               });
     }
 

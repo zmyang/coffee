@@ -126,20 +126,31 @@
         .tab-cont {
             padding: 5px;
         }
+        .detail-desc-imgs {
+            img {
+                width: 100%;
+            }
+        }
     }
 }
 
 .detail-buy-buttons.navbar-absolute-bottom {
-    padding: 8px 5px;
-    .display-flex();
+    padding: 8px 0;
     background: #fbfbfb;
     height: 46px;
     border-top: 1px solid #ccc;
+    overflow: hidden;
     .box-shadow(0 2px 5px #666);
     .btn {
-        .flex-item();
-        margin: 0 5px;
+        width: 45%;
+        margin: 0 2%;
         line-height: 16px;
+        &:last-child {
+            float: right;
+        }
     }
     z-index: 100;
+}
+.detail-buy-buttons-wide.navbar-absolute-bottom .btn {
+    width: 95%;
 }
