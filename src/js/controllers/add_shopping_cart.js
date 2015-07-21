@@ -25,6 +25,12 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
     vm.productInfo.baking_num = vm.productInfo.baking_num || 0;
   }
 
+  $scope.$watch('vm.productInfo.buy_num', function() {
+    if (vm.productInfo.baking_num > vm.productInfo.buy_num) {
+      vm.productInfo.baking_num = vm.productInfo.buy_num;
+    }
+  });
+
   var joiningCart = false;
 
   function doJoinCart (done) {

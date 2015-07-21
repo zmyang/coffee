@@ -39,7 +39,7 @@ angular.module('Coffee.controllers.List', [])
     }
 
     // 获取产品列表
-    function getList (type) {
+    function getList (type, pageNum) {
         var typeVal;
         if (!type) {
             typeVal = typeReg.exec(location.hash)[1];
@@ -49,10 +49,11 @@ angular.module('Coffee.controllers.List', [])
         }
 
         vm.type = typeVal;
+        pageNum = pageNum || 0;
 
         var listUrl = 'http://www.urcoffee.com/api/product/list.jhtml';
         if (0 !== typeVal * 1) {
-            listUrl = 'http://www.urcoffee.com/api/product/categoryProductList/' + typeVal +'.jhtml';
+            listUrl = 'http://www.urcoffee.com/api/product/categoryProductList/' + typeVal +'/' + pageNum + '.jhtml';
             if (1 == vm.type) {
               listUrl = ' http://www.urcoffee.com/api/product/beans.jhtml';
               var params = {

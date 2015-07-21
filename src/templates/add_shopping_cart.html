@@ -60,7 +60,7 @@
                     <div class="btn-group" role="group" aria-label="...">
                       <button ng-click="vm.productInfo.baking_num = (vm.productInfo.baking_num > 0) ? vm.productInfo.baking_num - 1 : 0" type="button" class="btn btn-default">-</button>
                       <span class="btn btn-default">{{vm.productInfo.baking_num || 0}}</span>
-                      <button ng-click="vm.productInfo.baking_num = vm.productInfo.baking_num + 1" type="button" class="btn btn-default">+</button>
+                      <button ng-click="vm.productInfo.baking_num = (vm.productInfo.baking_num < vm.productInfo.buy_num) ? vm.productInfo.baking_num + 1 : vm.productInfo.buy_num" type="button" class="btn btn-default">+</button>
                     </div>
                 </div>
             </div>
