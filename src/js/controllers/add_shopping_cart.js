@@ -17,8 +17,9 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
   vm.productInfo.buy_num = 1;
   vm.productInfo.baking_num = 0;
   vm.productInfo.select_baking_deep = '浅焙';
+  vm.productInfo.baking_price = 0;
 
-  function setCartVal() {
+  function setCartVal () {
     vm.productInfo.buy_num = vm.productInfo.buy_num || 1;
     vm.productInfo.baking_value = ['否', '是'][vm.productInfo.baking || 0];
     vm.productInfo.select_baking_deep = vm.productInfo.select_baking_deep || '浅焙';
@@ -29,6 +30,28 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
     if (vm.productInfo.baking_num > vm.productInfo.buy_num) {
       vm.productInfo.baking_num = vm.productInfo.buy_num;
     }
+  });
+
+  function calculBakingPrice () {
+    if (vm.productInfo.baking) {
+      currentProduct.getBakingPrice({
+          productId: vm.productInfo.id,
+          processingCount: vm.productInfo.baking_num
+        }, function (data) {
+          vm.productInfo.baking_price = data;
+      });
+    }
+    else {
+          vm.productInfo.baking_price = 0;
+    }
+  }
+
+  $scope.$watch('vm.productInfo.baking_num', function() {
+    calculBakingPrice();
+  });
+
+  $scope.$watch('vm.productInfo.baking', function() {
+    calculBakingPrice();
   });
 
   var joiningCart = false;

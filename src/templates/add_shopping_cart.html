@@ -72,6 +72,9 @@
                     <button ng-repeat="deep in vm.baking_deeps" class="btn btn-default" ng-class="{'btn-danger': deep == vm.productInfo.select_baking_deep}" ng-click="vm.productInfo.select_baking_deep = deep">{{deep}}</button>
                 </div>
             </div>
+            <div class="baking-price-item" ng-show="vm.productInfo.baking_price != 0">
+                <span>加工费: ￥{{vm.productInfo.baking_price}}</span>
+            </div>
         </div>
     </div>
 </div>

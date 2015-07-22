@@ -1,25 +1,25 @@
 <div class="scrollable">
     <div ng-init="vm.getInfo('orders')" class="scrollable-content orders-content" scroll>
         <div class="detail-item-tab" ui-state='activeTab' ui-default='1'>
-            <div ng-class="{'active': vm.activeTab == 1}" ng-click="vm.activeTab = 1" class="detail-tab" ui-set="{'activeTab': 1}">
+            <div ng-class="{'active': vm.activeTab == 1}" ng-click="vm.activeTab = 1" class="detail-tab">
                 {{vm.unpaidOrders.length || 0}}
                 <div>待付款</div>
             </div>
-            <div ng-class="{'active': vm.activeTab == 2}" ng-click="vm.activeTab = 2" class="detail-tab" ui-set="{'activeTab': 2}">
+            <div ng-class="{'active': vm.activeTab == 2}" ng-click="vm.activeTab = 2" class="detail-tab">
                 {{vm.unShippedOrders.length || 0}}
                 <div>待发货</div>
             </div>
-            <div ng-class="{'active': vm.activeTab == 3}" ng-click="vm.activeTab = 3" class="detail-tab" ui-set="{'activeTab': 3}">
+            <div ng-class="{'active': vm.activeTab == 3}" ng-click="vm.activeTab = 3" class="detail-tab">
                 {{vm.shippedOrders.length || 0}}
                 <div>已发货</div>
             </div>
-            <div ng-class="{'active': vm.activeTab == 4}" ng-click="vm.activeTab = 4" class="detail-tab" ui-set="{'activeTab': 4}">
+            <div ng-class="{'active': vm.activeTab == 4}" ng-click="vm.activeTab = 4" class="detail-tab">
                 {{vm.completedOrders.length || 0}}
                 <div>已完成</div>
             </div>
         </div>
 
-        <div class="order-cont order-unpaid" ui-if="activeTab == 1">
+        <div class="order-cont order-unpaid" ng-show="vm.activeTab == 1">
             <div ng-repeat="item in vm.unpaidOrders track by $index" class="order-item">
                 <div class="title-time">订单时间：{{item.createDate | humanDate}} <span>待付款</span></div>
                 <div class="order-desc">
@@ -32,7 +32,7 @@
                 无待付款订单
             </div>
         </div>
-        <div class="order-cont order-paid" ui-if="activeTab == 2">
+        <div class="order-cont order-paid" ng-show="vm.activeTab == 2">
             <div ng-repeat="item in vm.unShippedOrders track by $index" class="order-item">
                 <div class="title-time">订单时间：{{item.createDate | humanDate}} <span>待发货</span></div>
                 <div class="order-desc">
@@ -45,20 +45,20 @@
                 无待发货订单
             </div>
         </div>
-        <div class="order-cont order-shiped" ui-if="activeTab == 3">
+        <div class="order-cont order-shiped" ng-show="vm.activeTab == 3">
             <div ng-repeat="item in vm.shippedOrders track by $index" class="order-item">
                 <div class="title-time">订单时间：{{item.createDate | humanDate}} <span>已发货</span></div>
                 <div class="order-desc">
                     <img ng-src="{{}}" alt="">
                     <h4>{{item.name}}</h4>
-                    <div class="order-price">￥{{item.price}}<a ng-click="vm.showOrderDetail(item)" href="javascript:;">订单详细</a></div>
+                    <div class="order-price">￥{{item.price}}<a ng-click="vm.showOrderDetail(item)" href="javascript:;">订单详细</a><a ng-click="vm.confirmOrder(item)" href="javascript:;">确认收货</a></div>
                 </div>
             </div>
             <div ng-show="vm.shippedOrders.length <= 0" class="order-none">
                 无已发货订单
             </div>
         </div>
-        <div class="order-cont order-finished" ui-if="activeTab == 4">
+        <div class="order-cont order-finished" ng-show="vm.activeTab == 4">
             <div ng-repeat="item in vm.completedOrders track by $index" class="order-item">
                 <div class="title-time">订单时间：{{item.createDate | humanDate}} <span>已完成</span></div>
                 <div class="order-desc">
