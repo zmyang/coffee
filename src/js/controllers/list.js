@@ -39,51 +39,77 @@ angular.module('Coffee.controllers.List', [])
     }
 
     // 获取产品列表
+    var curPageNum = 0;
+    var getingList = false;
     function getList (type, pageNum) {
-        var typeVal;
-        if (!type) {
-            typeVal = typeReg.exec(location.hash)[1];
-        }
-        else {
-            typeVal = type;
-        }
+      if (getingList) {
+        return;
+      }
+      getingList = true;
+      var typeVal;
+      if (!type) {
+          typeVal = typeReg.exec(location.hash)[1];
+      }
+      else {
+          typeVal = type;
+      }
 
-        vm.type = typeVal;
-        pageNum = pageNum || 0;
+      vm.type = typeVal;
 
-        var listUrl = 'http://www.urcoffee.com/api/product/list.jhtml';
-        if (0 !== typeVal * 1) {
-            listUrl = 'http://www.urcoffee.com/api/product/categoryProductList/' + typeVal +'/' + pageNum + '.jhtml';
-            if (1 == vm.type) {
-              listUrl = ' http://www.urcoffee.com/api/product/beans.jhtml';
-              var params = {
-                'attribute_1': vm.selectArea,
-                'attribute_2': vm.selectLevel
-              };
-              userInfo.postData(listUrl, params)
-                .success(function (data) {
-                  if (1 == data['result']) {
-                    vm.items = data['data'];
-                  }
-                })
-                .error(function () {
-                });
+      if ('next' == pageNum) {
+        curPageNum++;
+      }
+      else {
+        curPageNum = 0;
+        vm.items = [];
+        vm.finishedDatas = false;
+      }
+
+      listUrl = 'http://www.urcoffee.com/api/product/categoryProductList/' + typeVal +'/' + curPageNum + '.jhtml';
+      if (1 == vm.type) {
+        listUrl = ' http://www.urcoffee.com/api/product/beans.jhtml';
+        var params = {
+          'attribute_1': vm.selectArea,
+          'attribute_2': vm.selectLevel,
+          'pageNumber': curPageNum
+        };
+        userInfo.postData(listUrl, params)
+          .success(function (data) {
+            if (data && 1 == data['result']) {
+              vm.items = vm.items.concat(data['data']);
+              if (data['data'] && data['data'].length > 0) {
+                vm.finishedDatas = false;
+                return;
+              }
             }
-            else {
-              $http.get(listUrl)
-                .success(function (data) {
-                  if (data && 1 == data['result']) {
-                    if (0 !== typeVal * 1) {
-                      vm.items = data['data'];
-                    } else {
-                      vm.items = data['data']['content'];
-                    }
-                  }
-                })
-                .finally(function () {
-                });
+            vm.finishedDatas = true;
+          })
+          .error(function () {
+            vm.finishedDatas = true;
+          }).
+          finally(function () {
+            getingList = false;
+          });
+      }
+      else {
+        $http.get(listUrl)
+          .success(function (data) {
+            if (data && 1 == data['result']) {
+              vm.items = vm.items.concat(data['data']);
+              if (data['data'] && data['data'].length > 0) {
+                vm.finishedDatas = false;
+                return;
+              }
             }
-        }
+            vm.finishedDatas = true;
+          })
+          .error(function () {
+            vm.finishedDatas = true;
+          }).
+          finally(function () {
+            getingList = false;
+          });
+      }
     }
 
     vm.getList = getList;

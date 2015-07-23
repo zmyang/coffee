@@ -61,3 +61,29 @@ Coffee_App.filter('length10', function() {
     return val.substring(0, 10) + '...';
   }
 });
+
+Coffee_App.filter('ceilNum', function() {
+  return function(val) {
+    if (!val) {
+      return '';
+    }
+    return Math.round(val);
+  }
+});
+
+Coffee_App.filter('groupTime', function() {
+  return function(val) {
+    if (!val) {
+      return '';
+    }
+    var today = new Date();
+    var theDay = new Date(val);
+
+    if (today.getFullYear() == theDay.getFullYear()
+        && today.getMonth() == theDay.getMonth()
+        && today.getDate() == theDay.getDate()) {
+      return '抢购进行中'
+    }
+    return '即将开抢'
+  }
+});

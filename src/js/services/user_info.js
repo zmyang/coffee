@@ -173,6 +173,63 @@ Coffee_App.service('userInfo', function ($http, $rootScope) {
                     alert('取消失败，稍后再试');
                 }
             });
+        },
+        getGroupDates: function (done) {
+            var gUrl = 'http://www.urcoffee.com/api/tuangou/tuangouDates.jhtml';
+            $http.get(gUrl)
+                .success(function (data) {
+                    if (1 == data['result']) {
+                        done && done(data['data']);
+                    }
+                    else {
+                        alert('获取团购信息失败');
+                    }
+                })
+                .error(function () {
+                    alert('获取团购信息失败');
+                });
+        },
+        getGroupProducts: function (d, done) {
+            var today = new Date();
+            var theDay = new Date(d);
+            var params = {
+                method: 'POST',
+                url: 'http://www.urcoffee.com/api/tuangou/tuangouPreProducts.jhtml',
+                data: {
+                    startDate: d
+                },
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                }
+            };
+
+            var isToday = today.getFullYear() == theDay.getFullYear()
+                && today.getMonth() == theDay.getMonth()
+                && today.getDate() == theDay.getDate();
+
+            if (isToday) {
+                params = {
+                    method: 'GET',
+                    url: 'http://www.urcoffee.com/api/tuangou/tuangouProducts.jhtml'
+                };
+            }
+
+            $http(params)
+                .success(function (data) {
+                    if (1 == data['result']) {
+                        done && done(data['data'], isToday);
+                    }
+                    else {
+                        alert('获取团购信息失败');
+                    }
+                })
+                .error(function () {
+                    alert('获取团购信息失败');
+                });
         }
     };
 

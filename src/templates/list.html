@@ -35,6 +35,7 @@
           <p><em>￥{{item.price}}</em>{{item.sales}}人付款 <span class="item-buy"></span></p>
         </a>
       </div>
+      <div class="list-group-next" ng-show="!vm.finishedDatas" ng-click="vm.getList(null, 'next')"><i class="fa"></i>加载更多</div>
     </div>
   </div>
 
