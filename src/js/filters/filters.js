@@ -71,6 +71,15 @@ Coffee_App.filter('ceilNum', function() {
   }
 });
 
+Coffee_App.filter('killYear', function() {
+  return function(val) {
+    if (!val) {
+      return '';
+    }
+    return ('' + val).substring(5);
+  }
+});
+
 Coffee_App.filter('groupTime', function() {
   return function(val) {
     if (!val) {
@@ -82,7 +91,7 @@ Coffee_App.filter('groupTime', function() {
     if (today.getFullYear() == theDay.getFullYear()
         && today.getMonth() == theDay.getMonth()
         && today.getDate() == theDay.getDate()) {
-      return '抢购进行中'
+      return '抢购中'
     }
     return '即将开抢'
   }

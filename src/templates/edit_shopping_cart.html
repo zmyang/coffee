@@ -18,7 +18,10 @@
                         {{p.product.fullName}}
                         <!-- <span>{{p.select_weight}}</span> -->
                     </div>
-                   <div class="product-price">￥{{p.price}}<span>x{{p.quantity}}</span></div>
+                   <div class="product-price">
+                        ￥{{p.price}}<span>x{{p.quantity}}</span>
+                        <div ng-show="p.processingPrice > 0" class="product-processing">加工数量:{{p.processingCount}}  加工费:￥{{p.processingPrice}}</div>
+                   </div>
                 </div> 
             </div>
         </div>

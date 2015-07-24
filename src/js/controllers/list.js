@@ -39,7 +39,7 @@ angular.module('Coffee.controllers.List', [])
     }
 
     // 获取产品列表
-    var curPageNum = 0;
+    var curPageNum = 1;
     var getingList = false;
     function getList (type, pageNum) {
       if (getingList) {
@@ -60,7 +60,7 @@ angular.module('Coffee.controllers.List', [])
         curPageNum++;
       }
       else {
-        curPageNum = 0;
+        curPageNum = 1;
         vm.items = [];
         vm.finishedDatas = false;
       }
@@ -76,9 +76,9 @@ angular.module('Coffee.controllers.List', [])
         userInfo.postData(listUrl, params)
           .success(function (data) {
             if (data && 1 == data['result']) {
-              vm.items = vm.items.concat(data['data']);
               if (data['data'] && data['data'].length > 0) {
                 vm.finishedDatas = false;
+                vm.items = vm.items.concat(data['data']);
                 return;
               }
             }
@@ -95,9 +95,9 @@ angular.module('Coffee.controllers.List', [])
         $http.get(listUrl)
           .success(function (data) {
             if (data && 1 == data['result']) {
-              vm.items = vm.items.concat(data['data']);
               if (data['data'] && data['data'].length > 0) {
                 vm.finishedDatas = false;
+                vm.items = vm.items.concat(data['data']);
                 return;
               }
             }

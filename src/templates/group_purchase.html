@@ -1,6 +1,6 @@
 <ul ng-show="vm.groupPurchaseDates.length > 0" class="group-purchase-title nav nav-tabs">
   <li ng-repeat="t in vm.groupPurchaseDates" ng-class="{'active': vm.curTime == t}">
-    <a ng-click="vm.getGroupProducts(t)">{{t}}<span>{{t | groupTime}}</span></a>
+    <a ng-click="vm.getGroupProducts(t)">{{t | killYear}}<span>{{t | groupTime}}</span></a>
   </li>
 </ul>
 <div class="scrollable">

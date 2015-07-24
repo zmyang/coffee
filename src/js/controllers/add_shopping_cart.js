@@ -21,7 +21,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
 
   function setCartVal () {
     vm.productInfo.buy_num = vm.productInfo.buy_num || 1;
-    vm.productInfo.baking_value = ['否', '是'][vm.productInfo.baking || 0];
+    vm.productInfo.baking_value = vm.productInfo.baking ? '是' : '否';
     vm.productInfo.select_baking_deep = vm.productInfo.select_baking_deep || '浅焙';
     vm.productInfo.baking_num = vm.productInfo.baking_num || 0;
   }
@@ -72,7 +72,7 @@ angular.module('Coffee.controllers.AddShoppingCart', [])
         'baking': vm.productInfo.baking_value,
         'bakingStage': vm.productInfo.select_baking_deep,
         'processingCount': vm.productInfo.baking_num,
-        'processingPrice': 0
+        'processingPrice': vm.productInfo.baking_price || 0
     };
     shoppingCart.add(params, function (data) {
       if (data && 1 == data['result']) {
