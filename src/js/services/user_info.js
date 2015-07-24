@@ -175,6 +175,7 @@ Coffee_App.service('userInfo', function ($http, $rootScope) {
             });
         },
         getGroupDates: function (done) {
+            $rootScope.ajaxDataLoading = true;
             var gUrl = 'http://www.urcoffee.com/api/tuangou/tuangouDates.jhtml';
             $http.get(gUrl)
                 .success(function (data) {
@@ -187,9 +188,13 @@ Coffee_App.service('userInfo', function ($http, $rootScope) {
                 })
                 .error(function () {
                     alert('获取团购信息失败');
+                })
+                .finally(function () {
+                    $rootScope.ajaxDataLoading = false;
                 });
         },
         getGroupProducts: function (d, done) {
+            $rootScope.ajaxDataLoading = true;
             var today = new Date();
             var theDay = new Date(d);
             var params = {
@@ -229,6 +234,9 @@ Coffee_App.service('userInfo', function ($http, $rootScope) {
                 })
                 .error(function () {
                     alert('获取团购信息失败');
+                })
+                .finally(function () {
+                    $rootScope.ajaxDataLoading = false;
                 });
         }
     };
