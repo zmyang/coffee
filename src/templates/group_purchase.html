@@ -16,6 +16,7 @@
                 <div class="item-desc">
                     <h3>{{p.name}}</h3>
                     <div class="item-price"><span>￥{{p.price}}</span><del ng-hide="true">￥</del></div>
+                    <div class="item-remaining">{{p.remainingTime}}</div>
                     <span ng-show="vm.isPreDate" ng-click="vm.buyIt({{p}})" class="item-select">马上抢</span>
                 </div>
                 <div class="item-last">
