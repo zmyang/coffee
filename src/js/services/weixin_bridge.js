@@ -70,8 +70,13 @@ Coffee_App.service('weixinBridge', function ($http, $rootScope) {
                     signType: 'MD5', // 注意：新版支付接口使用 MD5 加密
                     paySign: preObj['paysign'],
                     success: function (res) {
-                        // alert(JSON.stringify(res));
                         done && done();
+                    },
+                    cancel: function () {
+                        fail && fail();
+                    },
+                    fail: function () {
+                        fail && fail();
                     }
                 };
 

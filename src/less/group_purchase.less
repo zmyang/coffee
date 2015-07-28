@@ -41,6 +41,7 @@ ul.group-purchase-title {
 .group-purchase-content {
     background: #fff;
     padding-top: 56px;
+    padding-bottom: 100px;
     .group-purchase-tip {
         position: relative;
         z-index: 100;
@@ -90,22 +91,18 @@ ul.group-purchase-title {
                 font-size: 16px;
                 color: #f50;
             }
-            .item-select,
-            .item-alert {
+            .item-get {
                 position: absolute;
-                right: 10px;
-                bottom: 0;
-                width: 54px;
-                height: 28px;
-                line-height: 28px;
-                text-align: center;
-                .border-radius(3px);
-                background: #fcdcdd;
-                color: #fc3532;
+                right: 0;
+                top: 10px;
+                text-align: right;
+                em {
+                    font-style: normal;
+                    color: #f00;
+                }
             }
-            .item-alert {
-                background: #d3f2cf;
-                color: #28a51b;
+            .item-max-sale {
+                padding-bottom: 10px;
             }
         }
         .item-last {
@@ -132,8 +129,22 @@ ul.group-purchase-title {
                     background: #fcdcdd;
                 }
             }
-            .item-get {
-                float: right;
+            .item-select,
+            .item-alert {
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                width: 54px;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                .border-radius(3px);
+                background: #fcdcdd;
+                color: #fc3532;
+            }
+            .item-alert {
+                background: #d3f2cf;
+                color: #28a51b;
             }
         }
         .item-alert-time {

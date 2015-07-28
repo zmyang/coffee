@@ -17,12 +17,17 @@
                     <h3>{{p.name}}</h3>
                     <div class="item-price"><span>￥{{p.price}}</span><del ng-hide="true">￥</del></div>
                     <div class="item-remaining">{{p.remainingTime}}</div>
-                    <span ng-show="vm.isPreDate" ng-click="vm.buyIt({{p}})" class="item-select">马上抢</span>
+
+                    <div class="item-get">
+                        <div class="item-max-sale">限购<em>{{p.maxSale}}</em>件</div>
+                        已抢<em>{{p.saleEd}}</em>件
+                    </div>
+                    
                 </div>
                 <div class="item-last">
                     <span class="item-percent">已抢购{{p.saleEd / p.maxSale * 100 | ceilNum}}%</span>
                     <span class="item-percent-tip"><em style="width:{{p.saleEd / p.maxSale * 100 | ceilNum}}%"></em></span>
-                    <span class="item-get">已抢{{p.saleEd}}件</span>
+                    <span ng-show="vm.isPreDate" ng-click="vm.buyIt({{p}})" class="item-select">马上抢</span>
                 </div>
             </div>
         </div>
